@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=upper": {
+      "model": "fantasia:block/snowberry_bush_top"
+    },
+    "half=lower": {
+      "model": "fantasia:block/snowberry_bush_bottom"
+    }
+  }
+}

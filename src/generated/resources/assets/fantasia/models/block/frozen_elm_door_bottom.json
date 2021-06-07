@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom",
+  "textures": {
+    "bottom": "fantasia:block/frozen_elm_door_bottom",
+    "top": "fantasia:block/frozen_elm_door_top"
+  }
+}

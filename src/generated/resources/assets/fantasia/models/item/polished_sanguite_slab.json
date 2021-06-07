@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "fantasia:block/polished_sanguite",
+    "bottom": "fantasia:block/polished_sanguite",
+    "top": "fantasia:block/polished_sanguite"
+  }
+}

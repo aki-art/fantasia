@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "fantasia:block/frozen_spruce_sapling"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "side": "fantasia:block/cracked_edelstone_bricks",
+    "bottom": "fantasia:block/cracked_edelstone_bricks",
+    "top": "fantasia:block/cracked_edelstone_bricks"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "snowy=false": {
+      "model": "fantasia:block/snowy_frozen_dirt"
+    },
+    "snowy=true": {
+      "model": "fantasia:block/frozen_dirt"
+    }
+  }
+}

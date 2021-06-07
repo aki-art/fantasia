@@ -1,0 +1,16 @@
+{
+  "config": {
+    "top_material": {
+	    "Property" : {
+	    },
+      "Name": "minecraft:black_concrete_powder"
+    },
+    "under_material": {
+      "Name": "minecraft:black_concrete_powder"
+    },
+    "underwater_material": {
+      "Name": "minecraft:gravel"
+    }
+  },
+  "type": "minecraft:default"
+}

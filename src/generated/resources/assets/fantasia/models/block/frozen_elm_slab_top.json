@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "fantasia:block/frozen_elm_planks",
+    "bottom": "fantasia:block/frozen_elm_planks",
+    "top": "fantasia:block/frozen_elm_planks"
+  }
+}

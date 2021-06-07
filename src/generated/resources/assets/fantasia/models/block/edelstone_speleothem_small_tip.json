@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "fantasia:block/edelstone_speleothem_small_tip"
+  }
+}

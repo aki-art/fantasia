@@ -1,0 +1,65 @@
+{
+	"config": {
+		"feature": {
+			"config": {
+				"feature": {
+					"config": {
+						"block": {
+							"Name": "fantasia:hiemsite"
+						},
+						"crystal": {
+							"Properties": {
+								"stage": "tiny",
+								"facing" : "north",
+								"face" : "floor"
+							},
+							"Name": "fantasia:hiemsite_crystal"
+						},
+						"radius": {
+							"base": 2,
+							"spread": 4
+						},
+						"pillar_max_height": {
+							"base": 1,
+							"spread": 4
+						},
+						"extra_ground_crystals_area": {
+							"base": 3,
+							"spread": 6
+						},
+						"small_crystal_length": {
+							"base": 1,
+							"spread": 3
+						},
+						"small_crystal_probability" : 0.7,
+						"extra_small_crystal_probability" : 0.1
+					},
+					"type": "fantasia:crystal_pile"
+				},
+				"decorator": {
+					"config": {
+						"outer": {
+							"config": {
+							},
+							"type": "minecraft:square"
+						},
+						"inner": {
+							"config": {
+							},
+							"type": "minecraft:heightmap"
+						}
+					},
+					"type": "minecraft:decorated"
+				}
+			},
+			"type": "minecraft:decorated"
+		},
+		"decorator": {
+			"config": {
+				"chance": 10
+			},
+			"type": "minecraft:chance"
+		}
+	},
+	"type": "minecraft:decorated"
+}

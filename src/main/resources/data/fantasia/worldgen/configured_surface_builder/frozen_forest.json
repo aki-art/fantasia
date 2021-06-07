@@ -1,0 +1,17 @@
+{
+  "config": {
+    "top_material": {
+      "Name": "fantasia:frozen_dirt",
+      "Properties": {
+        "snowy": "true"
+      }
+    },
+    "under_material": {
+      "Name": "fantasia:frozen_dirt",
+      "Properties": {
+        "snowy": "false"
+      }
+    }
+  },
+  "type": "fantasia:height_constricted"
+}

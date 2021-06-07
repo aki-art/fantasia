@@ -1,0 +1,32 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "fantasia:block/hiemsite_waxed_lens",
+      "x": 180,
+      "y": 270
+    },
+    "facing=up": {
+      "model": "fantasia:block/hiemsite_waxed_lens",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "fantasia:block/hiemsite_waxed_lens",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "fantasia:block/hiemsite_waxed_lens",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west": {
+      "model": "fantasia:block/hiemsite_waxed_lens",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east": {
+      "model": "fantasia:block/hiemsite_waxed_lens",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

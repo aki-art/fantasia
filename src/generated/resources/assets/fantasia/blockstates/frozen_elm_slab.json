@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "fantasia:block/frozen_elm_slab_top"
+    },
+    "type=bottom": {
+      "model": "fantasia:block/frozen_elm_slab"
+    },
+    "type=double": {
+      "model": "fantasia:block/frozen_elm_planks"
+    }
+  }
+}

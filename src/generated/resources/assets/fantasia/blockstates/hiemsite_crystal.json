@@ -1,0 +1,375 @@
+{
+  "variants": {
+    "face=floor,facing=north,stage=tiny": {
+      "model": "fantasia:block/hiemsite_crystal_tiny"
+    },
+    "face=wall,facing=north,stage=tiny": {
+      "model": "fantasia:block/hiemsite_crystal_tiny",
+      "x": 90
+    },
+    "face=ceiling,facing=north,stage=tiny": {
+      "model": "fantasia:block/hiemsite_crystal_tiny",
+      "x": 180,
+      "y": 180
+    },
+    "face=floor,facing=south,stage=tiny": {
+      "model": "fantasia:block/hiemsite_crystal_tiny",
+      "y": 180
+    },
+    "face=wall,facing=south,stage=tiny": {
+      "model": "fantasia:block/hiemsite_crystal_tiny",
+      "x": 90,
+      "y": 180
+    },
+    "face=ceiling,facing=south,stage=tiny": {
+      "model": "fantasia:block/hiemsite_crystal_tiny",
+      "x": 180
+    },
+    "face=floor,facing=west,stage=tiny": {
+      "model": "fantasia:block/hiemsite_crystal_tiny",
+      "y": 270
+    },
+    "face=wall,facing=west,stage=tiny": {
+      "model": "fantasia:block/hiemsite_crystal_tiny",
+      "x": 90,
+      "y": 270
+    },
+    "face=ceiling,facing=west,stage=tiny": {
+      "model": "fantasia:block/hiemsite_crystal_tiny",
+      "x": 180,
+      "y": 90
+    },
+    "face=floor,facing=east,stage=tiny": {
+      "model": "fantasia:block/hiemsite_crystal_tiny",
+      "y": 90
+    },
+    "face=wall,facing=east,stage=tiny": {
+      "model": "fantasia:block/hiemsite_crystal_tiny",
+      "x": 90,
+      "y": 90
+    },
+    "face=ceiling,facing=east,stage=tiny": {
+      "model": "fantasia:block/hiemsite_crystal_tiny",
+      "x": 180,
+      "y": 270
+    },
+    "face=floor,facing=north,stage=small_base": {
+      "model": "fantasia:block/hiemsite_crystal_small_base"
+    },
+    "face=wall,facing=north,stage=small_base": {
+      "model": "fantasia:block/hiemsite_crystal_small_base",
+      "x": 90
+    },
+    "face=ceiling,facing=north,stage=small_base": {
+      "model": "fantasia:block/hiemsite_crystal_small_base",
+      "x": 180,
+      "y": 180
+    },
+    "face=floor,facing=south,stage=small_base": {
+      "model": "fantasia:block/hiemsite_crystal_small_base",
+      "y": 180
+    },
+    "face=wall,facing=south,stage=small_base": {
+      "model": "fantasia:block/hiemsite_crystal_small_base",
+      "x": 90,
+      "y": 180
+    },
+    "face=ceiling,facing=south,stage=small_base": {
+      "model": "fantasia:block/hiemsite_crystal_small_base",
+      "x": 180
+    },
+    "face=floor,facing=west,stage=small_base": {
+      "model": "fantasia:block/hiemsite_crystal_small_base",
+      "y": 270
+    },
+    "face=wall,facing=west,stage=small_base": {
+      "model": "fantasia:block/hiemsite_crystal_small_base",
+      "x": 90,
+      "y": 270
+    },
+    "face=ceiling,facing=west,stage=small_base": {
+      "model": "fantasia:block/hiemsite_crystal_small_base",
+      "x": 180,
+      "y": 90
+    },
+    "face=floor,facing=east,stage=small_base": {
+      "model": "fantasia:block/hiemsite_crystal_small_base",
+      "y": 90
+    },
+    "face=wall,facing=east,stage=small_base": {
+      "model": "fantasia:block/hiemsite_crystal_small_base",
+      "x": 90,
+      "y": 90
+    },
+    "face=ceiling,facing=east,stage=small_base": {
+      "model": "fantasia:block/hiemsite_crystal_small_base",
+      "x": 180,
+      "y": 270
+    },
+    "face=floor,facing=north,stage=small_tip": {
+      "model": "fantasia:block/hiemsite_crystal_small_tip"
+    },
+    "face=wall,facing=north,stage=small_tip": {
+      "model": "fantasia:block/hiemsite_crystal_small_tip",
+      "x": 90
+    },
+    "face=ceiling,facing=north,stage=small_tip": {
+      "model": "fantasia:block/hiemsite_crystal_small_tip",
+      "x": 180,
+      "y": 180
+    },
+    "face=floor,facing=south,stage=small_tip": {
+      "model": "fantasia:block/hiemsite_crystal_small_tip",
+      "y": 180
+    },
+    "face=wall,facing=south,stage=small_tip": {
+      "model": "fantasia:block/hiemsite_crystal_small_tip",
+      "x": 90,
+      "y": 180
+    },
+    "face=ceiling,facing=south,stage=small_tip": {
+      "model": "fantasia:block/hiemsite_crystal_small_tip",
+      "x": 180
+    },
+    "face=floor,facing=west,stage=small_tip": {
+      "model": "fantasia:block/hiemsite_crystal_small_tip",
+      "y": 270
+    },
+    "face=wall,facing=west,stage=small_tip": {
+      "model": "fantasia:block/hiemsite_crystal_small_tip",
+      "x": 90,
+      "y": 270
+    },
+    "face=ceiling,facing=west,stage=small_tip": {
+      "model": "fantasia:block/hiemsite_crystal_small_tip",
+      "x": 180,
+      "y": 90
+    },
+    "face=floor,facing=east,stage=small_tip": {
+      "model": "fantasia:block/hiemsite_crystal_small_tip",
+      "y": 90
+    },
+    "face=wall,facing=east,stage=small_tip": {
+      "model": "fantasia:block/hiemsite_crystal_small_tip",
+      "x": 90,
+      "y": 90
+    },
+    "face=ceiling,facing=east,stage=small_tip": {
+      "model": "fantasia:block/hiemsite_crystal_small_tip",
+      "x": 180,
+      "y": 270
+    },
+    "face=floor,facing=north,stage=tip": {
+      "model": "fantasia:block/hiemsite_crystal_tip"
+    },
+    "face=wall,facing=north,stage=tip": {
+      "model": "fantasia:block/hiemsite_crystal_tip",
+      "x": 90
+    },
+    "face=ceiling,facing=north,stage=tip": {
+      "model": "fantasia:block/hiemsite_crystal_tip",
+      "x": 180,
+      "y": 180
+    },
+    "face=floor,facing=south,stage=tip": {
+      "model": "fantasia:block/hiemsite_crystal_tip",
+      "y": 180
+    },
+    "face=wall,facing=south,stage=tip": {
+      "model": "fantasia:block/hiemsite_crystal_tip",
+      "x": 90,
+      "y": 180
+    },
+    "face=ceiling,facing=south,stage=tip": {
+      "model": "fantasia:block/hiemsite_crystal_tip",
+      "x": 180
+    },
+    "face=floor,facing=west,stage=tip": {
+      "model": "fantasia:block/hiemsite_crystal_tip",
+      "y": 270
+    },
+    "face=wall,facing=west,stage=tip": {
+      "model": "fantasia:block/hiemsite_crystal_tip",
+      "x": 90,
+      "y": 270
+    },
+    "face=ceiling,facing=west,stage=tip": {
+      "model": "fantasia:block/hiemsite_crystal_tip",
+      "x": 180,
+      "y": 90
+    },
+    "face=floor,facing=east,stage=tip": {
+      "model": "fantasia:block/hiemsite_crystal_tip",
+      "y": 90
+    },
+    "face=wall,facing=east,stage=tip": {
+      "model": "fantasia:block/hiemsite_crystal_tip",
+      "x": 90,
+      "y": 90
+    },
+    "face=ceiling,facing=east,stage=tip": {
+      "model": "fantasia:block/hiemsite_crystal_tip",
+      "x": 180,
+      "y": 270
+    },
+    "face=floor,facing=north,stage=middle": {
+      "model": "fantasia:block/hiemsite_crystal_middle"
+    },
+    "face=wall,facing=north,stage=middle": {
+      "model": "fantasia:block/hiemsite_crystal_middle",
+      "x": 90
+    },
+    "face=ceiling,facing=north,stage=middle": {
+      "model": "fantasia:block/hiemsite_crystal_middle",
+      "x": 180,
+      "y": 180
+    },
+    "face=floor,facing=south,stage=middle": {
+      "model": "fantasia:block/hiemsite_crystal_middle",
+      "y": 180
+    },
+    "face=wall,facing=south,stage=middle": {
+      "model": "fantasia:block/hiemsite_crystal_middle",
+      "x": 90,
+      "y": 180
+    },
+    "face=ceiling,facing=south,stage=middle": {
+      "model": "fantasia:block/hiemsite_crystal_middle",
+      "x": 180
+    },
+    "face=floor,facing=west,stage=middle": {
+      "model": "fantasia:block/hiemsite_crystal_middle",
+      "y": 270
+    },
+    "face=wall,facing=west,stage=middle": {
+      "model": "fantasia:block/hiemsite_crystal_middle",
+      "x": 90,
+      "y": 270
+    },
+    "face=ceiling,facing=west,stage=middle": {
+      "model": "fantasia:block/hiemsite_crystal_middle",
+      "x": 180,
+      "y": 90
+    },
+    "face=floor,facing=east,stage=middle": {
+      "model": "fantasia:block/hiemsite_crystal_middle",
+      "y": 90
+    },
+    "face=wall,facing=east,stage=middle": {
+      "model": "fantasia:block/hiemsite_crystal_middle",
+      "x": 90,
+      "y": 90
+    },
+    "face=ceiling,facing=east,stage=middle": {
+      "model": "fantasia:block/hiemsite_crystal_middle",
+      "x": 180,
+      "y": 270
+    },
+    "face=floor,facing=north,stage=middle_alt": {
+      "model": "fantasia:block/hiemsite_crystal_middle_alt"
+    },
+    "face=wall,facing=north,stage=middle_alt": {
+      "model": "fantasia:block/hiemsite_crystal_middle_alt",
+      "x": 90
+    },
+    "face=ceiling,facing=north,stage=middle_alt": {
+      "model": "fantasia:block/hiemsite_crystal_middle_alt",
+      "x": 180,
+      "y": 180
+    },
+    "face=floor,facing=south,stage=middle_alt": {
+      "model": "fantasia:block/hiemsite_crystal_middle_alt",
+      "y": 180
+    },
+    "face=wall,facing=south,stage=middle_alt": {
+      "model": "fantasia:block/hiemsite_crystal_middle_alt",
+      "x": 90,
+      "y": 180
+    },
+    "face=ceiling,facing=south,stage=middle_alt": {
+      "model": "fantasia:block/hiemsite_crystal_middle_alt",
+      "x": 180
+    },
+    "face=floor,facing=west,stage=middle_alt": {
+      "model": "fantasia:block/hiemsite_crystal_middle_alt",
+      "y": 270
+    },
+    "face=wall,facing=west,stage=middle_alt": {
+      "model": "fantasia:block/hiemsite_crystal_middle_alt",
+      "x": 90,
+      "y": 270
+    },
+    "face=ceiling,facing=west,stage=middle_alt": {
+      "model": "fantasia:block/hiemsite_crystal_middle_alt",
+      "x": 180,
+      "y": 90
+    },
+    "face=floor,facing=east,stage=middle_alt": {
+      "model": "fantasia:block/hiemsite_crystal_middle_alt",
+      "y": 90
+    },
+    "face=wall,facing=east,stage=middle_alt": {
+      "model": "fantasia:block/hiemsite_crystal_middle_alt",
+      "x": 90,
+      "y": 90
+    },
+    "face=ceiling,facing=east,stage=middle_alt": {
+      "model": "fantasia:block/hiemsite_crystal_middle_alt",
+      "x": 180,
+      "y": 270
+    },
+    "face=floor,facing=north,stage=base": {
+      "model": "fantasia:block/hiemsite_crystal_base"
+    },
+    "face=wall,facing=north,stage=base": {
+      "model": "fantasia:block/hiemsite_crystal_base",
+      "x": 90
+    },
+    "face=ceiling,facing=north,stage=base": {
+      "model": "fantasia:block/hiemsite_crystal_base",
+      "x": 180,
+      "y": 180
+    },
+    "face=floor,facing=south,stage=base": {
+      "model": "fantasia:block/hiemsite_crystal_base",
+      "y": 180
+    },
+    "face=wall,facing=south,stage=base": {
+      "model": "fantasia:block/hiemsite_crystal_base",
+      "x": 90,
+      "y": 180
+    },
+    "face=ceiling,facing=south,stage=base": {
+      "model": "fantasia:block/hiemsite_crystal_base",
+      "x": 180
+    },
+    "face=floor,facing=west,stage=base": {
+      "model": "fantasia:block/hiemsite_crystal_base",
+      "y": 270
+    },
+    "face=wall,facing=west,stage=base": {
+      "model": "fantasia:block/hiemsite_crystal_base",
+      "x": 90,
+      "y": 270
+    },
+    "face=ceiling,facing=west,stage=base": {
+      "model": "fantasia:block/hiemsite_crystal_base",
+      "x": 180,
+      "y": 90
+    },
+    "face=floor,facing=east,stage=base": {
+      "model": "fantasia:block/hiemsite_crystal_base",
+      "y": 90
+    },
+    "face=wall,facing=east,stage=base": {
+      "model": "fantasia:block/hiemsite_crystal_base",
+      "x": 90,
+      "y": 90
+    },
+    "face=ceiling,facing=east,stage=base": {
+      "model": "fantasia:block/hiemsite_crystal_base",
+      "x": 180,
+      "y": 270
+    }
+  }
+}

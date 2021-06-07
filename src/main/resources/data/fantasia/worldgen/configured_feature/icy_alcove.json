@@ -1,0 +1,82 @@
+{
+  "config": {
+    "feature": {
+      "config": {
+        "feature": {
+          "config": {
+
+            "base_state": {
+              "Name": "fantasia:frozen_dirt",
+              "Properties" : {
+                "snowy" : "false"
+              }
+            },
+
+            "height" : {
+              "base": 11,
+              "spread": 4
+            },
+
+            "top_state": {
+              "Name": "fantasia:frozen_dirt",
+              "Properties" : {
+                "snowy" : "true"
+              }
+            },
+
+            "ceiling_decorator": {
+              "state": {
+                "Name": "minecraft:green_wool"
+              },
+              "type": "minecraft:simple_state_provider"
+            },
+            "ceiling_block_placer": {
+              "min_size": 1,
+              "extra_size": 2,
+              "type": "fantasia:stalagmite_block_placer"
+            },
+
+            "floor_state": {
+              "Name": "fantasia:marlstone"
+            },
+            "floor_decorator": {
+              "state": {
+                "Name": "minecraft:red_wool"
+              },
+              "type": "minecraft:simple_state_provider"
+            },
+            "xMul" : 0.6,
+            "zMul" : 1.2,
+            "verticalOffset" : -6,
+
+            "snowy" : true
+          },
+          "type": "fantasia:alcove"
+        },
+        "decorator": {
+          "config": {
+            "outer": {
+              "config": {
+              },
+              "type": "minecraft:square"
+            },
+            "inner": {
+              "config": {
+              },
+              "type": "minecraft:heightmap"
+            }
+          },
+          "type": "minecraft:decorated"
+        }
+      },
+      "type": "minecraft:decorated"
+    },
+    "decorator": {
+      "config": {
+        "chance": 50
+      },
+      "type": "minecraft:chance"
+    }
+  },
+  "type": "minecraft:decorated"
+}

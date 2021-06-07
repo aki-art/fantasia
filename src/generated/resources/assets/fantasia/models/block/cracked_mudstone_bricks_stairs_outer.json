@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "side": "fantasia:block/cracked_mudstone_bricks",
+    "bottom": "fantasia:block/cracked_mudstone_bricks",
+    "top": "fantasia:block/cracked_mudstone_bricks"
+  }
+}

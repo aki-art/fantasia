@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "fantasia:block/cracked_mudstone_bricks"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "fantasia:block/marlstone_pressure_plate_down"
+    },
+    "powered=true": {
+      "model": "fantasia:block/marlstone_pressure_plate"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "fantasia:block/frozen_spruce_slab_top"
+    },
+    "type=bottom": {
+      "model": "fantasia:block/frozen_spruce_slab"
+    },
+    "type=double": {
+      "model": "fantasia:block/frozen_spruce_planks"
+    }
+  }
+}

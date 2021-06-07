@@ -1,0 +1,9 @@
+{
+	"tooltip.crystals.hiemsite_crystal" : "Chilling",
+	"tooltip.crystals.gehennite_crystal" : "Scorching",
+	"tooltip.crystals.neptunite_crystal" : "Shadowing",
+	"tooltip.crystals.petrified_honey_crystal" : "No Effect",
+	"tooltip.blocks.hiemsite_lens" : "Freezes stuff",
+	"tooltips.blocks.no_effect" : "No Effect",
+	"tooltips.blocks.safe_for_decoration" : "Safe for decoration"
+}

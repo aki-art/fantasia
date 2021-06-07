@@ -1,0 +1,60 @@
+{
+  "variants": {
+    "active=false,facing=down": {
+      "model": "fantasia:block/hiemsite_lens",
+      "x": 180,
+      "y": 270
+    },
+    "active=true,facing=down": {
+      "model": "fantasia:block/hiemsite_lens",
+      "x": 180,
+      "y": 270
+    },
+    "active=false,facing=up": {
+      "model": "fantasia:block/hiemsite_lens",
+      "y": 270
+    },
+    "active=true,facing=up": {
+      "model": "fantasia:block/hiemsite_lens",
+      "y": 270
+    },
+    "active=false,facing=north": {
+      "model": "fantasia:block/hiemsite_lens",
+      "x": 90
+    },
+    "active=true,facing=north": {
+      "model": "fantasia:block/hiemsite_lens",
+      "x": 90
+    },
+    "active=false,facing=south": {
+      "model": "fantasia:block/hiemsite_lens",
+      "x": 90,
+      "y": 180
+    },
+    "active=true,facing=south": {
+      "model": "fantasia:block/hiemsite_lens",
+      "x": 90,
+      "y": 180
+    },
+    "active=false,facing=west": {
+      "model": "fantasia:block/hiemsite_lens",
+      "x": 90,
+      "y": 270
+    },
+    "active=true,facing=west": {
+      "model": "fantasia:block/hiemsite_lens",
+      "x": 90,
+      "y": 270
+    },
+    "active=false,facing=east": {
+      "model": "fantasia:block/hiemsite_lens",
+      "x": 90,
+      "y": 90
+    },
+    "active=true,facing=east": {
+      "model": "fantasia:block/hiemsite_lens",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

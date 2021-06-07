@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_side",
+  "textures": {
+    "texture": "fantasia:block/frozen_elm_planks"
+  }
+}

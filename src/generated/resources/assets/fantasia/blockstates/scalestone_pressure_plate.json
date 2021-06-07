@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "fantasia:block/scalestone_pressure_plate_down"
+    },
+    "powered=true": {
+      "model": "fantasia:block/scalestone_pressure_plate"
+    }
+  }
+}
