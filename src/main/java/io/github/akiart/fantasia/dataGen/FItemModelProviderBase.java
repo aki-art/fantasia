@@ -10,10 +10,12 @@ import io.github.akiart.fantasia.common.item.registrySet.TreeRegistryItem;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public abstract class FItemModelProviderBase extends ItemModelProvider {
@@ -25,6 +27,11 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
 	protected ResourceLocation getBlockTexture(Block block) {
 		ResourceLocation name = block.getRegistryName();
 		return new ResourceLocation(name.getNamespace(), "block/" + name.getPath());
+	}
+
+	protected ResourceLocation getItemTexture(Item item) {
+		ResourceLocation name = item.getRegistryName();
+		return new ResourceLocation(name.getNamespace(), "item/" + name.getPath());
 	}
 
 	protected ResourceLocation getBlockLocation(String name) {
@@ -98,6 +105,7 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
 
 		ResourceLocation plankTex = getBlockTexture(tree.planks.get());
 		ResourceLocation logTex = getBlockTexture(tree.log.get());
+		ResourceLocation lotTopTex = getBlockLocation(tree.getName() + "_log_top");
 		ResourceLocation strippedTex = getBlockTexture(tree.strippedLog.get());
 		ResourceLocation strippedTopTex = getBlockLocation(tree.getName() + "_stripped_log_top");
 
@@ -106,7 +114,7 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
 		fromBlock(tree.strippedWood.get());
 		fromBlock(tree.leaves.get());
 
-		cubeColumn(getName(items.log.get()), logTex, plankTex);
+		cubeColumn(getName(items.log.get()), logTex, lotTopTex);
 		cubeColumn(getName(items.strippedLog.get()), strippedTex, strippedTopTex);
 
 		stairs(getName(items.stairs.get()), plankTex, plankTex, plankTex);
@@ -120,4 +128,9 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
 		//fromBlock(tree.door.get());
 		//fromBlock(tree.trapDoor.get());
 	}
+
+    public void simpleItem(RegistryObject<? extends Item> item) {
+		//singleTexture(getName(item.get()), getItemLocation(getName(item.get())), getItemTexture(item.get()));
+		generate(getName(item.get()), getItemTexture(item.get()));
+    }
 }

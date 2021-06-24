@@ -22,6 +22,7 @@ public class FBlockStateProvider extends FBlockStateProviderBase {
 		registerPlants();
 		
 		speleothemBlock(FBlocks.ICICLE);
+		simpleBlock(FBlocks.FANTASIA_PORTAL_BLOCK.get());
 		
 		registerDebugStuff();
 	}

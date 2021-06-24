@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cube_column",
   "textures": {
     "side": "fantasia:block/frozen_spruce_log",
-    "end": "fantasia:block/frozen_spruce_planks"
+    "end": "fantasia:block/frozen_spruce_log_top"
   }
 }

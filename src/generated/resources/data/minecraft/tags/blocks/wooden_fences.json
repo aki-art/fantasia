@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "fantasia:frozen_spruce_fence",
-    "fantasia:frozen_elm_fence"
+    "fantasia:frozen_elm_fence",
+    "fantasia:frozen_spruce_fence"
   ]
 }

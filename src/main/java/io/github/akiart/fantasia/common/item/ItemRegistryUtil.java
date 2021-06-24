@@ -1,6 +1,7 @@
 package io.github.akiart.fantasia.common.item;
 
 import java.util.HashSet;
+import java.util.function.Supplier;
 
 import io.github.akiart.fantasia.common.block.registrySet.CrystalRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.StoneRegistryObject;
@@ -12,16 +13,28 @@ import io.github.akiart.fantasia.common.item.registrySet.StoneItemSet;
 import io.github.akiart.fantasia.common.item.registrySet.StoneRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.TreeRegistryItem;
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
+import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ItemRegistryUtil {
 
-	public static HashSet<StoneRegistryItem> stones = new HashSet<StoneRegistryItem>();
-	public static HashSet<RegistryObject<BlockItem>> blockItems = new HashSet<RegistryObject<BlockItem>>();
-	public static HashSet<CrystalRegistryItem> crystals = new HashSet<CrystalRegistryItem>();
-	public static HashSet<TreeRegistryItem> trees = new HashSet<TreeRegistryItem>();
+	public static HashSet<StoneRegistryItem> stones = new HashSet<>();
+	public static HashSet<RegistryObject<BlockItem>> blockItems = new HashSet<>();
+	public static HashSet<CrystalRegistryItem> crystals = new HashSet<>();
+	public static HashSet<TreeRegistryItem> trees = new HashSet<>();
+	public static HashSet<RegistryObject<? extends Item>> simpleItems = new HashSet<>();
+
+	public static <T extends Item> RegistryObject<T> register(String name, Supplier<T> item) {
+		RegistryObject<T> reg = FItems.ITEMS.register(name, item);
+		simpleItems.add(reg);
+		return reg;
+	}
+
+	public static RegistryObject<Item> registerFood(String id, Food food) {
+		return register(id, () -> new Item(new Item.Properties()
+				.tab(FItemGroup.FANTASIA)
+				.food(Foods.COOKED_CHICKEN)));
+	}
 
 	public static RegistryObject<BlockItem> registerFromBlock(RegistryObject<? extends Block> parent) {
 		return FItems.ITEMS.register(parent.getId().getPath(),

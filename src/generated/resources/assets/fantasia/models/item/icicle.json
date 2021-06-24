@@ -1,3 +1,6 @@
 {
-  "parent": "fantasia:block/icicle_tip"
+  "parent": "fantasia:block/icicle_tip",
+  "textures": {
+    "layer0": "fantasia:item/icicle"
+  }
 }

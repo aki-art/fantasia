@@ -20,10 +20,10 @@ public class Generators {
 		dataGen.addProvider(new FBlockStateProvider(dataGen, fileHelper));
 		dataGen.addProvider(new FBlockTagsProvider(dataGen, fileHelper));
 		dataGen.addProvider(new FItemModelProvider(dataGen, fileHelper));
-//		dataGen.addProvider(new RecipeGenerator(dataGen));
+		dataGen.addProvider(new FRecipeProvider(dataGen));
 //		dataGen.addProvider(new CraftingGenerator(dataGen)));
 //		dataGen.addProvider(new ItemTagGenerator(dataGen), blocktags, fileHelper));
-//		dataGen.addProvider(new LootGenerator(dataGen)));
+		dataGen.addProvider(new FLootTableProvider(dataGen));
 //		dataGen.addProvider(new StonecuttingGenerator(dataGen)));
 	}
 }

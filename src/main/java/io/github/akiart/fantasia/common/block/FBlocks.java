@@ -1,6 +1,7 @@
 package io.github.akiart.fantasia.common.block;
 
 import io.github.akiart.fantasia.Fantasia;
+import io.github.akiart.fantasia.common.block.blockType.FantasiaPortalBlock;
 import io.github.akiart.fantasia.common.block.blockType.biomeDecoration.cave.IcicleBlock;
 import io.github.akiart.fantasia.common.block.blockType.biomeDecoration.cave.SpeleothemBlock;
 import io.github.akiart.fantasia.common.block.blockType.crystalLens.HiemsiteLensBlock;
@@ -20,6 +21,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.TallFlowerBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.util.Util;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -91,6 +93,7 @@ public class FBlocks {
                     .instabreak()
                     .sound(SoundType.GRASS)));
 
+
     // Misc
 
     public static final RegistryObject<SpeleothemBlock> ICICLE = BlockRegistryUtil.createSpeleothem("icicle",
@@ -98,6 +101,11 @@ public class FBlocks {
 
     public static final RegistryObject<SnowyDirtBlock> FROZEN_DIRT = BlockRegistryUtil.register("frozen_dirt",
             () -> new SnowyDirtBlock(AbstractBlock.Properties.copy(Blocks.DIRT)));
+
+    public static final RegistryObject<FantasiaPortalBlock> FANTASIA_PORTAL_BLOCK = BlockRegistryUtil.register("fantasia_portal_block",
+            () -> new FantasiaPortalBlock(AbstractBlock.Properties.copy(Blocks.GLASS)
+                    .noCollission()));
+
 
     // Test & Debug
     public static final RegistryObject<TestCrystalLensBlock> TEST_CRYSTAL_LENS = BlockRegistryUtil

@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "fantasia:frozen_spruce_planks",
-    "fantasia:frozen_elm_planks"
+    "fantasia:frozen_elm_planks",
+    "fantasia:frozen_spruce_planks"
   ]
 }

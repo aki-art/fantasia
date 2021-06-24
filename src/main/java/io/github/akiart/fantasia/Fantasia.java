@@ -1,11 +1,16 @@
 package io.github.akiart.fantasia;
 
+import io.github.akiart.fantasia.common.block.trees.StripMap;
 import io.github.akiart.fantasia.common.entity.FEntities;
 import io.github.akiart.fantasia.common.world.FChunkGenerator;
 import io.github.akiart.fantasia.common.world.gen.blockplacer.FBlockPlacerTypes;
 import io.github.akiart.fantasia.common.world.gen.feature.FFeatures;
 import io.github.akiart.fantasia.common.world.gen.util.Extents;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.vector.Vector3i;
+import net.minecraft.world.World;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.text.WordUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,49 +35,41 @@ import software.bernie.geckolib3.GeckoLib;
 
 @Mod(Fantasia.ID)
 public class Fantasia {
-	public static final Logger LOGGER = LogManager.getLogger();
-	public static final String ID = "fantasia";
+    public static final Logger LOGGER = LogManager.getLogger();
+    public static final String ID = "fantasia";
+    public static final ResourceLocation DIMENSION_ID = new ResourceLocation(ID, "fantasia");
+    public static final RegistryKey<World> FANTASIA_WORLD_KEY = RegistryKey.create(Registry.DIMENSION_REGISTRY, DIMENSION_ID);
 
-	public Fantasia() {
 
-		GeckoLib.initialize();
+    public Fantasia() {
 
-		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        GeckoLib.initialize();
 
-		FParticleTypes.PARTICLES.register(bus);
-		FSounds.SOUNDS.register(bus);
-		FBlocks.BLOCKS.register(bus);
-		FItems.ITEMS.register(bus);
-		FTileEntityTypes.TILE_ENTITY_TYPES.register(bus);
-		FTreeDecorators.TREE_DECORATOR_TYPES.register(bus);
-		FSurfaceBuilders.SURFACE_BUILDERS.register(bus);
-		FFeatures.FEATURES.register(bus);
-		FBiomes.BIOMES.register(bus);
-		FEntities.ENTITIES.register(bus);
-		FBlockPlacerTypes.BLOCK_PLACER_TYPES.register(bus);
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-		bus.addListener(this::setup);
+        FParticleTypes.PARTICLES.register(bus);
+        FSounds.SOUNDS.register(bus);
+        FBlocks.BLOCKS.register(bus);
+        FItems.ITEMS.register(bus);
+        FTileEntityTypes.TILE_ENTITY_TYPES.register(bus);
+        FTreeDecorators.TREE_DECORATOR_TYPES.register(bus);
+        FSurfaceBuilders.SURFACE_BUILDERS.register(bus);
+        FFeatures.FEATURES.register(bus);
+        FBiomes.BIOMES.register(bus);
+        FEntities.ENTITIES.register(bus);
+        FBlockPlacerTypes.BLOCK_PLACER_TYPES.register(bus);
 
-		MinecraftForge.EVENT_BUS.register(this);
-	}
+        bus.addListener(this::setup);
 
-	private void setup(final FMLCommonSetupEvent event) {
-		event.enqueueWork(() -> {
+        MinecraftForge.EVENT_BUS.register(this);
+    }
 
-			FConfiguredFeatures.registerConfiguredFeatures();
-			Registry.register(Registry.BIOME_SOURCE, new ResourceLocation(ID, "biome_source"),
-				FBiomeProvider.CODEC);
-			Registry.register(Registry.CHUNK_GENERATOR, new ResourceLocation(ID,
-			 "chunk_generator"), FChunkGenerator.CODEC);
-
-		});
-	}
-//	
-//	public static void registerStripMaps() {
-//		Map<Block, Block> stripMap = new HashMap<>();
-//		stripMap.putAll(AxeItem.BLOCK_STRIPPING_MAP);
-//		stripMap.put(FBlocks.FROZEN_TREE.LOG.get(), FBlocks.FROZEN_TREE.STRIPPED_LOG.get());
-//		stripMap.put(FBlocks.FROZEN_TREE.WOOD.get(), FBlocks.FROZEN_TREE.STRIPPED_WOOD.get());
-//		AxeItem.BLOCK_STRIPPING_MAP = stripMap;
-//	}
+    private void setup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            FConfiguredFeatures.registerConfiguredFeatures();
+            Registry.register(Registry.BIOME_SOURCE, new ResourceLocation(ID, "biome_source"), FBiomeProvider.CODEC);
+            Registry.register(Registry.CHUNK_GENERATOR, new ResourceLocation(ID, "chunk_generator"), FChunkGenerator.CODEC);
+            StripMap.registerStripMaps();
+        });
+    }
 }

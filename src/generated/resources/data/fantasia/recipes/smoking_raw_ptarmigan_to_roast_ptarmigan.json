@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "fantasia:raw_ptarmigan"
+  },
+  "result": "fantasia:roast_ptarmigan",
+  "experience": 0.3,
+  "cookingtime": 50
+}

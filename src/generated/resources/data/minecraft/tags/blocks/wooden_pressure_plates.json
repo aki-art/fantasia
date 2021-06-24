@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "fantasia:frozen_spruce_pressure_plate",
-    "fantasia:frozen_elm_pressure_plate"
+    "fantasia:frozen_elm_pressure_plate",
+    "fantasia:frozen_spruce_pressure_plate"
   ]
 }

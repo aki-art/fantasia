@@ -2,15 +2,21 @@ package io.github.akiart.fantasia.client;
 
 import java.util.ArrayList;
 
-import io.github.akiart.fantasia.client.entityRenderer.PtarmiganEntityRenderer;
+import io.github.akiart.fantasia.client.entityRenderer.*;
 import io.github.akiart.fantasia.client.tileEntityRenderer.CrystalLensTileEntityRenderer;
 import io.github.akiart.fantasia.common.block.BlockRegistryUtil;
 import io.github.akiart.fantasia.common.block.FBlocks;
 import io.github.akiart.fantasia.common.entity.FEntities;
 import io.github.akiart.fantasia.common.tileentity.FTileEntityTypes;
+import io.github.akiart.fantasia.lib.GeckoLibExtension.IBasicAnimatable;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.entity.SpriteRenderer;
+import net.minecraft.client.renderer.entity.TridentRenderer;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -19,8 +25,6 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import software.bernie.example.registry.EntityRegistry;
-import software.bernie.example.registry.TileRegistry;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Bus.MOD)
 public final class RenderLayers {
@@ -57,7 +61,18 @@ public final class RenderLayers {
     @SubscribeEvent
     public static void registerRenderers(final FMLClientSetupEvent event) {
         ClientRegistry.bindTileEntityRenderer(FTileEntityTypes.CRYSTAL_LENS.get(), CrystalLensTileEntityRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(FEntities.PTARMIGAN.get(),
-                PtarmiganEntityRenderer::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(FEntities.PTARMIGAN.get(), PtarmiganEntityRenderer::new);
+        registerSimpleGLAnim(FEntities.SABER_CAT.get(), 0.8f);
+        registerSimpleGLAnim(FEntities.VALRAVN.get(), 0.8f);
+
+        RenderingRegistry.registerEntityRenderingHandler(FEntities.PTARMIGAN_EGG.get(), renderer -> new SpriteRenderer<>(renderer, Minecraft.getInstance().getItemRenderer()));
+        RenderingRegistry.registerEntityRenderingHandler(FEntities.JAVELIN.get(), JavelinEntityRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(FEntities.ICICLE.get(), IcicleEntityRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(FEntities.BOAT.get(), FBoatRenderer::new);
+    }
+
+    private static <T extends LivingEntity & IBasicAnimatable> void registerSimpleGLAnim(EntityType<T> entityClass, float shadowSize) {
+        RenderingRegistry.registerEntityRenderingHandler(entityClass, (renderer) -> new SimpleGLEntityRenderer<>(renderer, shadowSize));
     }
 }

@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "fantasia:frozen_spruce_trapdoor",
-    "fantasia:frozen_elm_trapdoor"
+    "fantasia:frozen_elm_trapdoor",
+    "fantasia:frozen_spruce_trapdoor"
   ]
 }
