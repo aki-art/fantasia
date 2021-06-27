@@ -14,7 +14,6 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.IFlyingAnimal;
-import net.minecraft.entity.passive.OcelotEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -49,9 +48,13 @@ public class PtarmiganEntity extends AnimalEntity implements IBasicAnimatable, I
     public static final String ID = "ptarmigan";
     private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
     private static final DataParameter<Integer> DATA_TYPE_ID = EntityDataManager.defineId(PtarmiganEntity.class, DataSerializers.INT);
+
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_TYPE = Util.make(Maps.newHashMap(), (map) -> {
         map.put(0, new ResourceLocation(Fantasia.ID, "textures/entity/ptarmigan/ptarmigan_white.png"));
         map.put(1, new ResourceLocation(Fantasia.ID, "textures/entity/ptarmigan/ptarmigan_brown.png"));
+        map.put(2, new ResourceLocation(Fantasia.ID, "textures/entity/ptarmigan/ptarmigan_grey_patchy.png"));
+        map.put(3, new ResourceLocation(Fantasia.ID, "textures/entity/ptarmigan/ptarmigan_white_patched.png"));
+        map.put(4, new ResourceLocation(Fantasia.ID, "textures/entity/ptarmigan/ptarmigan_brown_b.png"));
     });
 
     private final AnimationFactory animationFactory;
@@ -68,9 +71,11 @@ public class PtarmiganEntity extends AnimalEntity implements IBasicAnimatable, I
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
-    public void setRecordPlayingNearby(BlockPos pos, boolean isPartying) {
-        partyGoer.setJuke(pos);
+    @Nullable
+    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData data, @Nullable CompoundNBT nbt) {
+        data = super.finalizeSpawn(world, difficulty, reason, data, nbt);
+        setRandomColor();
+        return data;
     }
 
     @Nullable
@@ -84,12 +89,22 @@ public class PtarmiganEntity extends AnimalEntity implements IBasicAnimatable, I
         return entity;
     }
 
+    public int getColor() {
+        return entityData.get(DATA_TYPE_ID);
+    }
+
+    public void setColor(int color) {
+        entityData.set(DATA_TYPE_ID, color);
+    }
+
+    public void setRandomColor() {
+        setColor(random.nextInt(TEXTURE_BY_TYPE.size()));
+    }
+
     @Override
-    @Nullable
-    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData data, @Nullable CompoundNBT nbt) {
-        data = super.finalizeSpawn(world, difficulty, reason, data, nbt);
-        setRandomColor();
-        return data;
+    @OnlyIn(Dist.CLIENT)
+    public void setRecordPlayingNearby(BlockPos pos, boolean isPartying) {
+        partyGoer.setJuke(pos);
     }
 
     @Override
@@ -107,7 +122,7 @@ public class PtarmiganEntity extends AnimalEntity implements IBasicAnimatable, I
         return (event.getLimbSwingAmount() > 0.15f || event.getLimbSwingAmount() < -0.15f) && getDeltaMovement().lengthSqr() > 0.1D;
     }
 
-    public <E extends IAnimatable> PlayState locomotionAnimPredicate(AnimationEvent<E> event) {
+    public <E extends IAnimatable> PlayState animPredicate(AnimationEvent<E> event) {
         if (event.getAnimatable() instanceof PtarmiganEntity) {
 
             AnimationBuilder builder = new AnimationBuilder();
@@ -130,7 +145,7 @@ public class PtarmiganEntity extends AnimalEntity implements IBasicAnimatable, I
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<>(this, "locomotionController", 0, this::locomotionAnimPredicate));
+        data.addAnimationController(new AnimationController<>(this, "locomotionController", 0, this::animPredicate));
      }
 
     public boolean isFood(ItemStack item) {
@@ -141,10 +156,10 @@ public class PtarmiganEntity extends AnimalEntity implements IBasicAnimatable, I
     protected void registerGoals() {
         goalSelector.addGoal(0, new SwimGoal(this));
         goalSelector.addGoal(1, new PanicGoal(this, 1.4D));
-        // goalSelector.addGoal(3, new AvoidEntityGoal<>(this, StoatEntity.class, 6.0F, 1.0D, 1.2D));
-        goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-        goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, TEMPTATION_ITEMS));
-        goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
+        // goalSelector.addGoal(2, new AvoidEntityGoal<>(this, StoatEntity.class, 6.0F, 1.0D, 1.2D));
+        goalSelector.addGoal(3, new BreedGoal(this, 1.0D));
+        goalSelector.addGoal(4, new TemptGoal(this, 1.0D, false, TEMPTATION_ITEMS));
+        goalSelector.addGoal(5, new FollowParentGoal(this, 1.1D));
         goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         goalSelector.addGoal(8, new LookRandomlyGoal(this));
@@ -163,7 +178,9 @@ public class PtarmiganEntity extends AnimalEntity implements IBasicAnimatable, I
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.25D);
+        return MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 4.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.25D);
     }
 
     @Override
@@ -174,18 +191,6 @@ public class PtarmiganEntity extends AnimalEntity implements IBasicAnimatable, I
     @Override
     public String getID() {
         return ID;
-    }
-
-    public int getColor() {
-        return entityData.get(DATA_TYPE_ID);
-    }
-
-    public void setColor(int color) {
-        entityData.set(DATA_TYPE_ID, color);
-    }
-
-    public void setRandomColor() {
-        setColor(random.nextInt(TEXTURE_BY_TYPE.size()));
     }
 
     protected void defineSynchedData() {

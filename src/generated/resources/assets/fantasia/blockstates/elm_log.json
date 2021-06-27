@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "fantasia:block/elm_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "fantasia:block/elm_log"
+    },
+    "axis=z": {
+      "model": "fantasia:block/elm_log_horizontal",
+      "x": 90
+    }
+  }
+}

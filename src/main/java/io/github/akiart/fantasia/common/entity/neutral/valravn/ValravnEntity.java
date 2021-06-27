@@ -36,6 +36,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
+// wild behaviour AI overview: https://i.imgur.com/a5MhiAt.png
 public class ValravnEntity extends FTameableFlyingEntity implements IBasicAnimatable, IAngerable {
 
     public static final String ID = "valravn";
@@ -117,7 +118,7 @@ public class ValravnEntity extends FTameableFlyingEntity implements IBasicAnimat
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         if (!player.level.isClientSide()) {
             dropVictim();
-            player.sendMessage(new StringTextComponent("State: " + state), player.getUUID());
+            player.sendMessage(new StringTextComponent("State: " + state), Util.NIL_UUID);
         }
         return super.mobInteract(player, hand);
     }

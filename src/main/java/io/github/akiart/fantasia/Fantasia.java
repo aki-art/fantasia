@@ -1,16 +1,19 @@
 package io.github.akiart.fantasia;
 
+import io.github.akiart.fantasia.client.renderer.tileentity.FChestTileEntityRenderer;
+import io.github.akiart.fantasia.common.block.FWoodType;
 import io.github.akiart.fantasia.common.block.trees.StripMap;
 import io.github.akiart.fantasia.common.entity.FEntities;
 import io.github.akiart.fantasia.common.world.FChunkGenerator;
 import io.github.akiart.fantasia.common.world.gen.blockplacer.FBlockPlacerTypes;
 import io.github.akiart.fantasia.common.world.gen.feature.FFeatures;
-import io.github.akiart.fantasia.common.world.gen.util.Extents;
+import net.minecraft.block.WoodType;
+import net.minecraft.client.renderer.Atlases;
+import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.text.WordUtils;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -40,7 +43,6 @@ public class Fantasia {
     public static final ResourceLocation DIMENSION_ID = new ResourceLocation(ID, "fantasia");
     public static final RegistryKey<World> FANTASIA_WORLD_KEY = RegistryKey.create(Registry.DIMENSION_REGISTRY, DIMENSION_ID);
 
-
     public Fantasia() {
 
         GeckoLib.initialize();
@@ -60,6 +62,7 @@ public class Fantasia {
         FBlockPlacerTypes.BLOCK_PLACER_TYPES.register(bus);
 
         bus.addListener(this::setup);
+        bus.addListener(this::clientSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -69,7 +72,19 @@ public class Fantasia {
             FConfiguredFeatures.registerConfiguredFeatures();
             Registry.register(Registry.BIOME_SOURCE, new ResourceLocation(ID, "biome_source"), FBiomeProvider.CODEC);
             Registry.register(Registry.CHUNK_GENERATOR, new ResourceLocation(ID, "chunk_generator"), FChunkGenerator.CODEC);
+
             StripMap.registerStripMaps();
+            FWoodType.values().forEach(WoodType::register);
         });
+    }
+
+
+    public void clientSetup(FMLClientSetupEvent event) {
+        event.enqueueWork(() -> {
+            FWoodType.values().forEach(Atlases::addWoodType);
+        });
+
+        ClientRegistry.bindTileEntityRenderer(FTileEntityTypes.SIGN.get(), SignTileEntityRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(FTileEntityTypes.CHEST.get(), FChestTileEntityRenderer::new);
     }
 }

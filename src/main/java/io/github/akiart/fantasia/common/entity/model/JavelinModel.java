@@ -5,10 +5,11 @@ package io.github.akiart.fantasia.common.entity.model;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.EntityModel;
+import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class JavelinModel extends EntityModel<Entity> {
+public class JavelinModel extends EntityModel<Entity>{
     private final ModelRenderer bb_main;
     private final ModelRenderer b_r1;
     private final ModelRenderer a_r1;

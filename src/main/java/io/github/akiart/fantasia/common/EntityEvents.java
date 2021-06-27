@@ -2,7 +2,9 @@ package io.github.akiart.fantasia.common;
 
 import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.world.spawner.ValravnSpawner;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.storage.IServerWorldInfo;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -19,6 +21,21 @@ public class EntityEvents {
 //    public static void onPlayerPostTick(TickEvent.PlayerTickEvent player)
 //    {
 //    }
+
+public static class CreateSpawnPosition extends WorldEvent
+{
+    private final IServerWorldInfo settings;
+    public CreateSpawnPosition(IWorld world, IServerWorldInfo settings)
+    {
+        super(world);
+        this.settings = settings;
+    }
+
+    public IServerWorldInfo getSettings()
+    {
+        return settings;
+    }
+}
 
     private static final Map<ServerWorld, ValravnSpawner> CUSTOM_SPAWNERS = new HashMap<>();
 

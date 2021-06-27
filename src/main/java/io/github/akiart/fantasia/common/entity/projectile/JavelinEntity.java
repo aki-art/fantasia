@@ -2,6 +2,7 @@ package io.github.akiart.fantasia.common.entity.projectile;
 
 import com.google.common.collect.Maps;
 import io.github.akiart.fantasia.Fantasia;
+import io.github.akiart.fantasia.common.entity.item.FBoatEntity;
 import io.github.akiart.fantasia.common.item.itemType.JavelinItem;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -16,18 +17,20 @@ import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
-import java.util.Map;
+import java.util.*;
 
-public  class JavelinEntity extends AbstractArrowEntity {
+public class JavelinEntity extends AbstractArrowEntity {
     public static final DataParameter<Byte> ID_LOYALTY = EntityDataManager.defineId(JavelinEntity.class, DataSerializers.BYTE);
     public static final DataParameter<Boolean> ID_FOIL = EntityDataManager.defineId(JavelinEntity.class, DataSerializers.BOOLEAN);
     public static final DataParameter<String> ID_TYPE = EntityDataManager.defineId(JavelinEntity.class, DataSerializers.STRING);
@@ -43,7 +46,7 @@ public  class JavelinEntity extends AbstractArrowEntity {
         this.entityData.set(ID_LOYALTY, (byte) EnchantmentHelper.getLoyalty(item));
         this.entityData.set(ID_FOIL, item.hasFoil());
 
-        if(item.getItem().getRegistryName() != null) {
+        if (item.getItem().getRegistryName() != null) {
             setJavelinType(item.getItem().getRegistryName().getPath());
         }
     }
@@ -80,7 +83,7 @@ public  class JavelinEntity extends AbstractArrowEntity {
                 setNoPhysics(true);
 
                 Vector3d vector3d = new Vector3d(entity.getX() - getX(), entity.getEyeY() - getY(), entity.getZ() - getZ());
-                setPosRaw(this.getX(), getY() + vector3d.y * 0.015D * (double)loyalty, getZ());
+                setPosRaw(this.getX(), getY() + vector3d.y * 0.015D * (double) loyalty, getZ());
                 if (level.isClientSide) {
                     yOld = this.getY();
                 }
@@ -115,7 +118,7 @@ public  class JavelinEntity extends AbstractArrowEntity {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(ID_LOYALTY, (byte)0);
+        this.entityData.define(ID_LOYALTY, (byte) 0);
         this.entityData.define(ID_FOIL, false);
         this.entityData.define(ID_TYPE, "wooden_javelin");
     }
@@ -131,7 +134,7 @@ public  class JavelinEntity extends AbstractArrowEntity {
         float damage = 8.0F;
 
         if (entity instanceof LivingEntity && item != null) {
-            LivingEntity livingentity = (LivingEntity)entity;
+            LivingEntity livingentity = (LivingEntity) entity;
             damage += EnchantmentHelper.getDamageBonus(item, livingentity.getMobType());
         }
 
@@ -146,10 +149,10 @@ public  class JavelinEntity extends AbstractArrowEntity {
             }
 
             if (entity instanceof LivingEntity) {
-                LivingEntity livingentity1 = (LivingEntity)entity;
+                LivingEntity livingentity1 = (LivingEntity) entity;
                 if (owner instanceof LivingEntity) {
                     EnchantmentHelper.doPostHurtEffects(livingentity1, owner);
-                    EnchantmentHelper.doPostDamageEffects((LivingEntity)owner, livingentity1);
+                    EnchantmentHelper.doPostDamageEffects((LivingEntity) owner, livingentity1);
                 }
 
                 this.doPostHurtEffects(livingentity1);
@@ -184,7 +187,7 @@ public  class JavelinEntity extends AbstractArrowEntity {
         setJavelinType(nbt.getString("JavelinType"));
 
         this.dealtDamage = nbt.getBoolean("DealtDamage");
-        this.entityData.set(ID_LOYALTY, (byte)EnchantmentHelper.getLoyalty(this.item));
+        this.entityData.set(ID_LOYALTY, (byte) EnchantmentHelper.getLoyalty(this.item));
     }
 
     @Override
@@ -218,11 +221,82 @@ public  class JavelinEntity extends AbstractArrowEntity {
     }
 
     public ResourceLocation getResourceLocation() {
-       return new ResourceLocation(Fantasia.ID, "textures/entity/javelin/" + getJavelinType() + ".png");
+        return new ResourceLocation(Fantasia.ID, "textures/entity/javelin/" + getJavelinType() + ".png");
     }
 
     @Override
     public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
+    }
+
+    public static class Type {
+        public static final Type WOODEN = new Type("wooden_javelin", -2f, 3, 4, null);
+        public static final Type STONE = new Type("stone_javelin", -2.2f, 4, 5, null);
+        public static final Type GOLD = new Type("gold_javelin", -2.2f, 4, 5, null);
+        public static final Type IRON = new Type("iron_javelin", -2.2f, 4, 5, null);
+        public static final Type DIAMOND = new Type("diamond_javelin", -2.2f, 4, 5, null);
+        public static final Type NETHERITE = new Type("netherite_javelin", -2.2f, 4, 5, null);
+        public static final Type WOLFRAMITE = new Type("wolframite_javelin", -2.2f, 4, 5, null);
+        public static final Type GHASTLY = new Type("ghastly_javelin", -2.2f, 4, 5, null);
+        public static final Type FROSTWORK = new Type("frostwork_javelin", -2.2f, 4, 5, null);
+        public static final Type FROSTWORK_BOLT = new Type("frostwork_bolt", -2.2f, 4, 5, null);
+        public static final Type SABER_TOOTH_JAVELIN = new Type("saber_tooth_javelin", -2.2f, 4, 5, null);
+
+        static final List<Type> types = new ArrayList<>();
+        private final String name;
+        private final String textureName;
+        private final float meeleeDamage;
+        private final float meeleeAttackSpeed;
+        private final float projectileDamage;
+        private final IItemProvider repairMaterial;
+        private final static Type DEFAULT = GOLD;
+
+        Type(String name, String textureName, float meeleeDamage, float meeleeAttackSpeed, float projectileDamage, IItemProvider repairMaterial) {
+            this.name = name;
+            this.textureName = textureName;
+            this.meeleeDamage = meeleeDamage;
+            this.meeleeAttackSpeed = meeleeAttackSpeed;
+            this.projectileDamage = projectileDamage;
+            this.repairMaterial = repairMaterial;
+            types.add(this);
+        }
+
+        Type(String name, float meeleeDamage, float meeleeAttackSpeed, float projectileDamage, IItemProvider repairMaterial) {
+            this(name, name, meeleeDamage, meeleeAttackSpeed, projectileDamage, repairMaterial);
+        }
+
+        public static Type byName(String p_184981_0_) {
+            for (Type type : types) {
+                if (type.getName().equals(p_184981_0_)) {
+                    return type;
+                }
+            }
+
+            return DEFAULT;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getTextureName() {
+            return textureName;
+        }
+
+        public float getMeeleeDamage() {
+            return meeleeDamage;
+        }
+
+        public float getMeeleeAttackSpeed() {
+            return meeleeAttackSpeed;
+        }
+
+        public float getProjectileDamage() {
+            return projectileDamage;
+        }
+
+        public IItemProvider getRepairMaterial() {
+            return repairMaterial;
+        }
     }
 }

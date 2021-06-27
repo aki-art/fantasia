@@ -4,9 +4,9 @@ package io.github.akiart.fantasia.common.item.itemType;
 import java.util.List;
 import java.util.function.Predicate;
 
+import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.entity.item.FBoatEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -33,6 +33,7 @@ public class FBoatItem extends Item {
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         RayTraceResult raytraceresult = getPlayerPOVHitResult(world, player, RayTraceContext.FluidMode.ANY);
+
         if (raytraceresult.getType() == RayTraceResult.Type.MISS) {
             return ActionResult.pass(itemstack);
         } else {
@@ -50,9 +51,14 @@ public class FBoatItem extends Item {
             }
 
             if (raytraceresult.getType() == RayTraceResult.Type.BLOCK) {
+
                 FBoatEntity boatentity = new FBoatEntity(world, raytraceresult.getLocation().x, raytraceresult.getLocation().y, raytraceresult.getLocation().z);
-                boatentity.setActualType(this.type);
+                Fantasia.LOGGER.info("setting boat type: " + type.getName());
+                boatentity.setBoatType(type);
+                Fantasia.LOGGER.info("f boat type: " + boatentity.getFBoatType().getName());
+                Fantasia.LOGGER.info("boat type: " + boatentity.getBoatType().getName());
                 boatentity.yRot = player.yRot;
+
                 if (!world.noCollision(boatentity, boatentity.getBoundingBox().inflate(-0.1D))) {
                     return ActionResult.fail(itemstack);
                 } else {

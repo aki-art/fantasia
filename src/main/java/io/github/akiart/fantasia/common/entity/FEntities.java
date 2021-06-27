@@ -10,7 +10,6 @@ import io.github.akiart.fantasia.common.entity.projectile.JavelinEntity;
 import io.github.akiart.fantasia.common.entity.projectile.PtarmiganEggEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;

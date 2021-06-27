@@ -3,17 +3,23 @@ package io.github.akiart.fantasia.common.item;
 import java.util.HashSet;
 import java.util.function.Supplier;
 
+import io.github.akiart.fantasia.Fantasia;
+import io.github.akiart.fantasia.client.renderer.tileentity.itemStackRenderer.ISTERs;
 import io.github.akiart.fantasia.common.block.registrySet.CrystalRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.StoneRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.StoneSet;
 import io.github.akiart.fantasia.common.block.registrySet.TreeRegistryObject;
+import io.github.akiart.fantasia.common.entity.item.FBoatEntity;
 import io.github.akiart.fantasia.common.item.itemGroup.FItemGroup;
+import io.github.akiart.fantasia.common.item.itemType.FBoatItem;
+import io.github.akiart.fantasia.common.item.itemType.JavelinItem;
 import io.github.akiart.fantasia.common.item.registrySet.CrystalRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.StoneItemSet;
 import io.github.akiart.fantasia.common.item.registrySet.StoneRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.TreeRegistryItem;
 import net.minecraft.block.Block;
 import net.minecraft.item.*;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ItemRegistryUtil {
@@ -51,6 +57,20 @@ public class ItemRegistryUtil {
 		CrystalRegistryItem obj = new CrystalRegistryItem(parent);
 		crystals.add(obj);
 		return obj;
+	}
+
+	public static RegistryObject<FBoatItem> registerBoat(String name, FBoatEntity.Type type) {
+		return ItemRegistryUtil.register(name, () ->
+				new FBoatItem(type, new Item.Properties().stacksTo(1).tab(FItemGroup.FANTASIA)));
+	}
+
+	public static RegistryObject<JavelinItem> registerJavelin(String name, IItemTier tier, float damage, float attackSpeed) {
+		return ItemRegistryUtil.register(name,
+				() -> new JavelinItem(tier, damage , attackSpeed,
+						new Item.Properties()
+								.stacksTo(16)
+								.tab(FItemGroup.FANTASIA)
+								.setISTER(() -> () -> ISTERs.createJavelinISTER(new ResourceLocation(Fantasia.ID, "textures/entity/javelin/" + name + ".png")))));
 	}
 
 	public static TreeRegistryItem registerTreeItems(TreeRegistryObject parent) {

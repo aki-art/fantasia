@@ -12,10 +12,7 @@ import io.github.akiart.fantasia.common.block.registrySet.StoneSet;
 import io.github.akiart.fantasia.common.block.registrySet.TreeRegistryObject;
 import io.github.akiart.fantasia.common.block.trees.FTree;
 import io.github.akiart.fantasia.common.util.DirectionRestriction;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.entity.EntityType;
@@ -42,8 +39,8 @@ public class BlockRegistryUtil {
 	}
 
 	public static TreeRegistryObject createTree(String name, Supplier<FTree> tree, MaterialColor plankColor, MaterialColor barkColor,
-		MaterialColor leavesColor) {
-		TreeRegistryObject obj = new TreeRegistryObject(name, tree, plankColor, barkColor);
+												MaterialColor leavesColor, WoodType woodType) {
+		TreeRegistryObject obj = new TreeRegistryObject(name, tree, plankColor, barkColor, woodType);
 		trees.add(obj);
 		return obj;
 	}

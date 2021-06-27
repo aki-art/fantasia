@@ -35,6 +35,8 @@ public class JavelinItem extends TieredItem {
         this.defaultModifiers = builder.build();
     }
 
+
+
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType slot) {
         return slot == EquipmentSlotType.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(slot);
     }

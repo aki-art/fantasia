@@ -2,86 +2,85 @@ package io.github.akiart.fantasia.common.entity.item;
 
 import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.block.FBlocks;
-import io.github.akiart.fantasia.common.entity.projectile.IcicleEntity;
+import io.github.akiart.fantasia.common.entity.FEntities;
 import io.github.akiart.fantasia.common.item.FItems;
+import io.github.akiart.fantasia.common.item.itemType.FBoatItem;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.BoatEntity;
-import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
-import net.minecraft.util.IItemProvider;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import javax.annotation.Nullable;
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.function.Supplier;
-
-/* FIXME: this is an atrocious temporary hackjob, but since I want to add new boat types later and write my own boat entity,
-    it would be a waste of time to rewrite this right now */
 
 public class FBoatEntity extends BoatEntity {
 
-    public static final Type FROZEN_ELM = new Type(FBlocks.FROZEN_ELM.planks, FItems.GOLD_JAVELIN, "frozen_elm");
-    public static final Type FROZEN_SPRUCE = new Type(FBlocks.FROZEN_SPRUCE.planks, FItems.EDELSTONE_SPELEOTHEM,"frozen_spruce");
-    Type currentType = FROZEN_ELM;
+    private static final DataParameter<Integer> BOAT_TYPE = EntityDataManager.defineId(FBoatEntity.class, DataSerializers.INT);
 
-    public FBoatEntity(EntityType<? extends FBoatEntity> entity, World world) {
-        super(entity, world);
+    public FBoatEntity(EntityType<? extends FBoatEntity> type, World world) {
+        super(type, world);
     }
 
     public FBoatEntity(World world, double x, double y, double z) {
-        super(world, x, y, z);
+        this(FEntities.BOAT.get(), world);
+        setPos(x, y, z);
+        setDeltaMovement(Vector3d.ZERO);
+        xo = x;
+        yo = y;
+        zo = z;
     }
 
     @Override
     public Item getDropItem() {
-        //return BoatEntity.Type.byId(this.entityData.get(DATA_ID_TYPE));
-        return getActualType().getItem();
-    }
-
-    public Type getActualType() {
-        return currentType;
-    }
-
-    public void setActualType(Type type) {
-        currentType = type;
-    }
-
-    // FIXME hackity hax
-    @Override
-    @Nullable
-    public ItemEntity spawnAtLocation(IItemProvider itemProvider) {
-        if(itemProvider.asItem().getDefaultInstance().sameItem(Blocks.OAK_PLANKS.asItem().getDefaultInstance())) {
-            return spawnAtLocation(currentType.getPlanks());
+        switch (getFBoatType()) {
+            case ELM:
+                return FItems.ELM_BOAT.get();
+            case FROZEN_ELM:
+                return FItems.FROZEN_ELM_BOAT.get();
+            case FROZEN_SPRUCE:
+                return FItems.FROZEN_SPRUCE_BOAT.get();
+            default:
+                return Items.OAK_BOAT;
         }
-        return this.spawnAtLocation(itemProvider, 0);
-    }
-
-    // FIXME hackity hax 2
-    @Override
-    public BoatEntity.Type getBoatType() {
-        return BoatEntity.Type.OAK;
     }
 
     @Override
-    public void setType(BoatEntity.Type type) {
-        int id = 0;
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        entityData.define(BOAT_TYPE, Type.FROZEN_ELM.ordinal());
+    }
 
-        for(BoatEntity.Type t : BoatEntity.Type.values()) {
-            if(t.equals(type)) break;
-            id++;
+    public Type getFBoatType() {
+        return Type.byId(this.entityData.get(BOAT_TYPE));
+    }
+
+    @Override
+    protected void addAdditionalSaveData(CompoundNBT compound) {
+        compound.putString("Type", getFBoatType().getName());
+    }
+
+    public void setBoatType(Type type) {
+        entityData.set(BOAT_TYPE, type.ordinal());
+    }
+
+    @Override
+    protected void readAdditionalSaveData(CompoundNBT compound) {
+        if (compound.contains("Type", 8)) {
+            setBoatType(Type.byName(compound.getString("Type")));
         }
-
-        if(Type.map.containsKey(id)) {
-            setActualType(Type.getByIndex(id));
-        }
-
-        super.setType(BoatEntity.Type.OAK);
     }
 
     @Override
@@ -89,45 +88,70 @@ public class FBoatEntity extends BoatEntity {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    public static class Type {
-        private static final HashMap<Integer, Type> map = new HashMap<>();
+    // parallel enum to BoatEntity.Type
+    public enum Type {
+        ELM(FBlocks.ELM.planks,"elm"),
+        FROZEN_ELM(FBlocks.FROZEN_ELM.planks,"frozen_elm"),
+        FROZEN_SPRUCE(FBlocks.FROZEN_SPRUCE.planks,"frozen_spruce");
+//        DOGWOOD(FBlocks.FROZEN_ELM.planks, FItems.FROZEN_ELM_BOAT, "dogwood"),
+//        BLACK_ELDER(FBlocks.FROZEN_ELM.planks, FItems.FROZEN_ELM_BOAT,  "black_elder"),
+//        ROWAN(FBlocks.FROZEN_ELM.planks, FItems.FROZEN_ELM_BOAT,  "rowan"),
+//        TALLOW_WOOD(FBlocks.FROZEN_ELM.planks, FItems.FROZEN_ELM_BOAT,  "tallow_wood"),
+//        GRIMCAP(FBlocks.FROZEN_ELM.planks, FItems.FROZEN_ELM_BOAT,  "grimcap"),
+//        GLOWFUNGAL(FBlocks.FROZEN_ELM.planks, FItems.FROZEN_ELM_BOAT,  "glowfungal"),
+//        SILVER_PINE(FBlocks.FROZEN_ELM.planks, FItems.FROZEN_ELM_BOAT,  "silver_pine"),
+//        GIANT_SEQOUIA(FBlocks.FROZEN_ELM.planks, FItems.FROZEN_ELM_BOAT,  "giant_seqouia");
 
         private final String name;
-        private final Supplier<? extends Block> planks;
-        private final Supplier<? extends Item> item;
+        private final Supplier<Block> planks;
 
-        ResourceLocation texture;
+        public ResourceLocation getTexture() {
+            return texture;
+        }
 
-        private Type(Supplier<? extends Block> block, Supplier<? extends Item> item, String name) {
+        private final ResourceLocation texture;
+
+        Type(Supplier<Block> block, String name) {
             this.name = name;
             this.planks = block;
-            this.item = item;
             this.texture = new ResourceLocation(Fantasia.ID, "textures/entity/boat/" + name + ".png");
-            map.put(map.size(), this);
         }
-
-        public static Type getByIndex(int id) {
-            return map.getOrDefault(id, FBoatEntity.FROZEN_ELM);
-        }
+        /* Matching BoatEntity.Type methods START
+         * do not rename these */
 
         public String getName() {
-            return this.name;
+            return name;
         }
 
         public Block getPlanks() {
-            return this.planks.get();
-        }
-
-        public Item getItem() {
-            return this.item.get();
+            return planks.get();
         }
 
         public String toString() {
-            return this.name;
+            return name;
         }
 
-        public ResourceLocation getTextureLocation() {
-            return this.texture;
+        public static Type byId(int id) {
+            Type[] types = values();
+            if (id < 0 || id >= types.length) {
+                id = 0;
+            }
+
+            return types[id];
         }
+
+        public static Type byName(String p_184981_0_) {
+            Type[] types = values();
+
+            for (Type type : types) {
+                if (type.getName().equals(p_184981_0_)) {
+                    return type;
+                }
+            }
+
+            return types[0];
+        }
+
+        /* Matching BoatEntity.Type methods END*/
     }
 }

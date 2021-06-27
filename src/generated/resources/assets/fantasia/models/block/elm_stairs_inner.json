@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "side": "fantasia:block/elm_planks",
+    "bottom": "fantasia:block/elm_planks",
+    "top": "fantasia:block/elm_planks"
+  }
+}

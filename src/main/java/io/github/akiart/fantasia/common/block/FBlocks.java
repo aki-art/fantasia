@@ -1,6 +1,9 @@
 package io.github.akiart.fantasia.common.block;
 
 import io.github.akiart.fantasia.Fantasia;
+import io.github.akiart.fantasia.common.block.blockType.FChestBlock;
+import io.github.akiart.fantasia.common.block.blockType.FSignBlock;
+import io.github.akiart.fantasia.common.block.blockType.FWallSignBlock;
 import io.github.akiart.fantasia.common.block.blockType.FantasiaPortalBlock;
 import io.github.akiart.fantasia.common.block.blockType.biomeDecoration.cave.IcicleBlock;
 import io.github.akiart.fantasia.common.block.blockType.biomeDecoration.cave.SpeleothemBlock;
@@ -13,15 +16,9 @@ import io.github.akiart.fantasia.common.block.registrySet.TreeRegistryObject;
 import io.github.akiart.fantasia.common.block.trees.FTree;
 import io.github.akiart.fantasia.common.util.DirectionRestriction;
 import io.github.akiart.fantasia.common.world.gen.feature.FConfiguredFeatures;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SnowyDirtBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.TallFlowerBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.util.Util;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -80,11 +77,15 @@ public class FBlocks {
 
     public static final TreeRegistryObject FROZEN_ELM = BlockRegistryUtil.createTree("frozen_elm",
             () -> new FTree(FConfiguredFeatures.FROZEN_ELM), MaterialColor.COLOR_LIGHT_BLUE, MaterialColor.LAPIS,
-            MaterialColor.ICE);
+            MaterialColor.ICE, FWoodType.FROZEN_ELM);
 
     public static final TreeRegistryObject FROZEN_SPRUCE = BlockRegistryUtil.createTree("frozen_spruce",
             () -> new FTree(FConfiguredFeatures.FROZEN_SPRUCE), MaterialColor.COLOR_LIGHT_BLUE, MaterialColor.LAPIS,
-            MaterialColor.ICE);
+            MaterialColor.ICE, FWoodType.FROZEN_SPRUCE);
+
+    public static final TreeRegistryObject ELM = BlockRegistryUtil.createTree("elm",
+            () -> new FTree(FConfiguredFeatures.FROZEN_SPRUCE), MaterialColor.WOOD, MaterialColor.COLOR_BROWN,
+            MaterialColor.COLOR_GREEN, FWoodType.ELM);
 
     // XXX test, replace later
     public static final RegistryObject<TallFlowerBlock> SNOWBERRY_BUSH = BlockRegistryUtil.register("snowberry_bush",
@@ -110,5 +111,10 @@ public class FBlocks {
     // Test & Debug
     public static final RegistryObject<TestCrystalLensBlock> TEST_CRYSTAL_LENS = BlockRegistryUtil
             .register("test_crystal_lens", TestCrystalLensBlock::new);
+
+    public static final RegistryObject<FSignBlock> sign = BlockRegistryUtil.register("test_sign", () -> new FSignBlock(AbstractBlock.Properties.copy(Blocks.OAK_SIGN), WoodType.ACACIA));
+    public static final RegistryObject<FWallSignBlock> wallSign = BlockRegistryUtil.register("test_wall_sign", () -> new FWallSignBlock(AbstractBlock.Properties.copy(Blocks.OAK_SIGN), WoodType.ACACIA));
+
+    public static final RegistryObject<FChestBlock> testChest = BlockRegistryUtil.register("test_chest", () -> new FChestBlock(AbstractBlock.Properties.copy(Blocks.CHEST), FWoodType.FROZEN_ELM));
 
 }

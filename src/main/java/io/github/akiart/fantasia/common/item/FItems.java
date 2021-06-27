@@ -28,9 +28,7 @@ public class FItems {
 	public static final RegistryObject<Item> PTARMIGAN_STEW = ItemRegistryUtil.registerFood("ptarmigan_stew", Foods.PTARMIGAN_STEW);
 
 	// Stones
-	
 	public static final StoneRegistryItem OBSIDIAN_BRICKS = ItemRegistryUtil.registerStoneItems(FBlocks.OBSIDIAN_BRICKS);
-
 	public static final StoneItemSet SANGUITE = ItemRegistryUtil.createStoneItemSet(FBlocks.SANGUITE);
 	public static final StoneItemSet SUT = ItemRegistryUtil.createStoneItemSet(FBlocks.SUT);
 	public static final StoneItemSet EDELSTONE = ItemRegistryUtil.createStoneItemSet(FBlocks.EDELSTONE);
@@ -45,18 +43,20 @@ public class FItems {
 	// Crystals
 	public static final CrystalRegistryItem HIEMSITE = ItemRegistryUtil.registerCrystalItems(FBlocks.HIEMSITE);
 	public static final CrystalRegistryItem GEHENNITE = ItemRegistryUtil.registerCrystalItems(FBlocks.GEHENNITE);
-	
-	// Plants
 
+	// Plants
 
 	// GOLDEN_BIRCH_LEAVES
 
 	// Trees
 	public static final TreeRegistryItem FROZEN_ELM = ItemRegistryUtil.registerTreeItems(FBlocks.FROZEN_ELM);
 	public static final TreeRegistryItem FROZEN_SPRUCE = ItemRegistryUtil.registerTreeItems(FBlocks.FROZEN_SPRUCE);
+	public static final TreeRegistryItem ELM = ItemRegistryUtil.registerTreeItems(FBlocks.ELM);
 
-	public static final RegistryObject<FBoatItem> FROZEN_ELM_BOAT = ItemRegistryUtil.register("frozen_elm_boat", () ->
-			new FBoatItem(FBoatEntity.FROZEN_ELM, new Item.Properties().stacksTo(1).tab(FItemGroup.FANTASIA)));
+	// Boats
+	public static final RegistryObject<FBoatItem> FROZEN_ELM_BOAT = ItemRegistryUtil.registerBoat("frozen_elm_boat", FBoatEntity.Type.FROZEN_ELM);
+	public static final RegistryObject<FBoatItem> FROZEN_SPRUCE_BOAT = ItemRegistryUtil.registerBoat("frozen_spruce_boat", FBoatEntity.Type.FROZEN_SPRUCE);
+	public static final RegistryObject<FBoatItem> ELM_BOAT = ItemRegistryUtil.registerBoat("elm_boat", FBoatEntity.Type.ELM);
 
 	// Bushes
 	public static final RegistryObject<BlockItem> SNOWBERRY_BUSH = ItemRegistryUtil.registerFromBlock(FBlocks.SNOWBERRY_BUSH);
@@ -64,11 +64,9 @@ public class FItems {
 	// Tools
 
 	// Javelins
-	public static final RegistryObject<BlockItem> ICICLE = ItemRegistryUtil.register("icicle", () -> new IcicleItem(FBlocks.ICICLE.get(), new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
-
 	public static final RegistryObject<JavelinItem> WOODEN_JAVELIN = ItemRegistryUtil.register("wooden_javelin", () -> new JavelinItem(ItemTier.WOOD, 3 , -2.4f,new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
 	public static final RegistryObject<JavelinItem> STONE_JAVELIN = ItemRegistryUtil.register("stone_javelin", () -> new JavelinItem(ItemTier.STONE, 3 , -2.4f,new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
-	public static final RegistryObject<JavelinItem> GOLD_JAVELIN = ItemRegistryUtil.register("gold_javelin", () -> new JavelinItem(ItemTier.GOLD, 3 , -2.4f,new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
+	public static final RegistryObject<JavelinItem> GOLD_JAVELIN = ItemRegistryUtil.registerJavelin("gold_javelin", ItemTier.GOLD, 3 , -2.4f);
 	public static final RegistryObject<JavelinItem> IRON_JAVELIN = ItemRegistryUtil.register("iron_javelin", () -> new JavelinItem(ItemTier.IRON, 3 , -2.4f,new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
 	public static final RegistryObject<JavelinItem> DIAMOND_JAVELIN = ItemRegistryUtil.register("diamond_javelin", () -> new JavelinItem(ItemTier.DIAMOND, 3 , -2.4f,new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
 	public static final RegistryObject<JavelinItem> NETHERITE_JAVELIN = ItemRegistryUtil.register("netherite_javelin", () -> new JavelinItem(ItemTier.NETHERITE, 3 , -2.4f,new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
@@ -78,9 +76,16 @@ public class FItems {
 
 	// Misc
 	public static final RegistryObject<BlockItem> FROZEN_DIRT = ItemRegistryUtil.registerFromBlock(FBlocks.FROZEN_DIRT);
+	public static final RegistryObject<BlockItem> ICICLE = ItemRegistryUtil.register("icicle", () -> new IcicleItem(FBlocks.ICICLE.get(), new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
 	public static final RegistryObject<BlockItem> FANTASIA_PORTAL_BLOCK = ItemRegistryUtil.registerFromBlock(FBlocks.FANTASIA_PORTAL_BLOCK);
 	public static final RegistryObject<PtarmiganEggItem> PTARMIGAN_EGG = ItemRegistryUtil.register("ptarmigan_egg", () -> new PtarmiganEggItem(new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
 	
 	// Test & Debug
 	public static final RegistryObject<BlockItem> TEST_CRYSTAL_LENS = ItemRegistryUtil.registerFromBlock(FBlocks.TEST_CRYSTAL_LENS);
+	public static final RegistryObject<SignItem> sign = ItemRegistryUtil.register("test_sign", () -> new SignItem(new Item.Properties()
+				.tab(FItemGroup.FANTASIA)
+				.stacksTo(16),
+				FBlocks.sign.get(),
+				FBlocks.wallSign.get()));
+
 }

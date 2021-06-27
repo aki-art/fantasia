@@ -31,5 +31,8 @@ public class FItemModelProvider extends FItemModelProviderBase {
 	
 	private void registerDebugStuff() {
 		fromBlock(FBlocks.TEST_CRYSTAL_LENS.get());
+		simpleItem(FItems.sign);
+		fromBlock(FBlocks.testChest.get());
+
 	}
 }

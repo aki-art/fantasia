@@ -21,8 +21,6 @@ import java.util.Random;
 public class EntitySpawnPlacement {
     @SubscribeEvent
     public static void registerEntities(RegistryEvent.Register<EntityType<?>> evt) {
-        //evt.getRegistry().registerAll(ALL.toArray(new EntityType<?>[0]));
-
         EntitySpawnPlacementRegistry.register(FEntities.PTARMIGAN.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntitySpawnPlacement::canAnimalSpawn);
 
     }

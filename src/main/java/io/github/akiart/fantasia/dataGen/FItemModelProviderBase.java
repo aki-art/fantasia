@@ -1,9 +1,11 @@
 package io.github.akiart.fantasia.dataGen;
 
 import io.github.akiart.fantasia.Fantasia;
+import io.github.akiart.fantasia.common.block.blockType.FChestBlock;
 import io.github.akiart.fantasia.common.block.registrySet.CrystalRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.StoneRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.TreeRegistryObject;
+import io.github.akiart.fantasia.common.item.FItems;
 import io.github.akiart.fantasia.common.item.registrySet.CrystalRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.StoneRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.TreeRegistryItem;
@@ -11,6 +13,7 @@ import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -56,7 +59,7 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
 
 	protected ItemModelBuilder blockGenerated(BlockItem block) {
 		ItemModelBuilder builder = withExistingParent(getName(block), "item/generated");
-		builder = builder.texture("layer0", getItemLocation(getName(block.getBlock())));
+		builder = builder.texture("layer0", getBlockLocation(getName(block.getBlock())));
 		return builder;
 	}
 
@@ -95,7 +98,7 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
 		fromBlock(blocks.polished.get());
 		fromBlock(blocks.lens.get());
 		fromBlock(blocks.waxedLens.get());
-		blockGenerated(items.crystal.get());
+		simpleItem(items.crystal);
 		// blockGenerated(blocks.lantern.get());
 	}
 
@@ -114,6 +117,13 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
 		fromBlock(tree.strippedWood.get());
 		fromBlock(tree.leaves.get());
 
+		simpleItem(items.sign);
+		simpleItem(items.door);
+
+		//chest(tree.chest.get(), plankTex);
+
+		blockGenerated(items.sapling.get());
+
 		cubeColumn(getName(items.log.get()), logTex, lotTopTex);
 		cubeColumn(getName(items.strippedLog.get()), strippedTex, strippedTopTex);
 
@@ -124,9 +134,10 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
 		fromBlock(tree.pressurePlate.get());
 		fenceInventory(getName(items.fence.get()), plankTex);
 		fenceGate(getName(items.fenceGate.get()), plankTex);
-		
-		//fromBlock(tree.door.get());
-		//fromBlock(tree.trapDoor.get());
+	}
+
+	protected void chest(FChestBlock block, ResourceLocation particle) {
+		withExistingParent(getName(block), new ResourceLocation("builtin/entity")).texture("particle", particle);
 	}
 
     public void simpleItem(RegistryObject<? extends Item> item) {

@@ -1,0 +1,21 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "fantasia:item/gold_javelin"
+  },
+  "display": {
+      "ground": {
+          "rotation": [ 0, 0, 0 ],
+          "translation": [ 0, 2, 0],
+          "scale":[ 2, 2, 2 ]
+      },
+      "fixed": {
+          "rotation": [ 0, 180, 0 ],
+          "scale": [ 1, 1, 1 ]
+      },
+      "gui": {
+          "rotation": [ 0, 0, 0 ],
+          "scale": [ 1, 1, 1 ]
+      }
+  }
+}

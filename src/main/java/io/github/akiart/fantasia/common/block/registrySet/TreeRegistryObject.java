@@ -4,7 +4,11 @@ import java.util.function.Supplier;
 
 import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.block.BlockRegistryUtil;
+import io.github.akiart.fantasia.common.block.FWoodType;
+import io.github.akiart.fantasia.common.block.blockType.FChestBlock;
 import io.github.akiart.fantasia.common.block.blockType.FSaplingBlock;
+import io.github.akiart.fantasia.common.block.blockType.FSignBlock;
+import io.github.akiart.fantasia.common.block.blockType.FWallSignBlock;
 import io.github.akiart.fantasia.common.block.trees.FTree;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -24,6 +28,7 @@ import net.minecraft.block.WoodType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -34,7 +39,7 @@ public class TreeRegistryObject {
 	// public final RegistryObject<Block> barrel
 	// public final RegistryObject<Block> bookShelf
 	public final RegistryObject<WoodButtonBlock> button;
-	// public final RegistryObject<Block> chest;
+	public final RegistryObject<FChestBlock> chest;
 	// public final RegistryObject<Block> craftingTable;
 	public final RegistryObject<DoorBlock> door;
 	public final RegistryObject<FenceBlock> fence;
@@ -45,19 +50,20 @@ public class TreeRegistryObject {
 	public final RegistryObject<Block> planks;
 	public final RegistryObject<PressurePlateBlock> pressurePlate;
 	public final RegistryObject<FSaplingBlock> sapling;
-	// public final RegistryObject<Block> sign;
-	// public final RegistryObject<Block> wallSign;
+	public final RegistryObject<FSignBlock> sign;
+	public final RegistryObject<FWallSignBlock> wallSign;
 	public final RegistryObject<SlabBlock> slab;
 	public final RegistryObject<StairsBlock> stairs;
 	public final RegistryObject<RotatedPillarBlock> strippedLog;
 	public final RegistryObject<RotatedPillarBlock> strippedWood;
 	public final RegistryObject<TrapDoorBlock> trapDoor;
 	public final RegistryObject<RotatedPillarBlock> wood;
+	//public final RegistryObject<ShelfBlock> shelf;
 
-	public TreeRegistryObject(String name, Supplier<FTree> tree, MaterialColor plankColor, MaterialColor barkColor) {
+	public TreeRegistryObject(String name, Supplier<FTree> tree, MaterialColor plankColor, MaterialColor barkColor, WoodType woodType) {
 
 		this.name = name;
-		woodType = WoodType.register(WoodType.create(Fantasia.ID + ":" + name));
+		this.woodType = woodType;
 
 		leaves = BlockRegistryUtil.register(name + "_leaves",
 			() -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES)
@@ -138,6 +144,15 @@ public class TreeRegistryObject {
 			() -> new FenceGateBlock(AbstractBlock.Properties.of(Material.WOOD, plankColor)
 				.strength(2.0F, 3.0F)
 				.sound(SoundType.WOOD)));
+
+		sign = BlockRegistryUtil.register(name + "_sign",
+				() -> new FSignBlock(AbstractBlock.Properties.copy(Blocks.OAK_SIGN), woodType));
+
+		wallSign = BlockRegistryUtil.register(name + "_wall_sign",
+				() -> new FWallSignBlock(AbstractBlock.Properties.copy(Blocks.OAK_SIGN), woodType));
+
+		chest = BlockRegistryUtil.register(name + "_chest",
+				() -> new FChestBlock(AbstractBlock.Properties.copy(Blocks.CHEST), woodType));
 	}
 
 	public String getName() {
