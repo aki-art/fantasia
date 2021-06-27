@@ -37,6 +37,7 @@ public class JavelinISTER<T extends JavelinEntity> extends ItemStackTileEntityRe
         matrixStackIn.pushPose();
 
         if (isInventory(transformType)) {
+            // trying to render to inventory
             ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
             IBakedModel itemModel = renderer.getItemModelShaper().getModelManager().getModel(itemModelLocation);
             itemModel = ForgeHooksClient.handleCameraTransforms(matrixStackIn, itemModel, transformType, false);
@@ -50,8 +51,8 @@ public class JavelinISTER<T extends JavelinEntity> extends ItemStackTileEntityRe
 
         }
 
-
         else {
+            // render as 3d model
             matrixStackIn.scale(1.0F, -1.0F, -1.0F);
             IVertexBuilder builder = ItemRenderer.getFoilBufferDirect(bufferIn, model.renderType(texture), false, itemStackIn.hasFoil());
             model.renderToBuffer(matrixStackIn, builder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
