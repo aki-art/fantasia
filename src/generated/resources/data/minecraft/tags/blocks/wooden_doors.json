@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "fantasia:frozen_spruce_door",
     "fantasia:elm_door",
-    "fantasia:frozen_elm_door"
+    "fantasia:frozen_elm_door",
+    "fantasia:frozen_spruce_door"
   ]
 }

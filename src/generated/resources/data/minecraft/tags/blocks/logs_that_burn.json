@@ -1,10 +1,6 @@
 {
   "replace": false,
   "values": [
-    "fantasia:frozen_spruce_log",
-    "fantasia:frozen_spruce_wood",
-    "fantasia:frozen_spruce_stripped_log",
-    "fantasia:frozen_spruce_stripped_wood",
     "fantasia:elm_log",
     "fantasia:elm_wood",
     "fantasia:elm_stripped_log",
@@ -12,6 +8,10 @@
     "fantasia:frozen_elm_log",
     "fantasia:frozen_elm_wood",
     "fantasia:frozen_elm_stripped_log",
-    "fantasia:frozen_elm_stripped_wood"
+    "fantasia:frozen_elm_stripped_wood",
+    "fantasia:frozen_spruce_log",
+    "fantasia:frozen_spruce_wood",
+    "fantasia:frozen_spruce_stripped_log",
+    "fantasia:frozen_spruce_stripped_wood"
   ]
 }

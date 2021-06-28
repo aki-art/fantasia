@@ -84,10 +84,9 @@ public final class RenderLayers {
         RenderingRegistry.registerEntityRenderingHandler(FEntities.JAVELIN.get(), JavelinEntityRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(FEntities.ICICLE.get(), IcicleEntityRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(FEntities.BOAT.get(), FBoatRenderer::new);
-
-        // replaceBoat();
     }
 
+    // temporary while i give these things their own renderer
     private static <T extends LivingEntity & IBasicAnimatable> void registerSimpleGLAnim(EntityType<T> entityClass, float shadowSize) {
         RenderingRegistry.registerEntityRenderingHandler(entityClass, (renderer) -> new SimpleGLEntityRenderer<>(renderer, shadowSize));
     }

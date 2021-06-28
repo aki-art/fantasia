@@ -30,12 +30,12 @@ public class JavelinISTER<T extends JavelinEntity> extends ItemStackTileEntityRe
             renderGUI(itemStackIn, transformType, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
         }
         else {
+            matrixStackIn.pushPose();
             matrixStackIn.scale(1.0F, -1.0F, -1.0F);
             IVertexBuilder vertexBuilder = ItemRenderer.getFoilBufferDirect(bufferIn, model.renderType(texture), false, itemStackIn.hasFoil());
             model.renderToBuffer(matrixStackIn, vertexBuilder, combinedLightIn, combinedOverlayIn);
+            matrixStackIn.popPose();
         }
-
-        matrixStackIn.popPose();
     }
 
     private void renderGUI(ItemStack itemStackIn, ItemCameraTransforms.TransformType transformType, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
@@ -46,11 +46,17 @@ public class JavelinISTER<T extends JavelinEntity> extends ItemStackTileEntityRe
         IBakedModel itemModel = renderer.getItemModelShaper().getModelManager().getModel(itemModelLocation);
 
         matrixStackIn.translate(-0.5D, -0.5D, -0.5D);
+        if(transformType != ItemCameraTransforms.TransformType.GUI) {
+            matrixStackIn.translate(-0.5D, -0.5D, -0.5D);
+        }
+
+
         itemModel.handlePerspective(transformType, matrixStackIn);
         //itemModel.getTransforms().gui.apply(false, matrixStackIn);
         IVertexBuilder vertexBuilder = ItemRenderer.getFoilBufferDirect(bufferIn, Atlases.translucentCullBlockSheet(), true, itemStackIn.hasFoil());
 
         renderer.renderModelLists(itemModel, itemStackIn, combinedLightIn, combinedOverlayIn, matrixStackIn, vertexBuilder);
+        matrixStackIn.popPose();
     }
 
     private boolean shouldRender2D(ItemCameraTransforms.TransformType transformType) {

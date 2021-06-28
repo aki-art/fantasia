@@ -5,6 +5,7 @@ import io.github.akiart.fantasia.client.world.FantasiaDimensionRenderInfo;
 import io.github.akiart.fantasia.common.block.FWoodType;
 import io.github.akiart.fantasia.common.block.trees.StripMap;
 import io.github.akiart.fantasia.common.entity.FEntities;
+import io.github.akiart.fantasia.common.item.FItemModelProperties;
 import io.github.akiart.fantasia.common.world.FChunkGenerator;
 import io.github.akiart.fantasia.common.world.gen.blockplacer.FBlockPlacerTypes;
 import io.github.akiart.fantasia.common.world.gen.feature.FFeatures;
@@ -90,5 +91,7 @@ public class Fantasia {
 
         ClientRegistry.bindTileEntityRenderer(FTileEntityTypes.SIGN.get(), SignTileEntityRenderer::new);
         ClientRegistry.bindTileEntityRenderer(FTileEntityTypes.CHEST.get(), FChestTileEntityRenderer::new);
+
+        FItemModelProperties.setItemModelProperties();
     }
 }

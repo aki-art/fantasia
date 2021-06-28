@@ -48,25 +48,6 @@ public class IcicleItem extends BlockItem {
         }
         return result;
     }
-//
-//    @Override
-//    public void releaseUsing(ItemStack itemStack, World world, LivingEntity userEntity, int duration) {
-//        if (userEntity instanceof PlayerEntity) {
-//            PlayerEntity player = (PlayerEntity) userEntity;
-//
-//            if (getUseDuration(itemStack) - duration >= 10) {
-//
-//                if (!world.isClientSide) {
-//                    damageItem(itemStack, userEntity, player);
-//                    spawnJavelinEntity(itemStack, world, player);
-//
-//                    if (!player.abilities.instabuild) {
-//                        player.inventory.removeItem(itemStack);
-//                    }
-//                }
-//            }
-//        }
-//    }
 
     private void damageItem(ItemStack itemStack, LivingEntity userEntity, PlayerEntity player) {
         itemStack.hurtAndBreak(1, player, (entity) -> {

@@ -231,10 +231,10 @@ public class ValravnEntity extends FTameableFlyingEntity implements IBasicAnimat
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return MobEntity.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 4.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.25D)
-                .add(Attributes.FLYING_SPEED, 0.4F)
-                .add(Attributes.FOLLOW_RANGE, 30);
+                .add(Attributes.MAX_HEALTH, 4D)
+                .add(Attributes.MOVEMENT_SPEED, 0.4D)
+                .add(Attributes.FLYING_SPEED, 2D)
+                .add(Attributes.FOLLOW_RANGE, 30D);
     }
 
     @Override

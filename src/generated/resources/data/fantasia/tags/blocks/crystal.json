@@ -1,11 +1,11 @@
 {
   "replace": false,
   "values": [
-    "fantasia:polished_gehennite",
-    "fantasia:gehennite_crystal",
-    "fantasia:gehennite",
     "fantasia:polished_hiemsite",
     "fantasia:hiemsite_crystal",
-    "fantasia:hiemsite"
+    "fantasia:hiemsite",
+    "fantasia:polished_gehennite",
+    "fantasia:gehennite_crystal",
+    "fantasia:gehennite"
   ]
 }
