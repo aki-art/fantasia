@@ -2,8 +2,10 @@ package io.github.akiart.fantasia.common.entity.projectile;
 
 import com.google.common.collect.Maps;
 import io.github.akiart.fantasia.Fantasia;
+import io.github.akiart.fantasia.client.renderer.model.BakedModels;
 import io.github.akiart.fantasia.common.entity.item.FBoatEntity;
 import io.github.akiart.fantasia.common.item.itemType.JavelinItem;
+import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -250,6 +252,8 @@ public class JavelinEntity extends AbstractArrowEntity {
         private final float projectileDamage;
         private final IItemProvider repairMaterial;
         private final static Type DEFAULT = GOLD;
+        private final ModelResourceLocation itemModelLocation;
+        private final int id;
 
         Type(String name, String textureName, float meeleeDamage, float meeleeAttackSpeed, float projectileDamage, IItemProvider repairMaterial) {
             this.name = name;
@@ -258,7 +262,10 @@ public class JavelinEntity extends AbstractArrowEntity {
             this.meeleeAttackSpeed = meeleeAttackSpeed;
             this.projectileDamage = projectileDamage;
             this.repairMaterial = repairMaterial;
+            this.id = name.hashCode(); // just a random but consistent integer
+            this.itemModelLocation = new ModelResourceLocation("fantasia:" + name + "_inventory#inventory");
             types.add(this);
+          //  BakedModels.add(id, new ModelResourceLocation("fantasia:" + name + "_inventory#inventory"));
         }
 
         Type(String name, float meeleeDamage, float meeleeAttackSpeed, float projectileDamage, IItemProvider repairMaterial) {
@@ -297,6 +304,10 @@ public class JavelinEntity extends AbstractArrowEntity {
 
         public IItemProvider getRepairMaterial() {
             return repairMaterial;
+        }
+
+        public int getId() {
+            return id;
         }
     }
 }

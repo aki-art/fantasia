@@ -43,6 +43,10 @@ public class JavelinModel extends EntityModel<Entity>{
         bb_main.render(matrixStack, buffer, packedLight, packedOverlay);
     }
 
+    public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay){
+        bb_main.render(matrixStack, buffer, packedLight, packedOverlay);
+    }
+
     public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.xRot = x;
         modelRenderer.yRot = y;

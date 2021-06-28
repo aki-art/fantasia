@@ -1,6 +1,112 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "minecraft:builtin/entity",
+  "gui_light": "front",
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        0,
+        90,
+        -25
+      ],
+      "translation": [
+        13,
+        17,
+        1
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        -90,
+        25
+      ],
+      "translation": [
+        -3,
+        17,
+        1
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        0,
+        60,
+        0
+      ],
+      "translation": [
+        11,
+        17,
+        -2
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        0,
+        60,
+        0
+      ],
+      "translation": [
+        11,
+        17,
+        12
+      ]
+    },
+    "gui": {
+      "rotation": [
+        15,
+        -25,
+        -5
+      ],
+      "translation": [
+        2,
+        3,
+        0
+      ],
+      "scale": [
+        0.65,
+        0.65,
+        0.65
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "translation": [
+        -2,
+        4,
+        -5
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "ground": {
+      "translation": [
+        4,
+        4,
+        2
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    }
+  },
   "textures": {
-    "layer0": "fantasia:item/frostwork_bolt"
-  }
+    "layer0": "fantasia:item/frostwork_bolt",
+    "particle": "minecraft:block/lapis_block"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "minecraft:throwing": 1.0
+      },
+      "model": "fantasia:item/frostwork_bolt_throwing"
+    }
+  ]
 }

@@ -98,15 +98,15 @@
     }
   },
   "textures": {
-    "layer0": "fantasia:item/ghastly_javelin",
-    "particle": "minecraft:block/slime_block"
+    "layer0": "fantasia:item/gold_javelin",
+    "particle": "minecraft:block/gold_block"
   },
   "overrides": [
     {
       "predicate": {
         "minecraft:throwing": 1.0
       },
-      "model": "fantasia:item/ghastly_javelin_throwing"
+      "model": "fantasia:item/gold_javelin_throwing"
     }
   ]
 }

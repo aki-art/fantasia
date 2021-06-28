@@ -1,6 +1,7 @@
 package io.github.akiart.fantasia;
 
 import io.github.akiart.fantasia.client.renderer.tileentity.FChestTileEntityRenderer;
+import io.github.akiart.fantasia.client.world.FantasiaDimensionRenderInfo;
 import io.github.akiart.fantasia.common.block.FWoodType;
 import io.github.akiart.fantasia.common.block.trees.StripMap;
 import io.github.akiart.fantasia.common.entity.FEntities;
@@ -10,6 +11,7 @@ import io.github.akiart.fantasia.common.world.gen.feature.FFeatures;
 import net.minecraft.block.WoodType;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
+import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -42,6 +44,7 @@ public class Fantasia {
     public static final String ID = "fantasia";
     public static final ResourceLocation DIMENSION_ID = new ResourceLocation(ID, "fantasia");
     public static final RegistryKey<World> FANTASIA_WORLD_KEY = RegistryKey.create(Registry.DIMENSION_REGISTRY, DIMENSION_ID);
+    public static final ResourceLocation FANTASIA_EFFECTS = new ResourceLocation(ID, "fantasia_effects");
 
     public Fantasia() {
 
@@ -68,6 +71,7 @@ public class Fantasia {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
+        DimensionRenderInfo.EFFECTS.put(FANTASIA_EFFECTS, new FantasiaDimensionRenderInfo());
         event.enqueueWork(() -> {
             FConfiguredFeatures.registerConfiguredFeatures();
             Registry.register(Registry.BIOME_SOURCE, new ResourceLocation(ID, "biome_source"), FBiomeProvider.CODEC);

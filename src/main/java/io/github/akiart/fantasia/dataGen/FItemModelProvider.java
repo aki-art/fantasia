@@ -4,7 +4,9 @@ import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.block.FBlocks;
 import io.github.akiart.fantasia.common.item.FItems;
 import io.github.akiart.fantasia.common.item.ItemRegistryUtil;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class FItemModelProvider extends FItemModelProviderBase {
@@ -20,7 +22,16 @@ public class FItemModelProvider extends FItemModelProviderBase {
 		ItemRegistryUtil.trees.forEach(this::tree);
 		ItemRegistryUtil.simpleItems.forEach(this::simpleItem);
 
-		simpleItem(FItems.GOLD_JAVELIN);
+		//simpleItem(FItems.GOLD_JAVELIN);
+		javelin(FItems.WOODEN_JAVELIN.get(), getBlockTexture(Blocks.OAK_PLANKS));
+		javelin(FItems.STONE_JAVELIN.get(), getBlockTexture(Blocks.STONE));
+		javelin(FItems.GOLD_JAVELIN.get(), getBlockTexture(Blocks.GOLD_BLOCK));
+		javelin(FItems.IRON_JAVELIN.get(), getBlockTexture(Blocks.IRON_BLOCK));
+		javelin(FItems.DIAMOND_JAVELIN.get(), getBlockTexture(Blocks.DIAMOND_BLOCK));
+		javelin(FItems.NETHERITE_JAVELIN.get(), getBlockTexture(Blocks.NETHERITE_BLOCK));
+		javelin(FItems.WOLFRAMITE_JAVELIN.get(), getBlockTexture(Blocks.NETHERITE_BLOCK));
+		javelin(FItems.GHASTLY_JAVELIN.get(), getBlockTexture(Blocks.SLIME_BLOCK));
+		javelin(FItems.FROSTWORK_BOLT.get(), getBlockTexture(Blocks.LAPIS_BLOCK));
 
 		withExistingParent(getName(FItems.EDELSTONE_SPELEOTHEM.get()), getBlockLocation("edelstone_speleothem_tip"));
 		withExistingParent(getName(FItems.ICICLE.get()), getBlockLocation("icicle_tip"));

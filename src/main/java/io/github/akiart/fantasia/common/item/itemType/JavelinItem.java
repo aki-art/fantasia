@@ -35,8 +35,6 @@ public class JavelinItem extends TieredItem {
         this.defaultModifiers = builder.build();
     }
 
-
-
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType slot) {
         return slot == EquipmentSlotType.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(slot);
     }
@@ -82,8 +80,6 @@ public class JavelinItem extends TieredItem {
 
     protected void spawnJavelinEntity(ItemStack itemStack, World world, PlayerEntity player) {
         JavelinEntity javelinEntity = new JavelinEntity(FEntities.JAVELIN.get(), world, player, itemStack);
-
-        Fantasia.LOGGER.info("shot one: " + this.getRegistryName().getPath());
         javelinEntity.shootFromRotation(player, player.xRot, player.yRot, 0.0F, 2.5F, 1.0F);
 
         if (player.abilities.instabuild) {

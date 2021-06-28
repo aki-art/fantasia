@@ -2,7 +2,6 @@ package io.github.akiart.fantasia.client;
 
 import java.util.ArrayList;
 
-import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.client.renderer.entityRenderer.*;
 import io.github.akiart.fantasia.client.renderer.tileentity.CrystalLensTileEntityRenderer;
 import io.github.akiart.fantasia.common.block.BlockRegistryUtil;
@@ -34,7 +33,14 @@ public final class RenderLayers {
 
     @SubscribeEvent
     public static void onModelLoadingStart(ModelRegistryEvent event) {
-        ModelLoader.addSpecialModel(new ModelResourceLocation("fantasia:gold_javelin_inventory#inventory"));
+        addJavelinModels("wooden_javelin", "stone_javelin", "gold_javelin", "iron_javelin", "diamond_javelin",
+                "netherite_javelin", "wolframite_javelin", "ghastly_javelin", "frostwork_bolt");
+    }
+
+    private static void addJavelinModels(String... names) {
+        for (String name : names) {
+            ModelLoader.addSpecialModel(new ModelResourceLocation("fantasia:" + name + "_inventory#inventory"));
+        }
     }
 
     @SubscribeEvent
@@ -79,7 +85,7 @@ public final class RenderLayers {
         RenderingRegistry.registerEntityRenderingHandler(FEntities.ICICLE.get(), IcicleEntityRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(FEntities.BOAT.get(), FBoatRenderer::new);
 
-       // replaceBoat();
+        // replaceBoat();
     }
 
     private static <T extends LivingEntity & IBasicAnimatable> void registerSimpleGLAnim(EntityType<T> entityClass, float shadowSize) {

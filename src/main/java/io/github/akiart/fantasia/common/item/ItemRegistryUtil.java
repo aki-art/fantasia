@@ -70,7 +70,7 @@ public class ItemRegistryUtil {
 						new Item.Properties()
 								.stacksTo(16)
 								.tab(FItemGroup.FANTASIA)
-								.setISTER(() -> () -> ISTERs.createJavelinISTER(new ResourceLocation(Fantasia.ID, "textures/entity/javelin/" + name + ".png")))));
+								.setISTER(() -> () -> ISTERs.createJavelinISTER(name))));
 	}
 
 	public static TreeRegistryItem registerTreeItems(TreeRegistryObject parent) {

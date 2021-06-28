@@ -64,15 +64,15 @@ public class FItems {
 	// Tools
 
 	// Javelins
-	public static final RegistryObject<JavelinItem> WOODEN_JAVELIN = ItemRegistryUtil.register("wooden_javelin", () -> new JavelinItem(ItemTier.WOOD, 3 , -2.4f,new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
-	public static final RegistryObject<JavelinItem> STONE_JAVELIN = ItemRegistryUtil.register("stone_javelin", () -> new JavelinItem(ItemTier.STONE, 3 , -2.4f,new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
+	public static final RegistryObject<JavelinItem> WOODEN_JAVELIN = ItemRegistryUtil.registerJavelin("wooden_javelin", ItemTier.WOOD, 3 , -2.4f);
+	public static final RegistryObject<JavelinItem> STONE_JAVELIN = ItemRegistryUtil.registerJavelin("stone_javelin", ItemTier.STONE, 3 , -2.4f);
 	public static final RegistryObject<JavelinItem> GOLD_JAVELIN = ItemRegistryUtil.registerJavelin("gold_javelin", ItemTier.GOLD, 3 , -2.4f);
-	public static final RegistryObject<JavelinItem> IRON_JAVELIN = ItemRegistryUtil.register("iron_javelin", () -> new JavelinItem(ItemTier.IRON, 3 , -2.4f,new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
-	public static final RegistryObject<JavelinItem> DIAMOND_JAVELIN = ItemRegistryUtil.register("diamond_javelin", () -> new JavelinItem(ItemTier.DIAMOND, 3 , -2.4f,new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
-	public static final RegistryObject<JavelinItem> NETHERITE_JAVELIN = ItemRegistryUtil.register("netherite_javelin", () -> new JavelinItem(ItemTier.NETHERITE, 3 , -2.4f,new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
-	public static final RegistryObject<JavelinItem> WOLFRAMITE_JAVELIN = ItemRegistryUtil.register("wolframite_javelin", () -> new JavelinItem(FItemTier.WOLFRAMITE, 3 , -2.4f,new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
-	public static final RegistryObject<JavelinItem> GHASTLY_JAVELIN = ItemRegistryUtil.register("ghastly_javelin", () -> new JavelinItem(FItemTier.GHASTLY, 3 , -2.4f,new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
-	public static final RegistryObject<FrostworkBoltItem> FROSTWORK_BOLT = ItemRegistryUtil.register("frostwork_bolt", () -> new FrostworkBoltItem(0 , -2.4f,new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
+	public static final RegistryObject<JavelinItem> IRON_JAVELIN = ItemRegistryUtil.registerJavelin("iron_javelin", ItemTier.IRON, 3 , -2.4f);
+	public static final RegistryObject<JavelinItem> DIAMOND_JAVELIN = ItemRegistryUtil.registerJavelin("diamond_javelin", ItemTier.DIAMOND, 3 , -2.4f);
+	public static final RegistryObject<JavelinItem> NETHERITE_JAVELIN = ItemRegistryUtil.registerJavelin("netherite_javelin", ItemTier.NETHERITE, 3 , -2.4f);
+	public static final RegistryObject<JavelinItem> WOLFRAMITE_JAVELIN = ItemRegistryUtil.registerJavelin("wolframite_javelin", FItemTier.WOLFRAMITE, 3 , -2.4f);
+	public static final RegistryObject<JavelinItem> GHASTLY_JAVELIN = ItemRegistryUtil.registerJavelin("ghastly_javelin", FItemTier.GHASTLY, 3 , -2.4f);
+	public static final RegistryObject<JavelinItem> FROSTWORK_BOLT = ItemRegistryUtil.registerJavelin("frostwork_bolt", FItemTier.WOLFRAMITE, 0 , -2.4f);
 
 	// Misc
 	public static final RegistryObject<BlockItem> FROZEN_DIRT = ItemRegistryUtil.registerFromBlock(FBlocks.FROZEN_DIRT);
