@@ -3,17 +3,19 @@
     "top_material": {
       "Name": "minecraft:crimson_nylium"
     },
+    "cave_wall_material": {
+      "Name": "fantasia:sanguite"
+    },
+    "air_material": {
+      "Name": "fantasia:grimcap_grove_air"
+    },
+    "border_material": {
+      "Name": "minecraft:diorite"
+    },
     "under_material": {
-      "Name": "minecraft:red_nether_bricks"
+      "Name": "minecraft:andesite"
     },
-    "underwater_material": {
-      "Name": "minecraft:red_nether_bricks"
-    },
-    "target_block": {
-      "Name": "minecraft:red_nether_bricks"
-    },
-    "min_Y" : 0,
-    "max_Y" : 112
+    "border_thickness" : 6
   },
-  "type": "fantasia:cave"
+  "type": "fantasia:grimcap_grove"
 }

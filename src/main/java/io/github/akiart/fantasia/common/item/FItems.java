@@ -81,6 +81,7 @@ public class FItems {
 	public static final RegistryObject<PtarmiganEggItem> PTARMIGAN_EGG = ItemRegistryUtil.register("ptarmigan_egg", () -> new PtarmiganEggItem(new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
 	
 	// Test & Debug
+	public static final RegistryObject<BlockItem> TEST_GLOWSTONE = ItemRegistryUtil.registerFromBlock(FBlocks.TEST_GLOWSTONE);
 	public static final RegistryObject<BlockItem> TEST_CRYSTAL_LENS = ItemRegistryUtil.registerFromBlock(FBlocks.TEST_CRYSTAL_LENS);
 	public static final RegistryObject<SignItem> sign = ItemRegistryUtil.register("test_sign", () -> new SignItem(new Item.Properties()
 				.tab(FItemGroup.FANTASIA)

@@ -44,6 +44,8 @@ public static class CreateSpawnPosition extends WorldEvent
         if (!evt.getWorld().isClientSide() && evt.getWorld() instanceof ServerWorld) {
             CUSTOM_SPAWNERS.put((ServerWorld) evt.getWorld(), new ValravnSpawner());
         }
+
+
     }
 
     @SubscribeEvent

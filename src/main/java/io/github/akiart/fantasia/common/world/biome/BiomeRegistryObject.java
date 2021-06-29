@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.function.Function;
 
 import io.github.akiart.fantasia.Fantasia;
+import io.github.akiart.fantasia.client.world.BiomeAmbience;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.RegistryKey;
@@ -18,7 +19,6 @@ public class BiomeRegistryObject {
 
 	private final RegistryKey<Biome> registryKey;
 	public int ID; // used for mapping registry ID-s for world gen.
-	public Function<Vector3i, BlockState> baseBlockSupplier;
 
 	public BiomeRegistryObject(String name) {
 		this.registryKey = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Fantasia.ID, name));
@@ -29,26 +29,8 @@ public class BiomeRegistryObject {
 	public static BiomeRegistryObject create(String name, ArrayList<BiomeRegistryObject> list) {
 		BiomeRegistryObject result = new BiomeRegistryObject(name);
 		list.add(result);
+		BiomeAmbience.registerAmbiance(result.getKey().location(), name);
 		return result;
-	}
-
-	public BiomeRegistryObject withBaseBlock(Block block) {
-		return withBaseBlock((pos) -> {
-			return block.defaultBlockState();
-		});
-	}
-
-	public BiomeRegistryObject withBaseBlock(Function<Vector3i, BlockState> provider) {
-		this.baseBlockSupplier = provider;
-		return this;
-	}
-
-	public BlockState getBlockForPos(int x, int y, int z) {
-		return getBlockForPos(new Vector3i(x, y, z));
-	}
-
-	public BlockState getBlockForPos(Vector3i pos) {
-		return baseBlockSupplier.apply(pos);
 	}
 
 	public RegistryKey<Biome> getKey() {

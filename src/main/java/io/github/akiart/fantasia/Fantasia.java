@@ -15,8 +15,12 @@ import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
 import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -48,6 +52,11 @@ public class Fantasia {
     public static final ResourceLocation FANTASIA_EFFECTS = new ResourceLocation(ID, "fantasia_effects");
 
     public Fantasia() {
+        {
+            final Pair<Config.Common, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Config.Common::new);
+            ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, specPair.getRight());
+            Config.common = specPair.getLeft();
+        }
 
         GeckoLib.initialize();
 
@@ -67,6 +76,10 @@ public class Fantasia {
 
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
+
+        if(Config.common != null) {
+            //Fantasia.LOGGER.info("config exists, test is {}", Config.common.testSettings.testBoolean.get());
+        }
 
         MinecraftForge.EVENT_BUS.register(this);
     }

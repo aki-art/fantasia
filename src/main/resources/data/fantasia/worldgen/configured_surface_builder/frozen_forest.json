@@ -6,12 +6,22 @@
         "snowy": "true"
       }
     },
+    "cave_wall_material": {
+      "Name": "fantasia:sanguite"
+    },
+    "air_material": {
+      "Name": "minecraft:air"
+    },
+    "border_material": {
+      "Name": "minecraft:diorite"
+    },
     "under_material": {
       "Name": "fantasia:frozen_dirt",
       "Properties": {
-        "snowy": "false"
+        "snowy": "true"
       }
-    }
+    },
+    "border_thickness" : 0
   },
-  "type": "fantasia:height_constricted"
+  "type": "fantasia:top"
 }

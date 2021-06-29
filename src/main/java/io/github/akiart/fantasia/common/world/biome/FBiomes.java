@@ -12,7 +12,10 @@ public class FBiomes {
 	public static ArrayList<BiomeRegistryObject> biomeList = new ArrayList<BiomeRegistryObject>();
 	
 	public static BiomeRegistryObject FROZEN_FOREST = create("frozen_forest");
-	
+
+	// Cave Biomes
+	public static BiomeRegistryObject GRIMCAP_GROVE = create("grimcap_grove");
+
 	private static BiomeRegistryObject create(String name) {
 		return BiomeRegistryObject.create(name, biomeList);
 	}

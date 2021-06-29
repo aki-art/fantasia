@@ -1,5 +1,6 @@
 package io.github.akiart.fantasia.common.world;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,7 +51,18 @@ public class FBiomeProvider extends BiomeProvider {
 
 	@Override
 	public Biome getNoiseBiome(int x, int y, int z) {
-		return getBiome(FBiomes.FROZEN_FOREST);
+		if(y < 118 >> 2)
+			return getBiome(FBiomes.GRIMCAP_GROVE);
+		else return getBiome(FBiomes.FROZEN_FOREST);
+	}
+
+	public HashSet<Biome> getAllVerticalBiomes(int x, int z) {
+		HashSet<Biome> results = new HashSet<Biome>();
+		for (int y = 0; y <= 256; y = y + 4) {
+			results.add(getNoiseBiome(x, y, z));
+		}
+
+		return results;
 	}
 
 	@Override

@@ -108,6 +108,9 @@ public class FBlocks {
                     .noCollission()));
 
 
+    // Airs
+    public static final RegistryObject<AirBlock> CRIMCAP_GROVE_AIR = BlockRegistryUtil.register("grimcap_grove_air", () -> new AirBlock(AbstractBlock.Properties.of(Material.AIR).noCollission().noDrops().air()));
+
     // Test & Debug
     public static final RegistryObject<TestCrystalLensBlock> TEST_CRYSTAL_LENS = BlockRegistryUtil
             .register("test_crystal_lens", TestCrystalLensBlock::new);
@@ -117,4 +120,5 @@ public class FBlocks {
 
     public static final RegistryObject<FChestBlock> testChest = BlockRegistryUtil.register("test_chest", () -> new FChestBlock(AbstractBlock.Properties.copy(Blocks.CHEST), FWoodType.FROZEN_ELM));
 
+    public static final RegistryObject<Block> TEST_GLOWSTONE = BlockRegistryUtil.register("test_glowstone", () -> new Block(AbstractBlock.Properties.copy(Blocks.GLOWSTONE).lightLevel(state -> 23039 >> 4)));
 }
