@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
+import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.world.biome.BiomeRegistryObject;
 import io.github.akiart.fantasia.common.world.biome.FBiomes;
 import net.minecraft.util.registry.Registry;
@@ -17,12 +18,14 @@ import net.minecraft.world.biome.provider.BiomeProvider;
 // This is just providing a single biome for now, but later will be expanded
 public class FBiomeProvider extends BiomeProvider {
 	private final Registry<Biome> biomeRegistry;
+	private CaveBiomeProvider caveBiomes;
 
 	public FBiomeProvider(long seed, Registry<Biome> biomeRegistry) {
 
 		super(getStartBiomes(biomeRegistry));
 
 		this.biomeRegistry = biomeRegistry;
+		this.caveBiomes = new CaveBiomeProvider(biomeRegistry);
 
 	}
 
@@ -51,15 +54,19 @@ public class FBiomeProvider extends BiomeProvider {
 
 	@Override
 	public Biome getNoiseBiome(int x, int y, int z) {
-		if(y < 118 >> 2)
-			return getBiome(FBiomes.GRIMCAP_GROVE);
-		else return getBiome(FBiomes.FROZEN_FOREST);
+		Biome surface = getBiome(FBiomes.FROZEN_FOREST);
+
+		if(y < 118 >> 2) {
+			return caveBiomes.getNoiseBiome(surface, x, y, z);
+		}
+
+		return surface;
 	}
 
 	public HashSet<Biome> getAllVerticalBiomes(int x, int z) {
 		HashSet<Biome> results = new HashSet<Biome>();
 		for (int y = 0; y <= 256; y = y + 4) {
-			results.add(getNoiseBiome(x, y, z));
+			results.add(getNoiseBiome(x >> 2, y >> 2, z >> 2));
 		}
 
 		return results;

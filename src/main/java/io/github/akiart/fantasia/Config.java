@@ -8,6 +8,7 @@ import net.minecraftforge.fml.config.ModConfig;
 @Mod.EventBusSubscriber(modid = Fantasia.ID)
 public class Config {
     public static Common common;
+    public static Client client;
 
     public static class Common {
         DimensionSettings dimension = new DimensionSettings();
@@ -66,17 +67,24 @@ public class Config {
         }
     }
 
-    public static class ClientSettings {
+    public static class Client {
 
-        public ClientSettings(ForgeConfigSpec.Builder builder) {
-            builder.push("Dimension Settings");
+        RenderSettings renderSettings = new RenderSettings();
 
+        public Client(ForgeConfigSpec.Builder builder) {
+
+            builder.push("Rendering Settings");
+
+            renderSettings.useShaderAmbient = builder
+                    .translation(getKey("useShaderAmbient"))
+                    .comment("If true, shaders will be used to tint lighting inside Fantasia for better atmosphere. (Disabled with Optifine)")
+                    .define("useShaderAmbient", true);
 
             builder.pop();
         }
 
-        public static class DimensionSettings {
-            public ForgeConfigSpec.BooleanValue startInFantasia;
+        public static class RenderSettings {
+            public ForgeConfigSpec.BooleanValue useShaderAmbient;
         }
     }
 

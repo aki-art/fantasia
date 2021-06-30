@@ -52,11 +52,16 @@ public class Fantasia {
     public static final ResourceLocation FANTASIA_EFFECTS = new ResourceLocation(ID, "fantasia_effects");
 
     public Fantasia() {
-        {
-            final Pair<Config.Common, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Config.Common::new);
-            ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, specPair.getRight());
-            Config.common = specPair.getLeft();
-        }
+//        {
+//            final Pair<Config.Common, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Config.Common::new);
+//            ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, specPair.getRight());
+//            Config.common = specPair.getLeft();
+//        }
+//        {
+//            final Pair<Config.Client, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Config.Client::new);
+//            ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, specPair.getRight());
+//            Config.client = specPair.getLeft();
+//        }
 
         GeckoLib.initialize();
 

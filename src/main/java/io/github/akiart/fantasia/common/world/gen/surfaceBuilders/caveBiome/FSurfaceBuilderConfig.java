@@ -5,7 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
 
-public class CaveBiomeSBConfig implements ISurfaceBuilderConfig {
+public class FSurfaceBuilderConfig implements ISurfaceBuilderConfig {
 
     private final BlockState topMaterial;
     private final BlockState caveWallMaterial;
@@ -14,7 +14,7 @@ public class CaveBiomeSBConfig implements ISurfaceBuilderConfig {
     private final BlockState borderMaterial;
     private final int borderThickness;
 
-    public static final Codec<io.github.akiart.fantasia.common.world.gen.surfaceBuilders.caveBiome.CaveBiomeSBConfig> CODEC = RecordCodecBuilder
+    public static final Codec<FSurfaceBuilderConfig> CODEC = RecordCodecBuilder
             .create((surfBuilderConfig) -> {
                 return surfBuilderConfig
                         .group(
@@ -49,11 +49,11 @@ public class CaveBiomeSBConfig implements ISurfaceBuilderConfig {
                                             return config.borderThickness;
                                         }))
                         // RegistryLookupCodec.getLookUpCodec(Registry.BIOME_KEY).forGetter((source) -> source.biomeRegistry)
-                        .apply(surfBuilderConfig, CaveBiomeSBConfig::new);
+                        .apply(surfBuilderConfig, FSurfaceBuilderConfig::new);
             });
 
 
-    public CaveBiomeSBConfig(BlockState topMaterial, BlockState caveWallMaterial, BlockState airMaterial, BlockState underMaterial, BlockState borderMaterial, int borderThickness) {
+    public FSurfaceBuilderConfig(BlockState topMaterial, BlockState caveWallMaterial, BlockState airMaterial, BlockState underMaterial, BlockState borderMaterial, int borderThickness) {
         this.topMaterial = topMaterial;
         this.caveWallMaterial = caveWallMaterial;
         this.airMaterial = airMaterial;

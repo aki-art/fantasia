@@ -109,7 +109,11 @@ public class FBlocks {
 
 
     // Airs
-    public static final RegistryObject<AirBlock> CRIMCAP_GROVE_AIR = BlockRegistryUtil.register("grimcap_grove_air", () -> new AirBlock(AbstractBlock.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<AirBlock> FANTASIA_AIR = BlockRegistryUtil.registerAir("fantasia_air");
+    public static final RegistryObject<AirBlock> GRIMCAP_GROVE_AIR = BlockRegistryUtil.registerAir("grimcap_grove_air");
+    public static final RegistryObject<AirBlock> ICY_CAVERN_AIR = BlockRegistryUtil.registerAir("icy_cavern_air");
+    public static final RegistryObject<AirBlock> GLOOMFUNGAL_GROTTO_AIR = BlockRegistryUtil.registerAir("gloomfungal_grotto_air");
+    public static final RegistryObject<AirBlock> HIVE_AIR = BlockRegistryUtil.registerAir("hive_air");
 
     // Test & Debug
     public static final RegistryObject<TestCrystalLensBlock> TEST_CRYSTAL_LENS = BlockRegistryUtil

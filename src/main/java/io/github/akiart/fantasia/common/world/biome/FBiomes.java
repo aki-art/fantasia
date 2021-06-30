@@ -15,6 +15,7 @@ public class FBiomes {
 
 	// Cave Biomes
 	public static BiomeRegistryObject GRIMCAP_GROVE = create("grimcap_grove");
+	public static BiomeRegistryObject ICY_CAVERN = create("icy_cavern");
 
 	private static BiomeRegistryObject create(String name) {
 		return BiomeRegistryObject.create(name, biomeList);

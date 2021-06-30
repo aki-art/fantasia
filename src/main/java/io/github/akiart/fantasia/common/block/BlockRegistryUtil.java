@@ -13,6 +13,7 @@ import io.github.akiart.fantasia.common.block.registrySet.TreeRegistryObject;
 import io.github.akiart.fantasia.common.block.trees.FTree;
 import io.github.akiart.fantasia.common.util.DirectionRestriction;
 import net.minecraft.block.*;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.entity.EntityType;
@@ -31,6 +32,9 @@ public class BlockRegistryUtil {
 		return FBlocks.BLOCKS.register(name, supplier);
 	}
 
+	public static RegistryObject<AirBlock> registerAir(String name) {
+		return register(name, () -> new AirBlock(AbstractBlock.Properties.of(Material.AIR).noCollission().noDrops().air()));
+	}
 	public static StoneRegistryObject registerStones(String name, float hardness, float resistance, MaterialColor color,
 		boolean redstone) {
 		StoneRegistryObject obj = new StoneRegistryObject(name, hardness, resistance, color, redstone);

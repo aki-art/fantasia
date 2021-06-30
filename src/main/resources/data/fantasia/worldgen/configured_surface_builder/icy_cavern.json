@@ -1,21 +1,21 @@
 {
   "config": {
     "top_material": {
-      "Name": "minecraft:crimson_nylium"
+      "Name": "minecraft:marlstone"
     },
     "cave_wall_material": {
-      "Name": "fantasia:sanguite"
+      "Name": "fantasia:marlstone"
     },
     "air_material": {
-      "Name": "fantasia:grimcap_grove_air"
+      "Name": "fantasia:icy_caverns_air"
     },
     "border_material": {
-      "Name": "minecraft:diorite"
+      "Name": "minecraft:green_wool"
     },
     "under_material": {
-      "Name": "fantasia:sanguite"
+      "Name": "fantasia:marlstone"
     },
-    "border_thickness" : 6
+    "border_thickness" : 4
   },
   "type": "fantasia:grimcap_grove"
 }

@@ -3,21 +3,18 @@ package io.github.akiart.fantasia.common.world.gen.surfaceBuilders.caveBiome;
 import com.mojang.serialization.Codec;
 import io.github.akiart.fantasia.Fantasia;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
+import net.minecraftforge.common.util.Constants;
 
 import java.util.Random;
 
-public class TopSurfaceBuilder extends FSurfaceBuilder<FSurfaceBuilderConfig> {
+public class CaveSurfaceBuilder extends FSurfaceBuilder<FSurfaceBuilderConfig> {
 
-    public TopSurfaceBuilder(Codec<FSurfaceBuilderConfig> codec) {
+    public CaveSurfaceBuilder(Codec<FSurfaceBuilderConfig> codec) {
         super(codec);
     }
-
-    boolean testDone = false;
 
     @Override
     public void apply(Random random, IChunk chunkIn, Biome biomeIn, int worldX, int worldZ, int startHeight, double noise,
@@ -28,29 +25,31 @@ public class TopSurfaceBuilder extends FSurfaceBuilder<FSurfaceBuilderConfig> {
         BlockState base = config.getCaveWallMaterial();
         BlockState border = config.getBorderMaterial();
         BlockState air = config.getAirMaterial();
+
         BlockPos.Mutable blockPos = new BlockPos.Mutable();
 
         int i = -1;
-        int coverDepth = (int)(noise / 3.0D + 3.0D + random.nextDouble() * 0.25D);
+        int coverDepth = (int) (noise / 3.0D + 3.0D + random.nextDouble() * 0.25D);
         int x = worldX & 15;
         int z = worldZ & 15;
 
-        int lowY = findY(chunkIn, 8, startHeight, x, z, biomeIn, true); // FIXME: at 0 the same biome is set for some hacky nonsense. should be sorted out and fixed
-        // Fantasia.LOGGER.info(lowY);
+        // TODO: biomes could be layered, this assumes single occurrence
+        int lowY = findY(chunkIn, 0, startHeight, x, z, biomeIn, true);
+        int topY = findY(chunkIn, lowY, startHeight, x, z, biomeIn, false);
 
-        for(int y = startHeight; y >= lowY; --y)  {
 
+        for (int y = topY; y >= lowY; --y) {
             blockPos.set(x, y, z);
-            // BlockState state = chunkIn.getBlockState(blockPos);
 
-            if (chunkIn.getBlockState(blockPos).isAir()) {
-                i = -1;
-            } else if (isAir(worldX, y, worldZ)) {
-                i = -1;
+            if (isAir(worldX, y, worldZ)) {
                 chunkIn.setBlockState(blockPos, air, false);
+                i = -1;
             } else {
                 if(i++ == -1) {
                     chunkIn.setBlockState(blockPos, top, false);
+                }
+                else if(config.getBorderThickness() > 0 && isBorder(chunkIn, lowY, topY, blockPos, biomeIn, config.getBorderThickness())) {
+                    chunkIn.setBlockState(blockPos, border, false);
                 }
                 else if(i < coverDepth) {
                     chunkIn.setBlockState(blockPos, cover, false);

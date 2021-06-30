@@ -65,7 +65,7 @@
 	  },
 	  
 	  "default_block": {
-		"Name": "minecraft:stone" // overriden by cave generation settings
+		"Name": "minecraft:red_stained_glass" // overriden by cave generation settings
 	  },
 	  
 	  "default_fluid": {
@@ -74,7 +74,7 @@
 		  "level": "0"
 		}
 	  }
-	  
+
 	}
   }
 }

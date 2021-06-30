@@ -16,8 +16,8 @@
 	"surface_builder": "fantasia:grim_cap_grove",
 	"carvers": {
 		"air": [
-			// "fantasia:chasm"
-			//"fantasia:grimcap_grove_air"
+			// vanilla carvers may cause unwanted side effects
+			//"fantasia:chasm"
 		]
 	},
 	"features": [
@@ -49,6 +49,8 @@
 		],
 		// VEGETAL_DECORATION
 		[
+			"minecraft:crimson_fungi",
+			"minecraft:crimson_forest_vegetation"
 		],
 		// TOP_LAYER_MODIFICATION
 		[
