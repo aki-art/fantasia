@@ -775,7 +775,8 @@ public class FastNoiseLite {
 		return t * t * t * (t * (t * 6 - 15) + 10);
 	}
 
-	private static float CubicLerp(float a, float b, float c, float d, float t) {
+	// Edit: set to public
+	public static float CubicLerp(float a, float b, float c, float d, float t) {
 		float p = (d - c) - (a - b);
 		return t * t * t * p + t * t * ((a - b) - p) + t * (c - a) + b;
 	}

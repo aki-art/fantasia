@@ -26,6 +26,7 @@ public final class FAtlases {
         return new RenderMaterial(Atlases.CHEST_SHEET, new ResourceLocation(Fantasia.ID, "entity/chest/" + location.getPath() + suffix));
     }
 
+    // Registering atlases so tile entity can use them later.
     @SubscribeEvent
     public static void onTextureStitchedPre(TextureStitchEvent.Pre event) {
         if (event.getMap().location().equals(Atlases.CHEST_SHEET)) {

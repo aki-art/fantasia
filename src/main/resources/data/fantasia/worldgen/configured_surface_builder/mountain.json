@@ -1,0 +1,21 @@
+{
+  "config": {
+    "top_material": {
+      "Name": "fantasia:marlstone"
+    },
+    "cave_wall_material": {
+      "Name": "fantasia:marlstone"
+    },
+    "air_material": {
+      "Name": "minecraft:air"
+    },
+    "border_material": {
+      "Name": "minecraft:red_wool"
+    },
+    "under_material": {
+      "Name": "fantasia:marlstone"
+    },
+    "border_thickness" : 0
+  },
+  "type": "fantasia:mountain"
+}

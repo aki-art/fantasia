@@ -1,5 +1,4 @@
 {
-	"scale": 0.05,
 	"effects": {
 		"mood_sound": {
 			"sound": "minecraft:ambient.cave",
@@ -114,5 +113,6 @@
 	"temperature": -1,
 	"downfall": 0.4,
 	"category": "icy",
-	"depth": 0.125
+	"depth": 0.125,
+	"scale": 0.08
 }

@@ -7,6 +7,7 @@ import io.github.akiart.fantasia.common.block.trees.StripMap;
 import io.github.akiart.fantasia.common.entity.FEntities;
 import io.github.akiart.fantasia.common.item.FItemModelProperties;
 import io.github.akiart.fantasia.common.world.FChunkGenerator;
+import io.github.akiart.fantasia.common.world.FChunkGenerator2;
 import io.github.akiart.fantasia.common.world.gen.blockplacer.FBlockPlacerTypes;
 import io.github.akiart.fantasia.common.world.gen.feature.FFeatures;
 import net.minecraft.block.WoodType;
@@ -94,7 +95,7 @@ public class Fantasia {
         event.enqueueWork(() -> {
             FConfiguredFeatures.registerConfiguredFeatures();
             Registry.register(Registry.BIOME_SOURCE, new ResourceLocation(ID, "biome_source"), FBiomeProvider.CODEC);
-            Registry.register(Registry.CHUNK_GENERATOR, new ResourceLocation(ID, "chunk_generator"), FChunkGenerator.CODEC);
+            Registry.register(Registry.CHUNK_GENERATOR, new ResourceLocation(ID, "chunk_generator"), FChunkGenerator2.CODEC);
 
             StripMap.registerStripMaps();
             FWoodType.values().forEach(WoodType::register);

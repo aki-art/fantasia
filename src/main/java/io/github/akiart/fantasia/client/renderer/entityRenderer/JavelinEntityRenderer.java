@@ -21,6 +21,7 @@ public class JavelinEntityRenderer extends EntityRenderer<JavelinEntity> {
         super(entityRendererManager);
     }
 
+    @Override
     public void render(JavelinEntity javelinEntity, float yaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int light) {
 
         matrixStack.pushPose();
