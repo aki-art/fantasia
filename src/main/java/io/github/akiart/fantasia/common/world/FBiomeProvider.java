@@ -60,14 +60,14 @@ public class FBiomeProvider extends BiomeProvider {
 	@Override
 	public Biome getNoiseBiome(int x, int y, int z) {
 
-		return quickTestBiomeSelector.GetNoise(x, z) > 0 ? getBiome(FBiomes.FROZEN_FOREST) : getBiome(FBiomes.BLUE);
+		Biome surface = quickTestBiomeSelector.GetNoise(x, z) > 0 ? getBiome(FBiomes.FROZEN_FOREST) : getBiome(FBiomes.BLUE);
 		//Biome surface = getBiome(FBiomes.FROZEN_FOREST);
 
-		//if(y < 118 >> 2) {
-		//	return caveBiomes.getNoiseBiome(surface, x, y, z);
-		//}
+		if(y < 118 >> 2) {
+			return caveBiomes.getNoiseBiome(surface, x, y, z);
+		}
 
-		//return surface;
+		return surface;
 	}
 
 	public HashSet<Biome> getAllVerticalBiomes(int x, int z) {

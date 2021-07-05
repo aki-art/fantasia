@@ -37,7 +37,7 @@ public class FConfiguredFeatures {
     protected static BaseTreeFeatureConfig FROZEN_SPRUCE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(FBlocks.FROZEN_SPRUCE.log.get().defaultBlockState()),
             new SimpleBlockStateProvider(FBlocks.FROZEN_SPRUCE.leaves.get().defaultBlockState()),
-            new SpruceFoliagePlacer(/*radius*/FeatureSpread.fixed(3), /*offset*/FeatureSpread.fixed(0), /*trunkHeigth*/FeatureSpread.of(3, 1)), new StraightTrunkPlacer(10, 2, 2),
+            new SpruceFoliagePlacer(/*radius*/FeatureSpread.fixed(3), /*offset*/FeatureSpread.fixed(0), /*trunkHeight*/FeatureSpread.of(3, 1)), new StraightTrunkPlacer(10, 2, 2),
             new TwoLayerFeature(1, 0, 1)))
             .decorators(ImmutableList.of(new IcicleTreeDecorator(0.3f)))
             .ignoreVines()

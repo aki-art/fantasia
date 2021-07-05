@@ -2,7 +2,7 @@
   "replace": false,
   "values": [
     "fantasia:elm_fence_gate",
-    "fantasia:frozen_elm_fence_gate",
-    "fantasia:frozen_spruce_fence_gate"
+    "fantasia:frozen_spruce_fence_gate",
+    "fantasia:frozen_elm_fence_gate"
   ]
 }

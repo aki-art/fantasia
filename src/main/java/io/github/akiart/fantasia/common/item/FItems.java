@@ -10,6 +10,7 @@ import io.github.akiart.fantasia.common.item.itemType.frostWork.FrostworkBoltIte
 import io.github.akiart.fantasia.common.item.itemType.IcicleItem;
 import io.github.akiart.fantasia.common.item.itemType.JavelinItem;
 import io.github.akiart.fantasia.common.item.itemType.PtarmiganEggItem;
+import io.github.akiart.fantasia.common.item.itemType.frostWork.FrostworkPickaxeItem;
 import io.github.akiart.fantasia.common.item.registrySet.CrystalRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.StoneItemSet;
 import io.github.akiart.fantasia.common.item.registrySet.StoneRegistryItem;
@@ -62,6 +63,9 @@ public class FItems {
 	public static final RegistryObject<BlockItem> SNOWBERRY_BUSH = ItemRegistryUtil.registerFromBlock(FBlocks.SNOWBERRY_BUSH);
 
 	// Tools
+
+	// Frostwork
+	public static final RegistryObject<FrostworkPickaxeItem> FROSTWORK_PICKAXE = ItemRegistryUtil.register("frostwork_pickaxe", () -> new FrostworkPickaxeItem(FItemTier.FROSTWORK, 9, 4f, (new Item.Properties().tab(FItemGroup.FANTASIA))));
 
 	// Javelins
 	public static final RegistryObject<JavelinItem> WOODEN_JAVELIN = ItemRegistryUtil.registerJavelin("wooden_javelin", ItemTier.WOOD, 3 , -2.4f);

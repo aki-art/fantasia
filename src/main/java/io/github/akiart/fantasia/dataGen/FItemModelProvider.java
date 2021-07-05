@@ -22,7 +22,6 @@ public class FItemModelProvider extends FItemModelProviderBase {
 		ItemRegistryUtil.trees.forEach(this::tree);
 		ItemRegistryUtil.simpleItems.forEach(this::simpleItem);
 
-		//simpleItem(FItems.GOLD_JAVELIN);
 		javelin(FItems.WOODEN_JAVELIN.get(), getBlockTexture(Blocks.OAK_PLANKS));
 		javelin(FItems.STONE_JAVELIN.get(), getBlockTexture(Blocks.STONE));
 		javelin(FItems.GOLD_JAVELIN.get(), getBlockTexture(Blocks.GOLD_BLOCK));

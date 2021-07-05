@@ -20,7 +20,7 @@ public class AirRestrictedPlacementConfig implements IPlacementConfig {
     public static final Codec<AirRestrictedPlacementConfig> CODEC = RecordCodecBuilder.create((builder) -> {
         return builder
                 .group(
-                        BlockState.CODEC.fieldOf("air_block").forGetter((config) -> { return config.block; }))
+                        BlockState.CODEC.fieldOf("air_block").forGetter(config -> config.block))
                 .apply(builder, AirRestrictedPlacementConfig::new);
     });
 }

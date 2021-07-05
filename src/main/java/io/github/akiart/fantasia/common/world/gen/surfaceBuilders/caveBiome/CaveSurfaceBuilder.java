@@ -48,9 +48,9 @@ public class CaveSurfaceBuilder extends FSurfaceBuilder<FSurfaceBuilderConfig> {
                 if(i++ == -1) {
                     chunkIn.setBlockState(blockPos, top, false);
                 }
-                else if(config.getBorderThickness() > 0 && isBorder(chunkIn, lowY, topY, blockPos, biomeIn, config.getBorderThickness())) {
-                    chunkIn.setBlockState(blockPos, border, false);
-                }
+                //else if(config.getBorderThickness() > 0 && isBorder(chunkIn, lowY, topY, blockPos, biomeIn, config.getBorderThickness())) {
+                //    chunkIn.setBlockState(blockPos, border, false);
+                //}
                 else if(i < coverDepth) {
                     chunkIn.setBlockState(blockPos, cover, false);
                 }

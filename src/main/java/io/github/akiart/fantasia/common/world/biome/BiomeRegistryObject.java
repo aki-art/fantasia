@@ -1,19 +1,13 @@
 package io.github.akiart.fantasia.common.world.biome;
 
-import java.util.ArrayList;
-import java.util.function.Function;
-
 import io.github.akiart.fantasia.Fantasia;
-import io.github.akiart.fantasia.client.world.BiomeAmbience;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeMaker;
-import net.minecraftforge.fml.RegistryObject;
+
+import java.util.ArrayList;
 
 public class BiomeRegistryObject {
 
@@ -29,12 +23,11 @@ public class BiomeRegistryObject {
 	public static BiomeRegistryObject create(String name, ArrayList<BiomeRegistryObject> list) {
 		BiomeRegistryObject result = new BiomeRegistryObject(name);
 		list.add(result);
-		BiomeAmbience.registerAmbiance(result.getKey().location(), name);
 		return result;
 	}
 
 	public RegistryKey<Biome> getKey() {
-		return this.registryKey;
+		return registryKey;
 	}
 
 	public Biome get(Registry<Biome> registry) {

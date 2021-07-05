@@ -5,8 +5,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.WorldDecoratingHelper;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Stream;
 
 public class AirRestrictedPlacement<T extends AirRestrictedPlacementConfig> extends Placement<T> {
@@ -16,20 +19,16 @@ public class AirRestrictedPlacement<T extends AirRestrictedPlacementConfig> exte
     }
 
     public Stream<BlockPos> getPositions(WorldDecoratingHelper decoratingHelper, Random random, T config, BlockPos blockPos) {
-        BlockPos result = lowestMatching(decoratingHelper, config, blockPos);
-        return result != null ? Stream.of(result) : Stream.of();
-    }
 
-    BlockPos.Mutable lowestMatching(WorldDecoratingHelper decoratingHelper, T config, BlockPos start) {
-        BlockPos.Mutable pos = start.mutable();
+        BlockPos.Mutable pos = blockPos.mutable();
+        Set<BlockPos> positions = new HashSet<>();
         pos.setY(0);
         while(pos.getY() < 255)
             pos.above();
 
-            if(decoratingHelper.getBlockState(pos).is(config.getBlock().getBlock())) {
-                return pos;
+        if(decoratingHelper.getBlockState(pos).is(config.getBlock().getBlock())) {
+            positions.add(pos);
         }
-
-        return null;
+        return positions.stream();
     }
 }
