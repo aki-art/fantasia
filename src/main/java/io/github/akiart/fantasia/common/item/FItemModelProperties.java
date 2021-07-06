@@ -11,7 +11,10 @@ public class FItemModelProperties {
 
     public static void setItemModelProperties() {
         ResourceLocation thrown = new ResourceLocation(Fantasia.ID, "thrown");
+        ResourceLocation charging = new ResourceLocation(Fantasia.ID, "charging");
+
         ItemModelsProperties.register(FItems.WOODEN_JAVELIN.get(), thrown, FItemModelProperties::isBeingUsed);
+        ItemModelsProperties.register(FItems.FROSTWORK_PICKAXE.get(), charging, FItemModelProperties::isBeingUsed);
     }
 
     private static float isBeingUsed(ItemStack itemStack, ClientWorld world, LivingEntity entity) {

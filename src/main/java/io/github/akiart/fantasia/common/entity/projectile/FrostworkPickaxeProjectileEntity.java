@@ -13,39 +13,51 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
+// This is an invisible entity which controls the explosions released from the
+// Frostwork Pickaxe.
+
 public class FrostworkPickaxeProjectileEntity extends ThrowableEntity {
 
-    private final static int EXPLOSION_DELAY = 8;
+    private static final int EXPLOSION_DELAY = 6;
+    private static final int FIRST_EXPLOSION_START = -4;
     public static final String ID = "frostwork_pickaxe_projectile";
 
-    private int timer = 0;
+    private int timer;
     private int power = 5;
-    private int progress = 0;
+    private int explosionCounter = 0;
 
     public static final DataParameter<Integer> ID_POWER = EntityDataManager.defineId(FrostworkPickaxeProjectileEntity.class, DataSerializers.INT);
     public static final DataParameter<Integer> ID_PROGRESS = EntityDataManager.defineId(FrostworkPickaxeProjectileEntity.class, DataSerializers.INT);
 
     public FrostworkPickaxeProjectileEntity(World world) {
-        super(FEntities.FROSTWORK_PICKAXE_PROJECTILE.get(), world);
-
-        Fantasia.LOGGER.info("he spawn");
+        this(FEntities.FROSTWORK_PICKAXE_PROJECTILE.get(), world);
     }
 
     public FrostworkPickaxeProjectileEntity(EntityType<FrostworkPickaxeProjectileEntity> type, World world) {
         super(type, world);
+        timer = FIRST_EXPLOSION_START;
+        noPhysics = true;
+        setNoGravity(true);
+    }
+
+    @Override
+    public boolean isPushable() {
+        return false;
+    }
+
+    @Override
+    public boolean ignoreExplosion() {
+        return true;
     }
 
     @Override
     public void tick() {
-
-        Fantasia.LOGGER.info("he tick");
-        if (progress >= power) {
+        if (explosionCounter >= power) {
             remove();
         } else if (timer++ > EXPLOSION_DELAY) {
-            Fantasia.LOGGER.info("he boom");
             timer = 0;
             level.explode(getOwner(), getX(), getY(), getZ(), 5F, Explosion.Mode.BREAK);
-            progress++;
+            explosionCounter++;
         }
 
         super.tick();
@@ -59,12 +71,12 @@ public class FrostworkPickaxeProjectileEntity extends ThrowableEntity {
         return this.power;
     }
 
-    public void setProgress(int progress) {
-        this.progress = progress;
+    public void setExplosionCounter(int explosionCounter) {
+        this.explosionCounter = explosionCounter;
     }
 
-    public int getProgress() {
-        return this.progress;
+    public int getExplosionCounter() {
+        return this.explosionCounter;
     }
 
     @Override
@@ -76,23 +88,17 @@ public class FrostworkPickaxeProjectileEntity extends ThrowableEntity {
     @Override
     protected void addAdditionalSaveData(CompoundNBT nbt) {
         nbt.putInt("Power", getPower());
-        nbt.putInt("Progress", getProgress());
+        nbt.putInt("Progress", getExplosionCounter());
     }
 
     @Override
     protected void readAdditionalSaveData(CompoundNBT nbt) {
         setPower(nbt.getInt("Power"));
-        setProgress(nbt.getInt("Progress"));
+        setExplosionCounter(nbt.getInt("Progress"));
     }
 
     @Override
     public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
-
-    @Override
-    protected void checkInsideBlocks() {
-        // don't care
-    }
-
 }

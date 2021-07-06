@@ -61,7 +61,7 @@ public class FEntities {
                     .<FrostworkPickaxeProjectileEntity>of(FrostworkPickaxeProjectileEntity::new, EntityClassification.MISC)
                     .sized(0.5f, 0.5f)
                     .clientTrackingRange(4)
-                    .updateInterval(10)
+                    .updateInterval(6)
                     .build(new ResourceLocation(Fantasia.ID, FrostworkPickaxeProjectileEntity.ID).toString()));
 
     public static final RegistryObject<EntityType<IcicleEntity>> ICICLE = ENTITIES.register("icicle", () ->

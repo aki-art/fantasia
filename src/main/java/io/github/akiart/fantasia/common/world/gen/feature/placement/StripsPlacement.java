@@ -33,8 +33,6 @@ public class StripsPlacement extends SimplePlacement<StripsPlacementConfig> {
         noiseVal = -Math.abs(noiseVal * 16 - 0.5D) + 0.5D; // - secondaryNoise.getValue(x, z);
         int i = MathHelper.ceil((noiseVal + config.noiseOffset) * (double)config.noiseToCountRatio);
 
-        return IntStream.range(0, i).mapToObj((count) -> {
-            return pos;
-        });
+        return IntStream.range(0, i).mapToObj(count -> pos);
     }
 }

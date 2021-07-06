@@ -83,6 +83,7 @@ public final class RenderLayers {
         RenderingRegistry.registerEntityRenderingHandler(FEntities.PTARMIGAN_EGG.get(), renderer -> new SpriteRenderer<>(renderer, Minecraft.getInstance().getItemRenderer()));
         RenderingRegistry.registerEntityRenderingHandler(FEntities.JAVELIN.get(), JavelinEntityRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(FEntities.ICICLE.get(), IcicleEntityRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(FEntities.FROSTWORK_PICKAXE_PROJECTILE.get(), DebugProjectileEntityRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(FEntities.BOAT.get(), FBoatRenderer::new);
     }
 

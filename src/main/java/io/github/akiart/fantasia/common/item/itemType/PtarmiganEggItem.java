@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 
 public class PtarmiganEggItem extends Item {
 
+    // Chicken eggs are hardcoded to spawn chickens only, so just making a custom one here
     public PtarmiganEggItem(Item.Properties properties) {
         super(properties);
     }
