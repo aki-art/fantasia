@@ -1,8 +1,12 @@
 package io.github.akiart.fantasia.common.item.itemType.frostWork;
 
+import io.github.akiart.fantasia.Fantasia;
+import io.github.akiart.fantasia.common.entity.projectile.FrostworkPickaxeProjectileEntity;
+import io.github.akiart.fantasia.common.entity.projectile.IcicleEntity;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
@@ -62,8 +66,11 @@ public class FrostworkPickaxeItem extends PickaxeItem {
 
                 if (!world.isClientSide) {
                     damageItem(itemStack, userEntity, player);
-                    // TODO: spawn several in front with a short time delay
-                    world.explode(player, player.getX(), player.getEyeY(), player.getZ(), 5F, Explosion.Mode.BREAK);
+                    FrostworkPickaxeProjectileEntity projectile = new FrostworkPickaxeProjectileEntity(world);
+                    projectile.shootFromRotation(player, player.xRot, player.yRot, 0.0F, 2.5F, 1.0F);
+                    projectile.setPower(8);
+                    world.addFreshEntity(projectile);
+                    Fantasia.LOGGER.info("spawned projectile");
                 }
             }
         }

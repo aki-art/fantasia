@@ -5,6 +5,7 @@ import io.github.akiart.fantasia.common.entity.hostile.SaberCatEntity;
 import io.github.akiart.fantasia.common.entity.item.FBoatEntity;
 import io.github.akiart.fantasia.common.entity.neutral.valravn.ValravnEntity;
 import io.github.akiart.fantasia.common.entity.passive.PtarmiganEntity;
+import io.github.akiart.fantasia.common.entity.projectile.FrostworkPickaxeProjectileEntity;
 import io.github.akiart.fantasia.common.entity.projectile.IcicleEntity;
 import io.github.akiart.fantasia.common.entity.projectile.JavelinEntity;
 import io.github.akiart.fantasia.common.entity.projectile.PtarmiganEggEntity;
@@ -54,6 +55,14 @@ public class FEntities {
                     .clientTrackingRange(4)
                     .updateInterval(20)
                     .build(new ResourceLocation(Fantasia.ID, "javelin").toString()));
+
+    public static final RegistryObject<EntityType<FrostworkPickaxeProjectileEntity>> FROSTWORK_PICKAXE_PROJECTILE = ENTITIES.register(FrostworkPickaxeProjectileEntity.ID, () ->
+            EntityType.Builder
+                    .<FrostworkPickaxeProjectileEntity>of(FrostworkPickaxeProjectileEntity::new, EntityClassification.MISC)
+                    .sized(0.5f, 0.5f)
+                    .clientTrackingRange(4)
+                    .updateInterval(10)
+                    .build(new ResourceLocation(Fantasia.ID, FrostworkPickaxeProjectileEntity.ID).toString()));
 
     public static final RegistryObject<EntityType<IcicleEntity>> ICICLE = ENTITIES.register("icicle", () ->
             EntityType.Builder
