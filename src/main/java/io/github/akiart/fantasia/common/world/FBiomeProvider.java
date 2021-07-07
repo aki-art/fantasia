@@ -1,7 +1,9 @@
 package io.github.akiart.fantasia.common.world;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.mojang.serialization.Codec;
@@ -10,6 +12,8 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.world.biome.BiomeRegistryObject;
 import io.github.akiart.fantasia.common.world.biome.FBiomes;
+import io.github.akiart.fantasia.common.world.gen.layer.FLayer;
+import io.github.akiart.fantasia.common.world.gen.layer.FLayerUtil;
 import io.github.akiart.fantasia.lib.FastNoiseLite;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryLookupCodec;
@@ -20,7 +24,9 @@ import net.minecraft.world.biome.provider.BiomeProvider;
 public class FBiomeProvider extends BiomeProvider {
 	private final Registry<Biome> biomeRegistry;
 	private CaveBiomeProvider caveBiomes;
+	private final FLayer genBiomes;
 	FastNoiseLite quickTestBiomeSelector;
+	protected static HashMap<Integer, Integer> biomeIDMap;
 
 	public FBiomeProvider(long seed, Registry<Biome> biomeRegistry) {
 
@@ -31,6 +37,24 @@ public class FBiomeProvider extends BiomeProvider {
 		quickTestBiomeSelector = new FastNoiseLite();
 		quickTestBiomeSelector.SetNoiseType(FastNoiseLite.NoiseType.OpenSimplex2);
 
+		biomeIDMap = new HashMap<>();
+		FBiomes.biomeList.forEach(b -> biomeIDMap.put(b.ID, getBiomeId(b)));
+		this.genBiomes = FLayerUtil.getLayer(0, biomeIDMap);
+
+	}
+
+	private int getBiomeId(BiomeRegistryObject biome) {
+		Optional<Biome> result = biomeRegistry.getOptional(biome.getKey());
+		if (result.isPresent()) {
+			return getBiomeId(result.get());
+		} else {
+			Fantasia.LOGGER.warn("Biome " + biome.getKey().toString() + " not present in biome registry");
+			return 0;
+		}
+	}
+
+	private int getBiomeId(Biome biome) {
+		return biomeRegistry.getId(biome);
 	}
 
 	public FBiomeProvider(Registry<Biome> biomeRegistry) {
@@ -60,14 +84,14 @@ public class FBiomeProvider extends BiomeProvider {
 	@Override
 	public Biome getNoiseBiome(int x, int y, int z) {
 
-		Biome surface = quickTestBiomeSelector.GetNoise(x, z) > 0 ? getBiome(FBiomes.FROZEN_FOREST) : getBiome(FBiomes.BLUE);
+		//Biome surface = quickTestBiomeSelector.GetNoise(x, z) > 0 ? getBiome(FBiomes.FROZEN_FOREST) : getBiome(FBiomes.BLUE);
 		//Biome surface = getBiome(FBiomes.FROZEN_FOREST);
 
-		if(y < 118 >> 2) {
-			return caveBiomes.getNoiseBiome(surface, x, y, z);
-		}
+		//if(y < 118 >> 2) {
+		//	return caveBiomes.getNoiseBiome(surface, x, y, z);
+		//}
 
-		return surface;
+		return genBiomes.getBiome(biomeRegistry, x, z, biomeIDMap);
 	}
 
 	public HashSet<Biome> getAllVerticalBiomes(int x, int z) {

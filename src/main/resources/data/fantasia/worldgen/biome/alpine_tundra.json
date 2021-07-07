@@ -14,7 +14,8 @@
 	    "grass_color": 13350267,
 	    "foliage_color": 3962923
 	},
-	"surface_builder": "fantasia:alpine_tundra",
+	//"surface_builder": "fantasia:alpine_tundra",
+	"surface_builder": "minecraft:grass",
 	"carvers": {
 		"air": [
 			 //"fantasia:chasm"
@@ -32,9 +33,9 @@
 		],
 		// LOCAL_MODIFICATIONS
 		[
-			"fantasia:tundra_tiny_boulder",
-			"fantasia:tundra_boulder",
-			"fantasia:tundra_large_boulder"
+			//"fantasia:tundra_tiny_boulder",
+			//"fantasia:tundra_boulder",
+			//"fantasia:tundra_large_boulder"
 
 		],
 		// UNDERGROUND_STRUCTURES
@@ -55,10 +56,10 @@
 		],
 		// VEGETAL_DECORATION
 		[
-			"fantasia:tundra_flowers",
-			"fantasia:golden_grass_patches",
-			"fantasia:bearberry_patches",
-			"fantasia:tundra_pine",
+			//"fantasia:tundra_flowers",
+			//"fantasia:golden_grass_patches",
+			//"fantasia:bearberry_patches",
+			//"fantasia:tundra_pine",
 			"minecraft:patch_grass_plain",
 			"minecraft:patch_tall_grass",
 			"minecraft:brown_mushroom_taiga",

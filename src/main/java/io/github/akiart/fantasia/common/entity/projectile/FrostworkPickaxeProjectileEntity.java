@@ -52,12 +52,15 @@ public class FrostworkPickaxeProjectileEntity extends ThrowableEntity {
 
     @Override
     public void tick() {
-        if (explosionCounter >= power) {
-            remove();
-        } else if (timer++ > EXPLOSION_DELAY) {
-            timer = 0;
-            level.explode(getOwner(), getX(), getY(), getZ(), 5F, Explosion.Mode.BREAK);
-            explosionCounter++;
+
+        if(!level.isClientSide()) {
+            if (explosionCounter >= power) {
+                remove();
+            } else if (timer++ > EXPLOSION_DELAY) {
+                timer = 0;
+                level.explode(getOwner(), getX(), getY(), getZ(), 5F, Explosion.Mode.BREAK);
+                explosionCounter++;
+            }
         }
 
         super.tick();

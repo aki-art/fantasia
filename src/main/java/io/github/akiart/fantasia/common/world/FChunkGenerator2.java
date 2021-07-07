@@ -27,7 +27,7 @@ import java.util.stream.IntStream;
 public class FChunkGenerator2 extends ChunkGenerator {
 
     private Supplier<DimensionSettings> settings;
-    private static final boolean DEBUG_STRIPS = true; // used to carve out massive strips of land for easy observation of generation.
+    private static final boolean DEBUG_STRIPS = false; // used to carve out massive strips of land for easy observation of generation.
 
     private int terrainHeight = 135;
     private int caveWorldCeiling = 118;

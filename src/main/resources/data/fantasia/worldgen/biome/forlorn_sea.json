@@ -42,7 +42,7 @@
       "minecraft:kelp_cold"
     ],
     [
-      "minecraft:freeze_top_layer"
+      //"minecraft:freeze_top_layer"
     ]
   ],
   "starts": [
@@ -82,7 +82,7 @@
   "spawn_costs": {},
   "player_spawn_friendly": false,
   "precipitation": "rain",
-  "temperature": 0.5,
+  "temperature": -0.5,
   "downfall": 0.5,
   "category": "ocean",
   "depth": -0.8
