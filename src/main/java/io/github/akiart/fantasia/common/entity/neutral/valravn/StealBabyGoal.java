@@ -31,7 +31,6 @@ public class StealBabyGoal extends Goal {
 
     @Override
     public void start() {
-        Fantasia.LOGGER.info("entering stealing goal");
         target = entity.getVictim();
         entity.getNavigation().moveTo(target, speedModifier);
     }
@@ -52,12 +51,7 @@ public class StealBabyGoal extends Goal {
         }
     }
 
-    @Override
-    public void stop() {
-        Fantasia.LOGGER.info("exiting stealing goal");
-    }
-
-
+    // This is not ideal, selecting next goals should be handles from goal selector
     public boolean canContinueToUse() {
 
         if (isTargetOutOfReach(entity.getVictim())) {
@@ -73,7 +67,6 @@ public class StealBabyGoal extends Goal {
         if (entity.isAngry()) {
             entity.setState(ValravnEntity.State.COMBAT_WILD);
             return false;
-
         }
 
         return canUse();

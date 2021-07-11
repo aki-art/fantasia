@@ -14,7 +14,7 @@ public class FBiomes {
 
     // Surface Biomes
 	public static BiomeRegistryObject ARCTIC_TUNDRA = create("arctic_tundra");
-	// public static BiomeRegistryObject ASPEN_FOREST = create("aspen_forest");
+	public static BiomeRegistryObject ASPEN_FOREST = create("aspen_forest");
 	public static BiomeRegistryObject BASALT_BEACH = create("basalt_beach");
 	public static BiomeRegistryObject FORLORN_SEA = create("forlorn_sea");
 	public static BiomeRegistryObject FROZEN_FOREST = create("frozen_forest");

@@ -30,7 +30,7 @@ public class FBlockTagsProvider extends BlockTagsProvider {
 
 	@Override
 	protected void addTags() {
-		BlockRegistryUtil.getTrees().forEach(t -> tree(t));
+//		BlockRegistryUtil.getTrees().forEach(t -> tree(t));
 		BlockRegistryUtil.getStones().forEach(s -> stone(s));
 		BlockRegistryUtil.getCrystals().forEach(s -> crystal(s));
 

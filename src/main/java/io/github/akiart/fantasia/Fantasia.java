@@ -5,6 +5,7 @@ import io.github.akiart.fantasia.client.world.FantasiaDimensionRenderInfo;
 import io.github.akiart.fantasia.common.block.FWoodType;
 import io.github.akiart.fantasia.common.block.trees.StripMap;
 import io.github.akiart.fantasia.common.entity.FEntities;
+import io.github.akiart.fantasia.common.entity.FMemoryModuleTypes;
 import io.github.akiart.fantasia.common.item.FItemModelProperties;
 import io.github.akiart.fantasia.common.world.FChunkGenerator;
 import io.github.akiart.fantasia.common.world.FChunkGenerator2;
@@ -17,6 +18,7 @@ import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.config.ModConfig;
@@ -79,7 +81,7 @@ public class Fantasia {
         FBiomes.BIOMES.register(bus);
         FEntities.ENTITIES.register(bus);
         FBlockPlacerTypes.BLOCK_PLACER_TYPES.register(bus);
-
+        FMemoryModuleTypes.MEMORY_MODULE_TYPES.register(bus);
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
 

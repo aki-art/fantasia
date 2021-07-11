@@ -5,11 +5,17 @@ import io.github.akiart.fantasia.common.block.blockType.FChestBlock;
 import io.github.akiart.fantasia.common.block.registrySet.CrystalRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.StoneRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.TreeRegistryObject;
+import io.github.akiart.fantasia.common.block.registrySet.trees.AbstractTreeRegistryObject;
+import io.github.akiart.fantasia.common.block.registrySet.trees.BasicTreeRegistryObject;
+import io.github.akiart.fantasia.common.block.registrySet.trees.ThinTreeRegistryObject;
 import io.github.akiart.fantasia.common.item.FItems;
 import io.github.akiart.fantasia.common.item.itemType.JavelinItem;
 import io.github.akiart.fantasia.common.item.registrySet.CrystalRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.StoneRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.TreeRegistryItem;
+import io.github.akiart.fantasia.common.item.registrySet.tree.AbstractTreeRegistryItem;
+import io.github.akiart.fantasia.common.item.registrySet.tree.BasicTreeRegistryItem;
+import io.github.akiart.fantasia.common.item.registrySet.tree.ThinTreeRegistryItem;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.model.BlockModel;
 import net.minecraft.data.DataGenerator;
@@ -107,38 +113,63 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
         // blockGenerated(blocks.lantern.get());
     }
 
-    protected void tree(TreeRegistryItem items) {
+    protected <T extends AbstractTreeRegistryItem<? extends AbstractTreeRegistryObject>> void tree(T items) {
 
-        TreeRegistryObject tree = items.getTree();
+        AbstractTreeRegistryObject tree = items.getTree();
 
-        ResourceLocation plankTex = getBlockTexture(tree.planks.get());
-        ResourceLocation logTex = getBlockTexture(tree.log.get());
-        ResourceLocation lotTopTex = getBlockLocation(tree.getName() + "_log_top");
-        ResourceLocation strippedTex = getBlockTexture(tree.strippedLog.get());
-        ResourceLocation strippedTopTex = getBlockLocation(tree.getName() + "_stripped_log_top");
+        ResourceLocation plankTex = getBlockTexture(tree.getPlanks().get());
 
-        fromBlock(tree.planks.get());
-        fromBlock(tree.wood.get());
-        fromBlock(tree.strippedWood.get());
-        fromBlock(tree.leaves.get());
+        fromBlock(tree.getPlanks().get());
 
         simpleItem(items.sign);
         simpleItem(items.door);
 
-        //chest(tree.chest.get(), plankTex);
-
-        blockGenerated(items.sapling.get());
-
-        cubeColumn(getName(items.log.get()), logTex, lotTopTex);
-        cubeColumn(getName(items.strippedLog.get()), strippedTex, strippedTopTex);
-
         stairs(getName(items.stairs.get()), plankTex, plankTex, plankTex);
         slab(getName(items.slab.get()), plankTex, plankTex, plankTex);
 
-        buttonInventory(tree.button.get(), plankTex);
-        fromBlock(tree.pressurePlate.get());
+        buttonInventory(tree.getButton().get(), plankTex);
+        fromBlock(tree.getPressurePlate().get());
+
         fenceInventory(getName(items.fence.get()), plankTex);
         fenceGate(getName(items.fenceGate.get()), plankTex);
+
+        if(tree instanceof BasicTreeRegistryObject) {
+            BasicTreeRegistryObject basicTree = (BasicTreeRegistryObject)tree;
+            BasicTreeRegistryItem basicItem = (BasicTreeRegistryItem)items;
+
+            ResourceLocation logTex = getBlockTexture(basicTree.log.get());
+            ResourceLocation lotTopTex = getBlockLocation(tree.getName() + "_log_top");
+            ResourceLocation strippedTex = getBlockTexture(basicTree.strippedLog.get());
+            ResourceLocation strippedTopTex = getBlockLocation(tree.getName() + "_stripped_log_top");
+
+            blockGenerated(basicItem.sapling.get());
+
+            cubeColumn(getName(basicItem.log.get()), logTex, lotTopTex);
+            cubeColumn(getName(basicItem.strippedLog.get()), strippedTex, strippedTopTex);
+
+            fromBlock(basicTree.wood.get());
+            fromBlock(basicTree.strippedWood.get());
+            fromBlock(basicTree.leaves.get());
+        }
+        else if(tree instanceof ThinTreeRegistryObject) {
+            ThinTreeRegistryObject basicTree = (ThinTreeRegistryObject)tree;
+            ThinTreeRegistryItem basicItem = (ThinTreeRegistryItem)items;
+
+            ResourceLocation logTex = getBlockTexture(basicTree.log.get());
+            ResourceLocation lotTopTex = getBlockLocation(tree.getName() + "_log_top");
+            ResourceLocation strippedTex = getBlockTexture(basicTree.strippedLog.get());
+            ResourceLocation strippedTopTex = getBlockLocation(tree.getName() + "_stripped_log_top");
+
+            blockGenerated(basicItem.sapling.get());
+
+            cubeColumn(getName(basicItem.log.get()), logTex, lotTopTex);
+            cubeColumn(getName(basicItem.strippedLog.get()), strippedTex, strippedTopTex);
+
+            fromBlock(basicTree.wood.get());
+            fromBlock(basicTree.strippedWood.get());
+            fromBlock(basicTree.leaves.get());
+        }
+
     }
 
     protected void chest(FChestBlock block, ResourceLocation particle) {

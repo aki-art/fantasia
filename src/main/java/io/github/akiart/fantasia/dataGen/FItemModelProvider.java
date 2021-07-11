@@ -34,7 +34,7 @@ public class FItemModelProvider extends FItemModelProviderBase {
 
 		withExistingParent(getName(FItems.EDELSTONE_SPELEOTHEM.get()), getBlockLocation("edelstone_speleothem_tip"));
 		withExistingParent(getName(FItems.ICICLE.get()), getBlockLocation("icicle_tip"));
-		withExistingParent(getName(FItems.SNOWBERRY_BUSH.get()), getBlockLocation("snowberry_bush_top"));
+		// withExistingParent(getName(FItems.SNOWBERRY_BUSH.get()), getBlockLocation("snowberry_bush_top"));
 		fromBlock(FBlocks.FANTASIA_PORTAL_BLOCK.get());
 		registerDebugStuff();
 	}

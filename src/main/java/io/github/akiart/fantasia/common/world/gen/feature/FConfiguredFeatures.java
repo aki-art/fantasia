@@ -34,18 +34,27 @@ public class FConfiguredFeatures {
             .ignoreVines()
             .build();
 
-    protected static BaseTreeFeatureConfig FROZEN_SPRUCE_CONFIG = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(FBlocks.FROZEN_SPRUCE.log.get().defaultBlockState()),
-            new SimpleBlockStateProvider(FBlocks.FROZEN_SPRUCE.leaves.get().defaultBlockState()),
-            new SpruceFoliagePlacer(/*radius*/FeatureSpread.fixed(3), /*offset*/FeatureSpread.fixed(0), /*trunkHeight*/FeatureSpread.of(3, 1)), new StraightTrunkPlacer(10, 2, 2),
-            new TwoLayerFeature(1, 0, 1)))
-            .decorators(ImmutableList.of(new IcicleTreeDecorator(0.3f)))
-            .ignoreVines()
-            .build();
+//    protected static BaseTreeFeatureConfig FROZEN_SPRUCE_CONFIG = (new BaseTreeFeatureConfig.Builder(
+//            new SimpleBlockStateProvider(FBlocks.FROZEN_SPRUCE.log.get().defaultBlockState()),
+//            new SimpleBlockStateProvider(FBlocks.FROZEN_SPRUCE.leaves.get().defaultBlockState()),
+//            new SpruceFoliagePlacer(/*radius*/FeatureSpread.fixed(3), /*offset*/FeatureSpread.fixed(0), /*trunkHeight*/FeatureSpread.of(3, 1)), new StraightTrunkPlacer(10, 2, 2),
+//            new TwoLayerFeature(1, 0, 1)))
+//            .decorators(ImmutableList.of(new IcicleTreeDecorator(0.3f)))
+//            .ignoreVines()
+//            .build();
+
+//    protected static BaseTreeFeatureConfig ASPEN_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
+//            new SimpleBlockStateProvider(FBlocks.ASPEN.log.get().defaultBlockState()),
+//            new SimpleBlockStateProvider(FBlocks.ASPEN.leaves.get().defaultBlockState()),
+//            new SpruceFoliagePlacer(/*radius*/FeatureSpread.fixed(3), /*offset*/FeatureSpread.fixed(0), /*trunkHeight*/FeatureSpread.of(3, 1)), new StraightTrunkPlacer(10, 2, 2),
+//            new TwoLayerFeature(1, 0, 1)))
+//            .decorators(ImmutableList.of(new IcicleTreeDecorator(0.3f)))
+//            .ignoreVines()
+//            .build();
 
     public static void registerConfiguredFeatures() {
         FROZEN_TREE_FEATURE = register(FROZEN_ELM, Feature.TREE.configured(FROZEN_TREE_CONFIG));
-        FROZEN_SPRUCE_FEATURE = register(FROZEN_SPRUCE, Feature.TREE.configured(FROZEN_SPRUCE_CONFIG));
+   //     FROZEN_SPRUCE_FEATURE = register(FROZEN_SPRUCE, Feature.TREE.configured(FROZEN_SPRUCE_CONFIG));
     }
 
     private static RegistryKey<ConfiguredFeature<?, ?>> createKey(final String name) {

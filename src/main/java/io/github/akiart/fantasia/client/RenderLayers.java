@@ -56,11 +56,15 @@ public final class RenderLayers {
             translucents.add(b.lens.get());
         });
 
-        BlockRegistryUtil.getTrees().forEach(b -> {
-            cutouts.add(b.sapling.get());
-        });
+//        BlockRegistryUtil.getTrees().forEach(b -> {
+//            cutouts.add(b.sapling.get());
+//        });
 
-        cutouts.add(FBlocks.SNOWBERRY_BUSH.get());
+
+        cutouts.add(FBlocks.FROZEN_ELM.sapling.get());
+
+        cutouts.add(FBlocks.SNOWBERRY_BUSH_BOTTOM.get());
+        cutouts.add(FBlocks.SNOWBERRY_BUSH_TOP.get());
 
         translucents.add(FBlocks.TEST_CRYSTAL_LENS.get());
 

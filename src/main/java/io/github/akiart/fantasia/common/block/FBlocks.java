@@ -1,18 +1,15 @@
 package io.github.akiart.fantasia.common.block;
 
 import io.github.akiart.fantasia.Fantasia;
-import io.github.akiart.fantasia.common.block.blockType.FChestBlock;
-import io.github.akiart.fantasia.common.block.blockType.FSignBlock;
-import io.github.akiart.fantasia.common.block.blockType.FWallSignBlock;
-import io.github.akiart.fantasia.common.block.blockType.FantasiaPortalBlock;
+import io.github.akiart.fantasia.common.block.blockType.*;
 import io.github.akiart.fantasia.common.block.blockType.biomeDecoration.cave.IcicleBlock;
 import io.github.akiart.fantasia.common.block.blockType.biomeDecoration.cave.SpeleothemBlock;
 import io.github.akiart.fantasia.common.block.blockType.crystalLens.HiemsiteLensBlock;
 import io.github.akiart.fantasia.common.block.blockType.crystalLens.TestCrystalLensBlock;
-import io.github.akiart.fantasia.common.block.registrySet.CrystalRegistryObject;
-import io.github.akiart.fantasia.common.block.registrySet.StoneRegistryObject;
-import io.github.akiart.fantasia.common.block.registrySet.StoneSet;
-import io.github.akiart.fantasia.common.block.registrySet.TreeRegistryObject;
+import io.github.akiart.fantasia.common.block.blockType.plants.SnowBerryBushBottomBlock;
+import io.github.akiart.fantasia.common.block.blockType.plants.SnowBerryBushTopBlock;
+import io.github.akiart.fantasia.common.block.registrySet.*;
+import io.github.akiart.fantasia.common.block.registrySet.trees.BasicTreeRegistryObject;
 import io.github.akiart.fantasia.common.block.trees.FTree;
 import io.github.akiart.fantasia.common.util.DirectionRestriction;
 import io.github.akiart.fantasia.common.world.gen.feature.FConfiguredFeatures;
@@ -75,25 +72,62 @@ public class FBlocks {
 
     // Trees
 
-    public static final TreeRegistryObject FROZEN_ELM = BlockRegistryUtil.createTree("frozen_elm",
-            () -> new FTree(FConfiguredFeatures.FROZEN_ELM), MaterialColor.COLOR_LIGHT_BLUE, MaterialColor.LAPIS,
-            MaterialColor.ICE, FWoodType.FROZEN_ELM);
+//    public static final TreeRegistryObject FROZEN_ELM = BlockRegistryUtil.createTree("frozen_elm",
+//            () -> new FTree(FConfiguredFeatures.FROZEN_ELM), MaterialColor.COLOR_LIGHT_BLUE, MaterialColor.LAPIS,
+//            MaterialColor.ICE, FWoodType.FROZEN_ELM);
+//
+//    public static final TreeRegistryObject FROZEN_SPRUCE = BlockRegistryUtil.createTree("frozen_spruce",
+//            () -> new FTree(FConfiguredFeatures.FROZEN_SPRUCE), MaterialColor.COLOR_LIGHT_BLUE, MaterialColor.LAPIS,
+//            MaterialColor.ICE, FWoodType.FROZEN_SPRUCE);
+//
+//    public static final TreeRegistryObject ELM = BlockRegistryUtil.createTree("elm",
+//            () -> new FTree(FConfiguredFeatures.FROZEN_SPRUCE), MaterialColor.WOOD, MaterialColor.COLOR_BROWN,
+//            MaterialColor.COLOR_GREEN, FWoodType.ELM);
 
-    public static final TreeRegistryObject FROZEN_SPRUCE = BlockRegistryUtil.createTree("frozen_spruce",
-            () -> new FTree(FConfiguredFeatures.FROZEN_SPRUCE), MaterialColor.COLOR_LIGHT_BLUE, MaterialColor.LAPIS,
-            MaterialColor.ICE, FWoodType.FROZEN_SPRUCE);
+    public static final BasicTreeRegistryObject FROZEN_ELM = BlockRegistryUtil.createTree(
+            "frozen_elm",
+            () -> new FTree(FConfiguredFeatures.FROZEN_ELM),
+            MaterialColor.COLOR_LIGHT_BLUE,
+            MaterialColor.LAPIS,
+            MaterialColor.ICE,
+            FWoodType.FROZEN_ELM);
 
-    public static final TreeRegistryObject ELM = BlockRegistryUtil.createTree("elm",
-            () -> new FTree(FConfiguredFeatures.FROZEN_SPRUCE), MaterialColor.WOOD, MaterialColor.COLOR_BROWN,
-            MaterialColor.COLOR_GREEN, FWoodType.ELM);
+    // public static final BasicTreeRegistryObject ELM
+    // public static final BasicTreeRegistryObject FROZEN_SPRUCE
+    // public static final BasicTreeRegistryObject DOGWOOD
+    // public static final BasicTreeRegistryObject ROWAN
+    // public static final BasicTreeRegistryObject BLACK_ELDER
+    // public static final BasicTreeRegistryObject SILVER_PINE
+
+    // public static final TallowTreeRegistryObject TALLOW
+
+    // public static final ThinTreeRegistryObject ASPEN
+
+    // public static final HugeTreeRegistryObject YGGDRASIL
+    // public static final HugeTreeRegistryObject GIANT_SEQOIA
+
+    // public static final RottenTreeRegistryObject ROTTEN_WOOD
+
+    // public static final MushroomRegistryObject GRIMCAP
+    // public static final MushroomRegistryObject BLUE_GLOOMFUNGUS
+    // public static final MushroomRegistryObject TEAL_GLOOMFUNGUS
+    // public static final MushroomRegistryObject GREEN_GLOOMFUNGUS
+    // public static final MushroomRegistryObject PURPLE_GLOOMFUNGUS
+    // public static final MushroomRegistryObject ORANGE_GLOOMFUNGUS
+
 
     // XXX test, replace later
-    public static final RegistryObject<TallFlowerBlock> SNOWBERRY_BUSH = BlockRegistryUtil.register("snowberry_bush",
-            () -> new TallFlowerBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT)
+    public static final RegistryObject<SnowBerryBushBottomBlock> SNOWBERRY_BUSH_BOTTOM = BlockRegistryUtil.register("snowberry_bush_bottom",
+            () -> new SnowBerryBushBottomBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT)
                     .noCollission()
                     .instabreak()
                     .sound(SoundType.GRASS)));
 
+    public static final RegistryObject<SnowBerryBushTopBlock> SNOWBERRY_BUSH_TOP = BlockRegistryUtil.register("snowberry_bush_top",
+            () -> new SnowBerryBushTopBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT)
+                    .noCollission()
+                    .instabreak()
+                    .sound(SoundType.GRASS)));
 
     // Misc
 
@@ -116,6 +150,9 @@ public class FBlocks {
     public static final RegistryObject<AirBlock> HIVE_AIR = BlockRegistryUtil.registerAir("hive_air");
 
     // Test & Debug
+
+    // public static final RegistryObject<AspenLogBlock> ASPEN_LOG = BlockRegistryUtil.register("aspen_log_test", () -> new AspenLogBlock(AbstractBlock.Properties.of(Material.WOOD).noOcclusion()));
+
     public static final RegistryObject<TestCrystalLensBlock> TEST_CRYSTAL_LENS = BlockRegistryUtil
             .register("test_crystal_lens", TestCrystalLensBlock::new);
 

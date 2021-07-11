@@ -46,12 +46,14 @@ public class FBoatEntity extends BoatEntity {
     @Override
     public Item getDropItem() {
         switch (getFBoatType()) {
-            case ELM:
-                return FItems.ELM_BOAT.get();
-            case FROZEN_ELM:
-                return FItems.FROZEN_ELM_BOAT.get();
-            case FROZEN_SPRUCE:
-                return FItems.FROZEN_SPRUCE_BOAT.get();
+//            case ELM:
+//                return FItems.ELM_BOAT.get();
+//            case FROZEN_ELM:
+//                return FItems.FROZEN_ELM_BOAT.get();
+//            case FROZEN_SPRUCE:
+//                return FItems.FROZEN_SPRUCE_BOAT.get();
+//            case ASPEN:
+//                return FItems.ASPEN_BOAT.get();
             default:
                 return Items.OAK_BOAT;
         }
@@ -90,9 +92,10 @@ public class FBoatEntity extends BoatEntity {
 
     // parallel enum to BoatEntity.Type
     public enum Type {
-        ELM(FBlocks.ELM.planks,"elm"),
-        FROZEN_ELM(FBlocks.FROZEN_ELM.planks,"frozen_elm"),
-        FROZEN_SPRUCE(FBlocks.FROZEN_SPRUCE.planks,"frozen_spruce");
+        FROZEN_ELM(FBlocks.FROZEN_ELM.getPlanks(),"elm");
+//        FROZEN_ELM(FBlocks.FROZEN_ELM.planks,"frozen_elm"),
+//        FROZEN_SPRUCE(FBlocks.FROZEN_SPRUCE.planks,"frozen_spruce"),
+//        ASPEN(FBlocks.FROZEN_SPRUCE.planks,"aspen");
 //        DOGWOOD(FBlocks.FROZEN_ELM.planks, FItems.FROZEN_ELM_BOAT, "dogwood"),
 //        BLACK_ELDER(FBlocks.FROZEN_ELM.planks, FItems.FROZEN_ELM_BOAT,  "black_elder"),
 //        ROWAN(FBlocks.FROZEN_ELM.planks, FItems.FROZEN_ELM_BOAT,  "rowan"),

@@ -14,6 +14,7 @@ public class FWoodType {
     public static final WoodType FROZEN_ELM = create("frozen_elm");
     public static final WoodType FROZEN_SPRUCE = create("frozen_spruce");
     public static final WoodType ELM = create("elm");
+    public static final WoodType ASPEN = create("aspen");
 
     protected static WoodType create(String name) {
         WoodType type = WoodType.register(WoodType.create(new ResourceLocation(Fantasia.ID, name).toString()));

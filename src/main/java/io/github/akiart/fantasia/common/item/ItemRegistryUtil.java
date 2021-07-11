@@ -9,6 +9,9 @@ import io.github.akiart.fantasia.common.block.registrySet.CrystalRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.StoneRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.StoneSet;
 import io.github.akiart.fantasia.common.block.registrySet.TreeRegistryObject;
+import io.github.akiart.fantasia.common.block.registrySet.trees.AbstractTreeRegistryObject;
+import io.github.akiart.fantasia.common.block.registrySet.trees.BasicTreeRegistryObject;
+import io.github.akiart.fantasia.common.block.registrySet.trees.ThinTreeRegistryObject;
 import io.github.akiart.fantasia.common.entity.item.FBoatEntity;
 import io.github.akiart.fantasia.common.item.itemGroup.FItemGroup;
 import io.github.akiart.fantasia.common.item.itemType.FBoatItem;
@@ -17,7 +20,11 @@ import io.github.akiart.fantasia.common.item.registrySet.CrystalRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.StoneItemSet;
 import io.github.akiart.fantasia.common.item.registrySet.StoneRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.TreeRegistryItem;
+import io.github.akiart.fantasia.common.item.registrySet.tree.AbstractTreeRegistryItem;
+import io.github.akiart.fantasia.common.item.registrySet.tree.BasicTreeRegistryItem;
+import io.github.akiart.fantasia.common.item.registrySet.tree.ThinTreeRegistryItem;
 import net.minecraft.block.Block;
+import net.minecraft.block.WoodType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
@@ -27,7 +34,7 @@ public class ItemRegistryUtil {
 	public static HashSet<StoneRegistryItem> stones = new HashSet<>();
 	public static HashSet<RegistryObject<BlockItem>> blockItems = new HashSet<>();
 	public static HashSet<CrystalRegistryItem> crystals = new HashSet<>();
-	public static HashSet<TreeRegistryItem> trees = new HashSet<>();
+	public static HashSet<AbstractTreeRegistryItem<?>> trees = new HashSet<>();
 	public static HashSet<RegistryObject<? extends Item>> simpleItems = new HashSet<>();
 
 	public static <T extends Item> RegistryObject<T> register(String name, Supplier<T> item) {
@@ -73,11 +80,18 @@ public class ItemRegistryUtil {
 								.setISTER(() -> () -> ISTERs.createJavelinISTER(name))));
 	}
 
-	public static TreeRegistryItem registerTreeItems(TreeRegistryObject parent) {
-		TreeRegistryItem obj = new TreeRegistryItem(parent);
+	public static BasicTreeRegistryItem registerTreeItems(BasicTreeRegistryObject parent, WoodType woodType) {
+		BasicTreeRegistryItem obj = new BasicTreeRegistryItem(parent, woodType);
 		trees.add(obj);
 		return obj;
 	}
+
+	public static ThinTreeRegistryItem registerThinTreeItems(ThinTreeRegistryObject parent, WoodType woodType) {
+		ThinTreeRegistryItem obj = new ThinTreeRegistryItem(parent, woodType);
+		trees.add(obj);
+		return obj;
+	}
+
 
 	public static StoneItemSet createStoneItemSet(StoneSet parent) {
 		return new StoneItemSet(parent);

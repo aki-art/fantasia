@@ -2,11 +2,9 @@ package io.github.akiart.fantasia.common.item;
 
 import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.block.FBlocks;
-import io.github.akiart.fantasia.common.entity.item.FBoatEntity;
+import io.github.akiart.fantasia.common.block.FWoodType;
 import io.github.akiart.fantasia.common.item.foods.Foods;
 import io.github.akiart.fantasia.common.item.itemGroup.FItemGroup;
-import io.github.akiart.fantasia.common.item.itemType.FBoatItem;
-import io.github.akiart.fantasia.common.item.itemType.frostWork.FrostworkBoltItem;
 import io.github.akiart.fantasia.common.item.itemType.IcicleItem;
 import io.github.akiart.fantasia.common.item.itemType.JavelinItem;
 import io.github.akiart.fantasia.common.item.itemType.PtarmiganEggItem;
@@ -14,7 +12,7 @@ import io.github.akiart.fantasia.common.item.itemType.frostWork.FrostworkPickaxe
 import io.github.akiart.fantasia.common.item.registrySet.CrystalRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.StoneItemSet;
 import io.github.akiart.fantasia.common.item.registrySet.StoneRegistryItem;
-import io.github.akiart.fantasia.common.item.registrySet.TreeRegistryItem;
+import io.github.akiart.fantasia.common.item.registrySet.tree.BasicTreeRegistryItem;
 import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -27,6 +25,7 @@ public class FItems {
 	public static final RegistryObject<Item> ROAST_PTARMIGAN = ItemRegistryUtil.registerFood("roast_ptarmigan", Foods.ROAST_PTARMIGAN);
 	public static final RegistryObject<Item> RAW_PTARMIGAN = ItemRegistryUtil.registerFood("raw_ptarmigan", Foods.RAW_PTARMIGAN);
 	public static final RegistryObject<Item> PTARMIGAN_STEW = ItemRegistryUtil.registerFood("ptarmigan_stew", Foods.PTARMIGAN_STEW);
+	public static final RegistryObject<Item> SNOW_BERRY = ItemRegistryUtil.registerFood("snow_berry", Foods.SNOW_BERRY);
 
 	// Stones
 	public static final StoneRegistryItem OBSIDIAN_BRICKS = ItemRegistryUtil.registerStoneItems(FBlocks.OBSIDIAN_BRICKS);
@@ -50,17 +49,19 @@ public class FItems {
 	// GOLDEN_BIRCH_LEAVES
 
 	// Trees
-	public static final TreeRegistryItem FROZEN_ELM = ItemRegistryUtil.registerTreeItems(FBlocks.FROZEN_ELM);
-	public static final TreeRegistryItem FROZEN_SPRUCE = ItemRegistryUtil.registerTreeItems(FBlocks.FROZEN_SPRUCE);
-	public static final TreeRegistryItem ELM = ItemRegistryUtil.registerTreeItems(FBlocks.ELM);
+	public static final BasicTreeRegistryItem FROZEN_ELM = ItemRegistryUtil.registerTreeItems(FBlocks.FROZEN_ELM, FWoodType.FROZEN_ELM);
+	//public static final BasicTreeRegistryItem FROZEN_SPRUCE = ItemRegistryUtil.registerTreeItems(FBlocks.FROZEN_SPRUCE);
+	//public static final BasicTreeRegistryItem ELM = ItemRegistryUtil.registerTreeItems(FBlocks.ELM);
+	//public static final ThinTreeRegistryItem ASPEN = ItemRegistryUtil.registerTreeItems(FBlocks.ASPEN);
 
 	// Boats
-	public static final RegistryObject<FBoatItem> FROZEN_ELM_BOAT = ItemRegistryUtil.registerBoat("frozen_elm_boat", FBoatEntity.Type.FROZEN_ELM);
-	public static final RegistryObject<FBoatItem> FROZEN_SPRUCE_BOAT = ItemRegistryUtil.registerBoat("frozen_spruce_boat", FBoatEntity.Type.FROZEN_SPRUCE);
-	public static final RegistryObject<FBoatItem> ELM_BOAT = ItemRegistryUtil.registerBoat("elm_boat", FBoatEntity.Type.ELM);
+	//public static final RegistryObject<FBoatItem> FROZEN_ELM_BOAT = ItemRegistryUtil.registerBoat("frozen_elm_boat", FBoatEntity.Type.FROZEN_ELM);
+	//public static final RegistryObject<FBoatItem> FROZEN_SPRUCE_BOAT = ItemRegistryUtil.registerBoat("frozen_spruce_boat", FBoatEntity.Type.FROZEN_SPRUCE);
+	//public static final RegistryObject<FBoatItem> ELM_BOAT = ItemRegistryUtil.registerBoat("elm_boat", FBoatEntity.Type.ELM);
+	//public static final RegistryObject<FBoatItem> ASPEN_BOAT = ItemRegistryUtil.registerBoat("aspen_boat", FBoatEntity.Type.AS);
 
 	// Bushes
-	public static final RegistryObject<BlockItem> SNOWBERRY_BUSH = ItemRegistryUtil.registerFromBlock(FBlocks.SNOWBERRY_BUSH);
+	public static final RegistryObject<BlockItem> SNOWBERRY_BUSH = ItemRegistryUtil.registerFromBlock(FBlocks.SNOWBERRY_BUSH_BOTTOM);
 
 	// Tools
 
@@ -85,6 +86,8 @@ public class FItems {
 	public static final RegistryObject<PtarmiganEggItem> PTARMIGAN_EGG = ItemRegistryUtil.register("ptarmigan_egg", () -> new PtarmiganEggItem(new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
 	
 	// Test & Debug
+	//public static final RegistryObject<BlockItem> ASPEN_LOG = ItemRegistryUtil.registerFromBlock(FBlocks.ASPEN_LOG);
+
 	public static final RegistryObject<BlockItem> TEST_GLOWSTONE = ItemRegistryUtil.registerFromBlock(FBlocks.TEST_GLOWSTONE);
 	public static final RegistryObject<BlockItem> TEST_CRYSTAL_LENS = ItemRegistryUtil.registerFromBlock(FBlocks.TEST_CRYSTAL_LENS);
 	public static final RegistryObject<SignItem> sign = ItemRegistryUtil.register("test_sign", () -> new SignItem(new Item.Properties()

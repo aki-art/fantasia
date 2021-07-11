@@ -68,8 +68,6 @@ public class RunAwayGoal extends Goal  {
         Vector3d targetPos = getAirPosAvoid(entity, vector3d);
         if(targetPos == null) return false;
 
-        //if(player.distanceToSqr(targetPos) < player.distanceToSqr(entity)) return false; // random pos somehow wants to move closer instead of away
-
         path = pathNav.createPath(targetPos.x, targetPos.y, targetPos.z, 0);
 
         return path != null;

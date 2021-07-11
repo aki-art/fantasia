@@ -3,30 +3,31 @@ package io.github.akiart.fantasia.dataGen;
 import java.util.function.Supplier;
 
 import io.github.akiart.fantasia.Fantasia;
+import io.github.akiart.fantasia.common.block.blockType.ThinLogBlock;
 import io.github.akiart.fantasia.common.block.blockType.biomeDecoration.cave.SpeleothemBlock;
 import io.github.akiart.fantasia.common.block.blockType.biomeDecoration.cave.SpeleothemStage;
 import io.github.akiart.fantasia.common.block.blockType.crystalLens.AbstractCrystalPaneBlock;
 import io.github.akiart.fantasia.common.block.blockType.crystalLens.AbstractFunctionalLensBlock;
+import io.github.akiart.fantasia.common.block.blockType.plants.SnowBerryBushBottomBlock;
+import io.github.akiart.fantasia.common.block.blockType.plants.SnowBerryBushTopBlock;
 import io.github.akiart.fantasia.common.block.registrySet.CrystalRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.StoneRegistryObject;
-import io.github.akiart.fantasia.common.block.registrySet.TreeRegistryObject;
-import net.minecraft.block.AbstractButtonBlock;
-import net.minecraft.block.AbstractPressurePlateBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.DoublePlantBlock;
-import net.minecraft.block.HorizontalFaceBlock;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.SnowyDirtBlock;
-import net.minecraft.block.StairsBlock;
+import io.github.akiart.fantasia.common.block.registrySet.trees.AbstractTreeRegistryObject;
+import io.github.akiart.fantasia.common.block.registrySet.trees.BasicTreeRegistryObject;
+import io.github.akiart.fantasia.common.block.registrySet.trees.ThinTreeRegistryObject;
+import net.minecraft.block.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.DoubleBlockHalf;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Direction.Axis;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -80,6 +81,20 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
 		});
 	}
 
+	protected void thinLogBlock(Supplier<ThinLogBlock> thinLogBlock, ResourceLocation texture) {
+		ThinLogBlock block = thinLogBlock.get();
+		ModelFile post = models().singleTexture(getName(block), getLocation("sixway_post"), texture);
+		ModelFile branch = models().singleTexture(getName(block), getLocation("sixway_side"), texture);
+		MultiPartBlockStateBuilder builder = getMultipartBuilder(block)
+				.part().modelFile(post).addModel().end()
+				.part().modelFile(branch).uvLock(true).addModel().condition(ThinLogBlock.UP, true).end()
+				.part().modelFile(branch).rotationX(180).uvLock(true).addModel().condition(ThinLogBlock.DOWN, true).end()
+				.part().modelFile(branch).rotationX(90).uvLock(true).addModel().condition(ThinLogBlock.NORTH, true).end()
+				.part().modelFile(branch).rotationX(90).rotationY(90).uvLock(true).addModel().condition(ThinLogBlock.EAST, true).end()
+				.part().modelFile(branch).rotationX(90).rotationY(180).uvLock(true).addModel().condition(ThinLogBlock.SOUTH, true).end()
+				.part().modelFile(branch).rotationX(90).rotationY(270).uvLock(true).addModel().condition(ThinLogBlock.WEST, true).end();
+	}
+
 	protected void stones(StoneRegistryObject blockSet) {
 		ResourceLocation texture = blockTexture(blockSet.block.get());
 
@@ -94,40 +109,73 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
 		}
 	}
 
-	protected void tree(TreeRegistryObject blockSet) {
-		ResourceLocation plankTex = blockTexture(blockSet.planks.get());
-		ResourceLocation doorBottom = getLocation(blockSet.getName() + "_door_top");
-		ResourceLocation doorTop = getLocation(blockSet.getName() + "_door_bottom");
-		ResourceLocation trapdoor = getLocation(blockSet.getName() + "_trapdoor");
+	protected void berryBush(SnowBerryBushBottomBlock bottom, SnowBerryBushTopBlock top) {
+		String bottomName = getName(bottom);
+
+		getVariantBuilder(bottom).forAllStates(state -> {
+			String name = bottomName + "_" + state.getValue(SnowBerryBushBottomBlock.AGE);
+			ModelFile model = models().cross(name, getLocation(name));
+			return ConfiguredModel.builder().modelFile(model).build();
+		});
+
+		String topName = getName(top);
+
+		getVariantBuilder(top).forAllStates(state -> {
+			String name = topName + "_" + state.getValue(SnowBerryBushTopBlock.AGE);
+			ModelFile model = models().cross(name, getLocation(name));
+			return ConfiguredModel.builder().modelFile(model).build();
+		});
+	}
+
+	private void basicTree(BasicTreeRegistryObject blockSet) {
 		ResourceLocation logTex = blockTexture(blockSet.log.get());
 		ResourceLocation strippedLogTex = blockTexture(blockSet.strippedLog.get());
 
-		simpleBlock(blockSet.planks.get());
 		simpleBlock(blockSet.leaves.get());
-
-		//simpleBlock(blockSet.sign.get(), models().getBuilder(getName(blockSet.sign.get())).texture("particle", plankTex));
-		//simpleBlock(blockSet.wallSign.get(), models().getBuilder(getName(blockSet.wallSign.get())).texture("particle", plankTex));
-
-		basicTileEntity(blockSet.sign.get(), plankTex);
-		basicTileEntity(blockSet.wallSign.get(), plankTex);
-		basicTileEntity(blockSet.chest.get(), plankTex);
-
 		crossBlock(blockSet.sapling.get());
-
 		logBlock(blockSet.log.get());
 		logBlock(blockSet.strippedLog.get());
 		axisBlock(blockSet.strippedWood.get(), strippedLogTex, strippedLogTex);
 		axisBlock(blockSet.wood.get(), logTex, logTex);
+	}
 
-		stairsBlock(blockSet.stairs.get(), plankTex);
-		slabBlock(blockSet.slab.get(), blockSet.planks.getId(), plankTex);
+	private void thinTree(ThinTreeRegistryObject blockSet) {
+		ResourceLocation logTex = blockTexture(blockSet.log.get());
+		ResourceLocation strippedLogTex = blockTexture(blockSet.strippedLog.get());
 
-		buttonBlock(blockSet.button.get(), plankTex);
-		pressurePlateBlock(blockSet.pressurePlate.get(), plankTex);
-		doorBlock(blockSet.door.get(), doorTop, doorBottom);
-		trapdoorBlock(blockSet.trapDoor.get(), trapdoor, true);
-		fenceBlock(blockSet.fence.get(), plankTex);
-		fenceGateBlock(blockSet.fenceGate.get(), plankTex);
+		simpleBlock(blockSet.leaves.get());
+		crossBlock(blockSet.sapling.get());
+		thinLogBlock(blockSet.log, logTex);
+		thinLogBlock(blockSet.strippedLog, strippedLogTex);
+		//thinLogBlock(blockSet.strippedWood.get(), strippedLogTex, strippedLogTex);
+		//thinLogBlock(blockSet.wood.get(), logTex, logTex);
+	}
+
+	protected <T extends AbstractTreeRegistryObject> void tree(T blockSet) {
+		ResourceLocation plankTex = blockTexture(blockSet.getPlanks().get());
+
+		simpleBlock(blockSet.getPlanks().get());
+
+		basicTileEntity(blockSet.getSign().get(), plankTex);
+		basicTileEntity(blockSet.getWallSign().get(), plankTex);
+		basicTileEntity(blockSet.getChest().get(), plankTex);
+
+		stairsBlock(blockSet.getStairs().get(), plankTex);
+		slabBlock(blockSet.getSlab().get(), blockSet.getPlanks().getId(), plankTex);
+
+		buttonBlock(blockSet.getButton().get(), plankTex);
+		pressurePlateBlock(blockSet.getPressurePlate().get(), plankTex);
+		doorBlock(blockSet.getDoor().get(), getLocation(blockSet.getName() + "_door_bottom"), getLocation(blockSet.getName() + "_door_top"));
+		trapdoorBlock(blockSet.getTrapDoor().get(), getLocation(blockSet.getName() + "_trapdoor"), true);
+		fenceBlock(blockSet.getFence().get(), plankTex);
+		fenceGateBlock(blockSet.getFenceGate().get(), plankTex);
+
+		if(blockSet instanceof BasicTreeRegistryObject) {
+			basicTree((BasicTreeRegistryObject) blockSet);
+		}
+		else if(blockSet instanceof ThinTreeRegistryObject) {
+			thinTree((ThinTreeRegistryObject) blockSet);
+		}
 	}
 
 	protected void basicTileEntity(Block block, ResourceLocation particleTex) {

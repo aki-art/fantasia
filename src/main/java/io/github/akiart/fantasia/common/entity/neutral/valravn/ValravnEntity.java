@@ -43,6 +43,7 @@ public class ValravnEntity extends FTameableFlyingEntity implements IBasicAnimat
 
     private int state = State.SEARCHING;
     private static final RangedInteger PERSISTENT_ANGER_TIME = TickRangeConverter.rangeOfSeconds(20, 39);
+    private static final DataParameter<Integer> DATA_REMAINING_ANGER_TIME = EntityDataManager.defineId(ValravnEntity.class, DataSerializers.INT);
 
     private UUID persistentAngerTarget;
     private UUID persistentVictimTarget;
@@ -53,11 +54,10 @@ public class ValravnEntity extends FTameableFlyingEntity implements IBasicAnimat
     boolean victimAIWasReset = false;
     protected LivingEntity victim;
 
-    private static final DataParameter<Integer> DATA_REMAINING_ANGER_TIME = EntityDataManager.defineId(ValravnEntity.class, DataSerializers.INT);
 
-    public boolean isPushable() {
-        return !isCarryingVictim;
-    }
+//    public boolean isPushable() {
+//        return !isCarryingVictim;
+//    }
 
     @Override
     protected void defineSynchedData() {
@@ -179,7 +179,8 @@ public class ValravnEntity extends FTameableFlyingEntity implements IBasicAnimat
         isCarryingVictim = true;
 
         victim.setInvulnerable(true);
-        ((MobEntity) victim).setNoAi(true);
+        //((MobEntity) victim).setNoAi(true);
+        ((MobEntity) victim).goalSelector.disableControlFlag(Goal.Flag.MOVE);
 
         victim.yRot = MathHelper.wrapDegrees(victim.yRot);
         setState(State.CARRYING_VICTIM);
@@ -187,7 +188,8 @@ public class ValravnEntity extends FTameableFlyingEntity implements IBasicAnimat
 
     protected void resetVictimAI(LivingEntity victim) {
         if (victim != null && victim.isAlive()) {
-            ((MobEntity) victim).setNoAi(victimHadNoAI);
+            //((MobEntity) victim).setNoAi(victimHadNoAI);
+            ((MobEntity) victim).goalSelector.enableControlFlag(Goal.Flag.MOVE);
             victim.setInvulnerable(victimWasVulnerable);
         }
 
@@ -393,7 +395,8 @@ public class ValravnEntity extends FTameableFlyingEntity implements IBasicAnimat
 
     public static class State {
         public static final int COMBAT_WILD = 0,
-                SEARCHING = 1, // STALKING = 2,
+                SEARCHING = 1,
+                STALKING = 2,
                 SWOOPING = 3,
                 CARRYING_VICTIM = 4,
                 TAME_BIRD = 5,

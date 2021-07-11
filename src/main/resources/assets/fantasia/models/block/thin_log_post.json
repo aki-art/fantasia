@@ -1,0 +1,19 @@
+{
+    "textures": {
+        "particle": "#bark"
+    },
+    "elements": [
+        {   "from": [ 4, 0, 4 ],
+            "to": [ 12, 16, 12 ],
+            "faces": {
+                "down":  { "texture": "#bark", "cullface": "down" },
+                "up":    { "texture": "#bark", "cullface": "up" },
+                "north": { "texture": "#bark" },
+                "south": { "texture": "#bark" },
+                "west":  { "texture": "#bark" },
+                "east":  { "texture": "#bark" }
+            },
+            "__comment": "Center post"
+        }
+    ]
+}

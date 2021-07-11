@@ -1,0 +1,6 @@
+{
+    "parent": "fantasia:block/sixway_post",
+    "textures": {
+      "texture": "minecraft:block/birch_log"
+    }
+}

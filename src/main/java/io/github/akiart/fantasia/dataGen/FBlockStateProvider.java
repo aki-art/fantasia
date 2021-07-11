@@ -17,8 +17,9 @@ public class FBlockStateProvider extends FBlockStateProviderBase {
 	protected void registerStatesAndModels() {
 		
 		snowyBlock(FBlocks.FROZEN_DIRT.get());
+
 		registerStones();
-		BlockRegistryUtil.getCrystals().forEach(b -> crystal(b));
+		BlockRegistryUtil.getCrystals().forEach(this::crystal);
 		
 		registerPlants();
 		
@@ -29,17 +30,17 @@ public class FBlockStateProvider extends FBlockStateProviderBase {
 	}
 
 	private void registerStones() {
-		BlockRegistryUtil.getStones().forEach(b -> stones(b));
+		BlockRegistryUtil.getStones().forEach(this::stones);
 		speleothemBlock(FBlocks.EDELSTONE_SPELEOTHEM);
 	}
 
 	private void registerTrees() {
-		BlockRegistryUtil.getTrees().forEach(b -> tree(b));
+		BlockRegistryUtil.getTrees().forEach(this::tree);
 	}
 
 	private void registerPlants() {
 		registerTrees();
-		doublePlantBlock(FBlocks.SNOWBERRY_BUSH.get());
+		berryBush(FBlocks.SNOWBERRY_BUSH_BOTTOM.get(), FBlocks.SNOWBERRY_BUSH_TOP.get());
 	}
 
 	private void registerDebugStuff() {

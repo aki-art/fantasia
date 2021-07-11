@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom_rh",
-  "textures": {
-    "bottom": "fantasia:block/elm_door_bottom",
-    "top": "fantasia:block/elm_door_top"
-  }
-}

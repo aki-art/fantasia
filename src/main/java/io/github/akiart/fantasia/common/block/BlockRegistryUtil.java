@@ -3,19 +3,17 @@ package io.github.akiart.fantasia.common.block;
 import java.util.HashSet;
 import java.util.function.Supplier;
 
-import io.github.akiart.fantasia.common.block.blockType.biomeDecoration.cave.IcicleBlock;
 import io.github.akiart.fantasia.common.block.blockType.biomeDecoration.cave.SpeleothemBlock;
 import io.github.akiart.fantasia.common.block.blockType.crystalLens.AbstractFunctionalLensBlock;
-import io.github.akiart.fantasia.common.block.registrySet.CrystalRegistryObject;
-import io.github.akiart.fantasia.common.block.registrySet.StoneRegistryObject;
-import io.github.akiart.fantasia.common.block.registrySet.StoneSet;
-import io.github.akiart.fantasia.common.block.registrySet.TreeRegistryObject;
+import io.github.akiart.fantasia.common.block.registrySet.*;
+import io.github.akiart.fantasia.common.block.registrySet.trees.AbstractTreeRegistryObject;
+import io.github.akiart.fantasia.common.block.registrySet.trees.BasicTreeRegistryObject;
+import io.github.akiart.fantasia.common.block.registrySet.trees.ThinTreeRegistryObject;
 import io.github.akiart.fantasia.common.block.trees.FTree;
 import io.github.akiart.fantasia.common.util.DirectionRestriction;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.block.trees.Tree;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
@@ -26,7 +24,7 @@ public class BlockRegistryUtil {
 	private static HashSet<StoneRegistryObject> stones = new HashSet<StoneRegistryObject>();
 	private static HashSet<RegistryObject<? extends SpeleothemBlock>> speleothems = new HashSet<RegistryObject<? extends SpeleothemBlock>>();
 	private static HashSet<CrystalRegistryObject> crystals = new HashSet<CrystalRegistryObject>();
-	private static HashSet<TreeRegistryObject> trees = new HashSet<TreeRegistryObject>();
+	private static HashSet<AbstractTreeRegistryObject> trees = new HashSet<>();
 
 	public static <T extends Block> RegistryObject<T> register(String name, Supplier<T> supplier) {
 		return FBlocks.BLOCKS.register(name, supplier);
@@ -42,9 +40,16 @@ public class BlockRegistryUtil {
 		return obj;
 	}
 
-	public static TreeRegistryObject createTree(String name, Supplier<FTree> tree, MaterialColor plankColor, MaterialColor barkColor,
-												MaterialColor leavesColor, WoodType woodType) {
-		TreeRegistryObject obj = new TreeRegistryObject(name, tree, plankColor, barkColor, woodType);
+	public static BasicTreeRegistryObject createTree(String name, Supplier<FTree> tree, MaterialColor plankColor, MaterialColor barkColor,
+													 MaterialColor leavesColor, WoodType woodType) {
+		BasicTreeRegistryObject obj = new BasicTreeRegistryObject(name, tree, plankColor, barkColor, woodType);
+		trees.add(obj);
+		return obj;
+	}
+
+	public static ThinTreeRegistryObject createAspenTree(String name, Supplier<FTree> tree, MaterialColor plankColor, MaterialColor barkColor,
+                                                         MaterialColor leavesColor, WoodType woodType) {
+		ThinTreeRegistryObject obj = new ThinTreeRegistryObject(name, tree, plankColor, barkColor, woodType);
 		trees.add(obj);
 		return obj;
 	}
@@ -83,7 +88,7 @@ public class BlockRegistryUtil {
 		return crystals;
 	}
 
-	public static HashSet<TreeRegistryObject> getTrees() {
+	public static HashSet<? extends AbstractTreeRegistryObject> getTrees() {
 		return trees;
 	}
 

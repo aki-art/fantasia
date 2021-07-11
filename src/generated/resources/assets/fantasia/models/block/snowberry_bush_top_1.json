@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "fantasia:block/snowberry_bush_top_1"
+  }
+}
