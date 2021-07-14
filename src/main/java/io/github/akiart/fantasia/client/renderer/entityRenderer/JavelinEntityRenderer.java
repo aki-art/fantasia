@@ -22,18 +22,18 @@ public class JavelinEntityRenderer extends EntityRenderer<JavelinEntity> {
     }
 
     @Override
-    public void render(JavelinEntity javelinEntity, float yaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int light) {
+    public void render(JavelinEntity javelinEntity, float yaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight) {
 
         matrixStack.pushPose();
         matrixStack.mulPose(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, javelinEntity.yRotO, javelinEntity.yRot) - 90.0F));
         matrixStack.mulPose(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, javelinEntity.xRotO, javelinEntity.xRot) + 90.0F));
 
         IVertexBuilder ivertexbuilder = ItemRenderer.getFoilBufferDirect(buffer, model.renderType(getTextureLocation(javelinEntity)), false, javelinEntity.isFoil());
-        model.renderToBuffer(matrixStack, ivertexbuilder, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        model.renderToBuffer(matrixStack, ivertexbuilder, packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 
         matrixStack.popPose();
 
-        super.render(javelinEntity, yaw, partialTicks, matrixStack, buffer, light);
+        super.render(javelinEntity, yaw, partialTicks, matrixStack, buffer, packedLight);
     }
 
     @Override

@@ -14,6 +14,6 @@ public class FChestTileEntityRenderer<T extends FChestTileEntity & IChestLid> ex
 
     @Override
     protected RenderMaterial getMaterial(T tileEntity, ChestType chestType) {
-        return tileEntity.getMaterial(chestType);
+        return tileEntity.getRenderMaterial(chestType);
     }
 }

@@ -25,17 +25,17 @@ public class FBoatRenderer extends EntityRenderer<FBoatEntity> {
         this.shadowRadius = 0.8F;
     }
 
-    public void render(FBoatEntity entity, float yaw, float partialTicks, MatrixStack matrix, IRenderTypeBuffer buffer, int light) {
+    public void render(FBoatEntity entity, float yaw, float partialTicks, MatrixStack matrix, IRenderTypeBuffer buffer, int packedLight) {
         matrix.pushPose();
         matrix.translate(0.0D, 0.375D, 0.0D);
         matrix.mulPose(Vector3f.YP.rotationDegrees(180.0F - yaw));
 
-        float hurtTicks = (float)entity.getHurtTime() - partialTicks;
+        float hurtTicks = (float) entity.getHurtTime() - partialTicks;
         float hurt = entity.getDamage() - partialTicks;
         if (hurt < 0.0F) hurt = 0.0F;
 
         if (hurtTicks > 0.0F) {
-            matrix.mulPose(Vector3f.XP.rotationDegrees(MathHelper.sin(hurtTicks) * hurtTicks * hurt / 10.0F * (float)entity.getHurtDir()));
+            matrix.mulPose(Vector3f.XP.rotationDegrees(MathHelper.sin(hurtTicks) * hurtTicks * hurt / 10.0F * (float) entity.getHurtDir()));
         }
 
         float bubbleAngle = entity.getBubbleAngle(partialTicks);
@@ -49,20 +49,20 @@ public class FBoatRenderer extends EntityRenderer<FBoatEntity> {
         model.setupAnim(entity, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F);
 
         IVertexBuilder builder = buffer.getBuffer(model.renderType(getTextureLocation(entity)));
-        model.renderToBuffer(matrix, builder, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        model.renderToBuffer(matrix, builder, packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 
         if (!entity.isUnderWater()) {
             IVertexBuilder waterVertexBuilder = buffer.getBuffer(RenderType.waterMask());
-            model.waterPatch().render(matrix, waterVertexBuilder, light, OverlayTexture.NO_OVERLAY);
+            model.waterPatch().render(matrix, waterVertexBuilder, packedLight, OverlayTexture.NO_OVERLAY);
         }
 
         matrix.popPose();
-        super.render(entity, yaw, partialTicks, matrix, buffer, light);
+        super.render(entity, yaw, partialTicks, matrix, buffer, packedLight);
     }
 
     @Override
     public ResourceLocation getTextureLocation(FBoatEntity entity) {
         FBoatEntity.Type type = entity.getFBoatType();
-       return type != null ? type.getTexture() : defaultTex;
+        return type != null ? type.getTexture() : defaultTex;
     }
 }

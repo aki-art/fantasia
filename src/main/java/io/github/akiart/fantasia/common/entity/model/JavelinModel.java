@@ -4,34 +4,40 @@ package io.github.akiart.fantasia.common.entity.model;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import io.github.akiart.fantasia.Fantasia;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
 
-public class JavelinModel extends EntityModel<Entity>{
+public class JavelinModel extends EntityModel<Entity> {
     private final ModelRenderer bb_main;
-    private final ModelRenderer b_r1;
-    private final ModelRenderer a_r1;
+    private final ModelRenderer b;
+    private final ModelRenderer a;
+
+    static final ResourceLocation ghastly = new ResourceLocation(Fantasia.ID, "textures/entity/javelin/ghastly_javelin.png");
 
     public JavelinModel() {
+        super(RenderType::entityTranslucent);
+
         texWidth = 64;
         texHeight = 64;
 
         bb_main = new ModelRenderer(this);
         bb_main.setPos(0.0F, 24.0F, 0.0F);
 
-        b_r1 = new ModelRenderer(this);
-        b_r1.setPos(0.0F, -3.0F, 0.0F);
-        bb_main.addChild(b_r1);
-        setRotationAngle(b_r1, 1.5708F, 0.7854F, 0.0F);
-        b_r1.texOffs(0, 0).addBox(0.0F, -8.0F, -8.0F, 0.0F, 16.0F, 32.0F, 0.0F, true);
+        b = new ModelRenderer(this);
+        b.setPos(0.0F, -3.0F, 0.0F);
+        bb_main.addChild(b);
+        setRotationAngle(b, 1.5708F, 0.7854F, 0.0F);
+        b.texOffs(0, 0).addBox(0.0F, -8.0F, -8.0F, 0.0F, 16.0F, 32.0F, 0.0F, true);
 
-        a_r1 = new ModelRenderer(this);
-        a_r1.setPos(0.0F, -3.0F, 0.0F);
-        bb_main.addChild(a_r1);
-        setRotationAngle(a_r1, 1.5708F, -0.7854F, 0.0F);
-        a_r1.texOffs(0, 0).addBox(0.0F, -8.0F, -8.0F, 0.0F, 16.0F, 32.0F, 0.0F, true);
+        a = new ModelRenderer(this);
+        a.setPos(0.0F, -3.0F, 0.0F);
+        bb_main.addChild(a);
+        setRotationAngle(a, 1.5708F, -0.7854F, 0.0F);
+        a.texOffs(0, 0).addBox(0.0F, -8.0F, -8.0F, 0.0F, 16.0F, 32.0F, 0.0F, true);
     }
 
     @Override

@@ -45,14 +45,17 @@ public class JavelinISTER<T extends JavelinEntity> extends ItemStackTileEntityRe
         ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
         IBakedModel itemModel = renderer.getItemModelShaper().getModelManager().getModel(itemModelLocation);
 
-        matrixStackIn.translate(-0.5D, -0.5D, -0.5D);
-        if(transformType != ItemCameraTransforms.TransformType.GUI) {
-            matrixStackIn.translate(-0.5D, -0.5D, -0.5D);
+        switch(transformType) {
+            case GUI:
+                matrixStackIn.translate(-0.5D, -0.5D, -0.5D);
+                break;
+            case FIXED:
+                matrixStackIn.translate(0.5D, -0.5D, 0.5D);
+            case GROUND:
+                matrixStackIn.translate(-0.25D, 0, -0.25D);
         }
 
-
         itemModel.handlePerspective(transformType, matrixStackIn);
-        //itemModel.getTransforms().gui.apply(false, matrixStackIn);
         IVertexBuilder vertexBuilder = ItemRenderer.getFoilBufferDirect(bufferIn, Atlases.translucentCullBlockSheet(), true, itemStackIn.hasFoil());
 
         renderer.renderModelLists(itemModel, itemStackIn, combinedLightIn, combinedOverlayIn, matrixStackIn, vertexBuilder);

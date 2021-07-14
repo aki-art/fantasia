@@ -25,6 +25,9 @@ public class FBlocks {
     private static final float TEMP = 1f; // replace these before any release
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Fantasia.ID);
+    // Fluids
+
+    public static final RegistryObject<FlowingFluidBlock> ACID = BlockRegistryUtil.registerFluid("acid");
 
     // Stones
 

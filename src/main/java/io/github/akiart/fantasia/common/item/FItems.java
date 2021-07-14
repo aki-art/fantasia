@@ -3,6 +3,7 @@ package io.github.akiart.fantasia.common.item;
 import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.block.FBlocks;
 import io.github.akiart.fantasia.common.block.FWoodType;
+import io.github.akiart.fantasia.common.fluid.FFluids;
 import io.github.akiart.fantasia.common.item.foods.Foods;
 import io.github.akiart.fantasia.common.item.itemGroup.FItemGroup;
 import io.github.akiart.fantasia.common.item.itemType.IcicleItem;
@@ -84,7 +85,8 @@ public class FItems {
 	public static final RegistryObject<BlockItem> ICICLE = ItemRegistryUtil.register("icicle", () -> new IcicleItem(FBlocks.ICICLE.get(), new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
 	public static final RegistryObject<BlockItem> FANTASIA_PORTAL_BLOCK = ItemRegistryUtil.registerFromBlock(FBlocks.FANTASIA_PORTAL_BLOCK);
 	public static final RegistryObject<PtarmiganEggItem> PTARMIGAN_EGG = ItemRegistryUtil.register("ptarmigan_egg", () -> new PtarmiganEggItem(new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
-	
+	public static RegistryObject<Item> ACID_BUCKET = ITEMS.register("acid_bucket", () -> new BucketItem(FFluids.ACID_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(FItemGroup.FANTASIA)));
+
 	// Test & Debug
 	//public static final RegistryObject<BlockItem> ASPEN_LOG = ItemRegistryUtil.registerFromBlock(FBlocks.ASPEN_LOG);
 

@@ -25,4 +25,8 @@ public class FWoodType {
     public static Stream<WoodType> values() {
         return VALUES.stream();
     }
+
+    public static String getName(WoodType woodType) {
+        return new ResourceLocation(woodType.name()).getPath();
+    }
 }

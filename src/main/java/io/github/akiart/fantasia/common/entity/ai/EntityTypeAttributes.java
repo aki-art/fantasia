@@ -2,7 +2,7 @@ package io.github.akiart.fantasia.common.entity.ai;
 
 import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.entity.FEntities;
-import io.github.akiart.fantasia.common.entity.neutral.valravn.ValravnEntity;
+import io.github.akiart.fantasia.common.entity.neutral.valravn.deletelater.ValravnEntity;
 import io.github.akiart.fantasia.common.entity.passive.PtarmiganEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -17,5 +17,6 @@ public class EntityTypeAttributes {
         event.put(FEntities.PTARMIGAN.get(), PtarmiganEntity.createAttributes().build());
         event.put(FEntities.SABER_CAT.get(), ChickenEntity.createAttributes().build());
         event.put(FEntities.VALRAVN.get(), ValravnEntity.createAttributes().build());
+        event.put(FEntities.VALRAVN2.get(), ValravnEntity.createAttributes().build());
     }
 }

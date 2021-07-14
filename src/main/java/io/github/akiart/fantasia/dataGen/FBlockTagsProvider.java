@@ -1,11 +1,13 @@
 package io.github.akiart.fantasia.dataGen;
 
+import io.github.akiart.fantasia.FTags;
 import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.block.BlockRegistryUtil;
 import io.github.akiart.fantasia.common.block.FBlocks;
 import io.github.akiart.fantasia.common.block.registrySet.CrystalRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.StoneRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.TreeRegistryObject;
+import io.github.akiart.fantasia.common.fluid.FFluids;
 import net.minecraft.block.Block;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
@@ -31,8 +33,8 @@ public class FBlockTagsProvider extends BlockTagsProvider {
 	@Override
 	protected void addTags() {
 //		BlockRegistryUtil.getTrees().forEach(t -> tree(t));
-		BlockRegistryUtil.getStones().forEach(s -> stone(s));
-		BlockRegistryUtil.getCrystals().forEach(s -> crystal(s));
+		BlockRegistryUtil.getStones().forEach(this::stone);
+		BlockRegistryUtil.getCrystals().forEach(this::crystal);
 
 		tag(BASE_STONE_FANTASIA).add(FBlocks.EDELSTONE.raw.block.get(), FBlocks.SANGUITE.raw.block.get(),
 			FBlocks.MARLSTONE.raw.block.get());

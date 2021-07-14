@@ -4,10 +4,15 @@ import io.github.akiart.fantasia.client.renderer.tileentity.FChestTileEntityRend
 import io.github.akiart.fantasia.client.world.FantasiaDimensionRenderInfo;
 import io.github.akiart.fantasia.common.block.FWoodType;
 import io.github.akiart.fantasia.common.block.trees.StripMap;
+import io.github.akiart.fantasia.common.capabilities.Capabilities;
 import io.github.akiart.fantasia.common.entity.FEntities;
-import io.github.akiart.fantasia.common.entity.FMemoryModuleTypes;
+import io.github.akiart.fantasia.common.entity.ai.brain.FMemoryModuleTypes;
+import io.github.akiart.fantasia.common.entity.ai.brain.FActivities;
+import io.github.akiart.fantasia.common.entity.ai.brain.FSchedules;
+import io.github.akiart.fantasia.common.fluid.FFluids;
 import io.github.akiart.fantasia.common.item.FItemModelProperties;
-import io.github.akiart.fantasia.common.world.FChunkGenerator;
+import io.github.akiart.fantasia.common.potion.FEffects;
+import io.github.akiart.fantasia.common.potion.FPotions;
 import io.github.akiart.fantasia.common.world.FChunkGenerator2;
 import io.github.akiart.fantasia.common.world.gen.blockplacer.FBlockPlacerTypes;
 import io.github.akiart.fantasia.common.world.gen.feature.FFeatures;
@@ -17,13 +22,9 @@ import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
 import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -70,18 +71,8 @@ public class Fantasia {
 
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        FParticleTypes.PARTICLES.register(bus);
-        FSounds.SOUNDS.register(bus);
-        FBlocks.BLOCKS.register(bus);
-        FItems.ITEMS.register(bus);
-        FTileEntityTypes.TILE_ENTITY_TYPES.register(bus);
-        FTreeDecorators.TREE_DECORATOR_TYPES.register(bus);
-        FSurfaceBuilders.SURFACE_BUILDERS.register(bus);
-        FFeatures.FEATURES.register(bus);
-        FBiomes.BIOMES.register(bus);
-        FEntities.ENTITIES.register(bus);
-        FBlockPlacerTypes.BLOCK_PLACER_TYPES.register(bus);
-        FMemoryModuleTypes.MEMORY_MODULE_TYPES.register(bus);
+        initRegistries(bus);
+
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
 
@@ -92,8 +83,37 @@ public class Fantasia {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
+    private void initRegistries(IEventBus bus) {
+
+        // Content
+        FBlocks.BLOCKS.register(bus);
+        FFluids.FLUIDS.register(bus);
+        FItems.ITEMS.register(bus);
+        FEntities.ENTITIES.register(bus);
+        FTileEntityTypes.TILE_ENTITY_TYPES.register(bus);
+        FParticleTypes.PARTICLES.register(bus);
+        FSounds.SOUNDS.register(bus);
+        FEffects.EFFECTS.register(bus);
+        FPotions.POTIONS.register(bus);
+
+        // World gen
+        FBiomes.BIOMES.register(bus);
+        FSurfaceBuilders.SURFACE_BUILDERS.register(bus);
+        FFeatures.FEATURES.register(bus);
+        FBlockPlacerTypes.BLOCK_PLACER_TYPES.register(bus);
+        FTreeDecorators.TREE_DECORATOR_TYPES.register(bus);
+
+        // AI
+        FMemoryModuleTypes.MEMORY_MODULE_TYPES.register(bus);
+        FActivities.ACTIVITIES.register(bus);
+        FSchedules.SCHEDULES.register(bus);
+    }
+
     private void setup(final FMLCommonSetupEvent event) {
         DimensionRenderInfo.EFFECTS.put(FANTASIA_EFFECTS, new FantasiaDimensionRenderInfo());
+       // CapabilityManager.INSTANCE.register(ICapability.class, new CapabilityStorage(), CapabilityHandler::new);
+       // MinecraftForge.EVENT_BUS.register(Capabilities.class);
+
         event.enqueueWork(() -> {
             FConfiguredFeatures.registerConfiguredFeatures();
             Registry.register(Registry.BIOME_SOURCE, new ResourceLocation(ID, "biome_source"), FBiomeProvider.CODEC);
@@ -101,6 +121,9 @@ public class Fantasia {
 
             StripMap.registerStripMaps();
             FWoodType.values().forEach(WoodType::register);
+
+            // https://discord.com/channels/176780432371744769/750505199415590942/864015459036692500
+            // BiomeDictionary.addTypes(FBiomes.FROZEN_FOREST.getKey(), BiomeDictionary.Type.getType("frozen"));
         });
     }
 

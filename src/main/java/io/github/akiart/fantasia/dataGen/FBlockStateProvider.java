@@ -17,6 +17,7 @@ public class FBlockStateProvider extends FBlockStateProviderBase {
 	protected void registerStatesAndModels() {
 		
 		snowyBlock(FBlocks.FROZEN_DIRT.get());
+		simpleBlock(FBlocks.ACID.get(), models().getBuilder(getName(FBlocks.ACID.get())).texture("particle", new ResourceLocation("block/lime_wool")));
 
 		registerStones();
 		BlockRegistryUtil.getCrystals().forEach(this::crystal);

@@ -16,17 +16,13 @@ import javax.annotation.Nullable;
 
 public class PtarmiganEntityRenderer <T extends LivingEntity & IBasicAnimatable> extends GeoEntityRenderer<T> {
 
+    private final static float BABY_BODY_SCALE = .5f;
+    private final static float BABY_HEAD_SCALE = 2f;
+
     public PtarmiganEntityRenderer(EntityRendererManager renderManager) {
         super(renderManager, new GeckoLibModel<>());
         this.shadowRadius = 0.3f;
     }
-
-    void scale(IBone bone, float scale) {
-        bone.setScaleX(scale);
-        bone.setScaleX(scale);
-        bone.setScaleZ(scale);
-    }
-
 
     @Override
     public void render(GeoModel model, T animatable, float partialTicks, RenderType type, MatrixStack matrixStackIn,
@@ -34,26 +30,13 @@ public class PtarmiganEntityRenderer <T extends LivingEntity & IBasicAnimatable>
                         int packedOverlayIn, float r, float g, float b, float a) {
 
         if(animatable.isBaby()) {
-            matrixStackIn.scale(0.5F, 0.5F, 0.5F);
+            matrixStackIn.scale(BABY_BODY_SCALE, BABY_BODY_SCALE, BABY_BODY_SCALE);
             IBone head = model.getBone("head").get();
-            head.setScaleX(2f);
-            head.setScaleY(2f);
-            head.setScaleZ(2f);
+            head.setScaleX(BABY_HEAD_SCALE);
+            head.setScaleY(BABY_HEAD_SCALE);
+            head.setScaleZ(BABY_HEAD_SCALE);
         }
 
         super.render(model, animatable, partialTicks, type, matrixStackIn, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn, r, g, b, a);
     }
-//
-//    @Override
-//    public void renderEarly(T animatable, MatrixStack stackIn, float ticks, IRenderTypeBuffer renderTypeBuffer,
-//                            IVertexBuilder vertexBuilder, int packedLightIn, int packedOverlayIn, float red, float green, float blue,
-//                            float partialTicks) {
-//        super.renderEarly(animatable, stackIn, ticks, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn,
-//                red, green, blue, partialTicks);
-//
-//        if (animatable.isBaby()) {
-//            stackIn.scale(0.5F, 0.5F, 0.5F);
-//        }
-//    }
-
 }

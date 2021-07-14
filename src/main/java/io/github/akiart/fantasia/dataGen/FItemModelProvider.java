@@ -36,6 +36,7 @@ public class FItemModelProvider extends FItemModelProviderBase {
 		withExistingParent(getName(FItems.ICICLE.get()), getBlockLocation("icicle_tip"));
 		// withExistingParent(getName(FItems.SNOWBERRY_BUSH.get()), getBlockLocation("snowberry_bush_top"));
 		fromBlock(FBlocks.FANTASIA_PORTAL_BLOCK.get());
+		simpleItem(FItems.ACID_BUCKET);
 		registerDebugStuff();
 	}
 	

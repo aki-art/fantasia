@@ -24,18 +24,18 @@ public class IcicleEntityRenderer extends EntityRenderer<IcicleEntity> {
         super(entityRendererManager);
     }
 
-    public void render(IcicleEntity icicle, float f1, float f2, MatrixStack matrixStack, IRenderTypeBuffer buffer, int i) {
+    public void render(IcicleEntity icicle, float yaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight) {
 
         matrixStack.pushPose();
-        matrixStack.mulPose(Vector3f.YP.rotationDegrees(MathHelper.lerp(f2, icicle.yRotO, icicle.yRot) - 90.0F));
-        matrixStack.mulPose(Vector3f.ZP.rotationDegrees(MathHelper.lerp(f2, icicle.xRotO, icicle.xRot) + 90.0F));
+        matrixStack.mulPose(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, icicle.yRotO, icicle.yRot) - 90.0F));
+        matrixStack.mulPose(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, icicle.xRotO, icicle.xRot) + 90.0F));
 
         IVertexBuilder ivertexbuilder = ItemRenderer.getFoilBufferDirect(buffer, model.renderType(getTextureLocation(icicle)), false, icicle.isFoil());
-        model.renderToBuffer(matrixStack, ivertexbuilder, i, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        model.renderToBuffer(matrixStack, ivertexbuilder, packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 
         matrixStack.popPose();
 
-        super.render(icicle, f1, f2, matrixStack, buffer, i);
+        super.render(icicle, yaw, partialTicks, matrixStack, buffer, packedLight);
     }
 
     @Override

@@ -3,7 +3,8 @@ package io.github.akiart.fantasia.common.entity;
 import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.entity.hostile.SaberCatEntity;
 import io.github.akiart.fantasia.common.entity.item.FBoatEntity;
-import io.github.akiart.fantasia.common.entity.neutral.valravn.ValravnEntity;
+import io.github.akiart.fantasia.common.entity.neutral.valravn.deletelater.ValravnEntity;
+import io.github.akiart.fantasia.common.entity.neutral.valravn.ValravnEntity2;
 import io.github.akiart.fantasia.common.entity.passive.PtarmiganEntity;
 import io.github.akiart.fantasia.common.entity.projectile.FrostworkPickaxeProjectileEntity;
 import io.github.akiart.fantasia.common.entity.projectile.IcicleEntity;
@@ -39,6 +40,13 @@ public class FEntities {
                     .sized(0.7F, 0.7F)
                     .clientTrackingRange(10)
                     .build(new ResourceLocation(Fantasia.ID, ValravnEntity.ID).toString()));
+
+    public static final RegistryObject<EntityType<ValravnEntity2>> VALRAVN2 = ENTITIES.register(ValravnEntity2.ID, () ->
+            EntityType.Builder
+                    .<ValravnEntity2>of(ValravnEntity2::new, EntityClassification.CREATURE)
+                    .sized(0.7F, 0.7F)
+                    .clientTrackingRange(10)
+                    .build(new ResourceLocation(Fantasia.ID, ValravnEntity2.ID).toString()));
 
     public static final RegistryObject<EntityType<PtarmiganEggEntity>> PTARMIGAN_EGG = ENTITIES.register(PtarmiganEggEntity.ID, () ->
             EntityType.Builder

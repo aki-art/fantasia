@@ -1,11 +1,6 @@
 package io.github.akiart.fantasia.common.entity.projectile;
 
-import com.google.common.collect.Maps;
 import io.github.akiart.fantasia.Fantasia;
-import io.github.akiart.fantasia.client.renderer.model.BakedModels;
-import io.github.akiart.fantasia.common.entity.item.FBoatEntity;
-import io.github.akiart.fantasia.common.item.itemType.JavelinItem;
-import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -19,18 +14,18 @@ import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
-import java.util.*;
 
 public class JavelinEntity extends AbstractArrowEntity {
     public static final DataParameter<Byte> ID_LOYALTY = EntityDataManager.defineId(JavelinEntity.class, DataSerializers.BYTE);
