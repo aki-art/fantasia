@@ -4,15 +4,11 @@ import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.block.blockType.FChestBlock;
 import io.github.akiart.fantasia.common.block.registrySet.CrystalRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.StoneRegistryObject;
-import io.github.akiart.fantasia.common.block.registrySet.TreeRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.trees.AbstractTreeRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.trees.BasicTreeRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.trees.ThinTreeRegistryObject;
-import io.github.akiart.fantasia.common.item.FItems;
-import io.github.akiart.fantasia.common.item.itemType.JavelinItem;
 import io.github.akiart.fantasia.common.item.registrySet.CrystalRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.StoneRegistryItem;
-import io.github.akiart.fantasia.common.item.registrySet.TreeRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.tree.AbstractTreeRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.tree.BasicTreeRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.tree.ThinTreeRegistryItem;
@@ -21,7 +17,7 @@ import net.minecraft.client.renderer.model.BlockModel;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -109,7 +105,7 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
         fromBlock(blocks.polished.get());
         fromBlock(blocks.lens.get());
         fromBlock(blocks.waxedLens.get());
-        simpleItem(items.crystal);
+        miscItem(items.crystal);
         // blockGenerated(blocks.lantern.get());
     }
 
@@ -121,8 +117,8 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
 
         fromBlock(tree.getPlanks().get());
 
-        simpleItem(items.sign);
-        simpleItem(items.door);
+        miscItem(items.sign);
+        miscItem(items.door);
 
         stairs(getName(items.stairs.get()), plankTex, plankTex, plankTex);
         slab(getName(items.slab.get()), plankTex, plankTex, plankTex);
@@ -169,16 +165,19 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
             fromBlock(basicTree.strippedWood.get());
             fromBlock(basicTree.leaves.get());
         }
-
     }
 
     protected void chest(FChestBlock block, ResourceLocation particle) {
         withExistingParent(getName(block), new ResourceLocation("builtin/entity")).texture("particle", particle);
     }
 
-    public void simpleItem(RegistryObject<? extends Item> item) {
-        //singleTexture(getName(item.get()), getItemLocation(getName(item.get())), getItemTexture(item.get()));
-        generate(getName(item.get()), getItemTexture(item.get()));
+    public void miscItem(RegistryObject<? extends Item> item) {
+        if(item.get() instanceof SpawnEggItem) {
+            withExistingParent(getName(item.get()), new ResourceLocation("item/template_spawn_egg"));
+        }
+        else {
+            generate(getName(item.get()), getItemTexture(item.get()));
+        }
     }
 
     public void javelin(Item item, ResourceLocation particleTex) {

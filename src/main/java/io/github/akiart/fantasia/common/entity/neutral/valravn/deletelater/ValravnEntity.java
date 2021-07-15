@@ -18,6 +18,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.StringTextComponent;
@@ -34,6 +35,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.UUID;
 
 // wild behaviour AI overview: https://i.imgur.com/a5MhiAt.png
@@ -53,6 +55,7 @@ public class ValravnEntity extends FTameableFlyingEntity implements IBasicAnimat
     boolean victimWasVulnerable;
     boolean victimAIWasReset = false;
     protected LivingEntity victim;
+
 
 
 //    public boolean isPushable() {

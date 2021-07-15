@@ -1,0 +1,6 @@
+{
+  "parent": "fantasia:block/sixway_post",
+  "textures": {
+    "texture": "fantasia:block/aspen_log"
+  }
+}

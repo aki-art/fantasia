@@ -81,11 +81,11 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
 		});
 	}
 
-	protected void thinLogBlock(Supplier<ThinLogBlock> thinLogBlock, ResourceLocation texture) {
+	protected void thinLogBlock(Supplier<ThinLogBlock> thinLogBlock, ResourceLocation barkTex, ResourceLocation topTex) {
 		ThinLogBlock block = thinLogBlock.get();
-		ModelFile post = models().singleTexture(getName(block), getLocation("sixway_post"), texture);
-		ModelFile branch = models().singleTexture(getName(block), getLocation("sixway_side"), texture);
-		MultiPartBlockStateBuilder builder = getMultipartBuilder(block)
+		ModelFile post = models().withExistingParent(getName(block), getLocation("sixway_post")).texture("texture", barkTex);
+		ModelFile branch = models().withExistingParent(getName(block) + "_branch", getLocation("sixway_side")).texture("0", barkTex).texture("1", topTex);
+		getMultipartBuilder(block)
 				.part().modelFile(post).addModel().end()
 				.part().modelFile(branch).uvLock(true).addModel().condition(ThinLogBlock.UP, true).end()
 				.part().modelFile(branch).rotationX(180).uvLock(true).addModel().condition(ThinLogBlock.DOWN, true).end()
@@ -141,14 +141,17 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
 
 	private void thinTree(ThinTreeRegistryObject blockSet) {
 		ResourceLocation logTex = blockTexture(blockSet.log.get());
-		ResourceLocation strippedLogTex = blockTexture(blockSet.strippedLog.get());
+		ResourceLocation logTopTex = getLocation(getName(blockSet.log.get()) + "_top");
+		ResourceLocation strippedTex = blockTexture(blockSet.strippedLog.get());
+		ResourceLocation strippedTop = getLocation(getName(blockSet.strippedLog.get()) + "_top");
 
 		simpleBlock(blockSet.leaves.get());
 		crossBlock(blockSet.sapling.get());
-		thinLogBlock(blockSet.log, logTex);
-		thinLogBlock(blockSet.strippedLog, strippedLogTex);
-		//thinLogBlock(blockSet.strippedWood.get(), strippedLogTex, strippedLogTex);
-		//thinLogBlock(blockSet.wood.get(), logTex, logTex);
+
+		thinLogBlock(blockSet.log, logTex, logTopTex);
+		thinLogBlock(blockSet.strippedLog, strippedTex, strippedTop);
+		thinLogBlock(blockSet.wood, logTex, logTex);
+		thinLogBlock(blockSet.strippedWood, strippedTex, strippedTex);
 	}
 
 	protected <T extends AbstractTreeRegistryObject> void tree(T blockSet) {

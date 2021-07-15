@@ -6,7 +6,6 @@ import io.github.akiart.fantasia.common.item.FItems;
 import io.github.akiart.fantasia.common.item.ItemRegistryUtil;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class FItemModelProvider extends FItemModelProviderBase {
@@ -20,7 +19,7 @@ public class FItemModelProvider extends FItemModelProviderBase {
 		ItemRegistryUtil.stones.forEach(this::stone);
 		ItemRegistryUtil.crystals.forEach(this::crystal);
 		ItemRegistryUtil.trees.forEach(this::tree);
-		ItemRegistryUtil.simpleItems.forEach(this::simpleItem);
+		ItemRegistryUtil.simpleItems.forEach(this::miscItem);
 
 		javelin(FItems.WOODEN_JAVELIN.get(), getBlockTexture(Blocks.OAK_PLANKS));
 		javelin(FItems.STONE_JAVELIN.get(), getBlockTexture(Blocks.STONE));
@@ -36,13 +35,13 @@ public class FItemModelProvider extends FItemModelProviderBase {
 		withExistingParent(getName(FItems.ICICLE.get()), getBlockLocation("icicle_tip"));
 		// withExistingParent(getName(FItems.SNOWBERRY_BUSH.get()), getBlockLocation("snowberry_bush_top"));
 		fromBlock(FBlocks.FANTASIA_PORTAL_BLOCK.get());
-		simpleItem(FItems.ACID_BUCKET);
+		miscItem(FItems.ACID_BUCKET);
 		registerDebugStuff();
 	}
 	
 	private void registerDebugStuff() {
 		fromBlock(FBlocks.TEST_CRYSTAL_LENS.get());
-		simpleItem(FItems.sign);
+		miscItem(FItems.sign);
 		fromBlock(FBlocks.testChest.get());
 
 	}

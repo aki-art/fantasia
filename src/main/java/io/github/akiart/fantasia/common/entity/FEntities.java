@@ -20,33 +20,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class FEntities {
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, Fantasia.ID);
 
-    public static final RegistryObject<EntityType<PtarmiganEntity>> PTARMIGAN = ENTITIES.register(PtarmiganEntity.ID, () ->
-            EntityType.Builder
-                    .of(PtarmiganEntity::new, EntityClassification.CREATURE)
-                    .sized(0.4F, 0.7F)
-                    .clientTrackingRange(10)
-                    .build(new ResourceLocation(Fantasia.ID, PtarmiganEntity.ID).toString()));
-
-    public static final RegistryObject<EntityType<SaberCatEntity>> SABER_CAT = ENTITIES.register(SaberCatEntity.ID, () ->
-            EntityType.Builder
-                    .of(SaberCatEntity::new, EntityClassification.CREATURE)
-                    .sized(0.9F, 2F)
-                    .clientTrackingRange(10)
-                    .build(new ResourceLocation(Fantasia.ID, SaberCatEntity.ID).toString()));
-
-    public static final RegistryObject<EntityType<ValravnEntity>> VALRAVN = ENTITIES.register(ValravnEntity.ID, () ->
-            EntityType.Builder
-                    .of(ValravnEntity::new, EntityClassification.CREATURE)
-                    .sized(0.7F, 0.7F)
-                    .clientTrackingRange(10)
-                    .build(new ResourceLocation(Fantasia.ID, ValravnEntity.ID).toString()));
-
-    public static final RegistryObject<EntityType<ValravnEntity2>> VALRAVN2 = ENTITIES.register(ValravnEntity2.ID, () ->
-            EntityType.Builder
-                    .<ValravnEntity2>of(ValravnEntity2::new, EntityClassification.CREATURE)
-                    .sized(0.7F, 0.7F)
-                    .clientTrackingRange(10)
-                    .build(new ResourceLocation(Fantasia.ID, ValravnEntity2.ID).toString()));
+    public static final RegistryObject<EntityType<PtarmiganEntity>> PTARMIGAN = ENTITIES.register(PtarmiganEntity.ID, () -> FEntityTypes.PTARMIGAN);
+    public static final RegistryObject<EntityType<SaberCatEntity>> SABER_CAT = ENTITIES.register(SaberCatEntity.ID, () -> FEntityTypes.SABER_CAT);
+    public static final RegistryObject<EntityType<ValravnEntity>> VALRAVN = ENTITIES.register(ValravnEntity.ID, () -> FEntityTypes.VALRAVN);
+    public static final RegistryObject<EntityType<ValravnEntity2>> VALRAVN2 = ENTITIES.register(ValravnEntity2.ID, () -> FEntityTypes.VALRAVN2);
 
     public static final RegistryObject<EntityType<PtarmiganEggEntity>> PTARMIGAN_EGG = ENTITIES.register(PtarmiganEggEntity.ID, () ->
             EntityType.Builder

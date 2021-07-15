@@ -6,10 +6,9 @@ import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.entity.FEntities;
 import io.github.akiart.fantasia.common.entity.FTameableEntity;
 import io.github.akiart.fantasia.common.entity.ai.brain.FMemoryModuleTypes;
+import io.github.akiart.fantasia.common.entity.neutral.valravn.deletelater.ValravnEntity;
 import io.github.akiart.fantasia.lib.GeckoLibExtension.IBasicAnimatable;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
 import net.minecraft.entity.ai.brain.sensor.Sensor;
@@ -17,10 +16,13 @@ import net.minecraft.entity.ai.brain.sensor.SensorType;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.DebugPacketSender;
 import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -32,6 +34,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 // Experimental, messing with Brains
 public class ValravnEntity2 extends FTameableEntity implements IBasicAnimatable {
@@ -74,7 +77,6 @@ public class ValravnEntity2 extends FTameableEntity implements IBasicAnimatable 
             MemoryModuleType.NEAREST_REPELLENT,
             MemoryModuleType.ATE_RECENTLY
     );
-
 
     public ValravnEntity2(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
@@ -121,7 +123,7 @@ public class ValravnEntity2 extends FTameableEntity implements IBasicAnimatable 
         level.getProfiler().push("valravnBrain");
         getBrain().tick((ServerWorld) level, this);
         level.getProfiler().pop();
-       //  ValravnTasks.updateActivity(this);
+        //  ValravnTasks.updateActivity(this);
     }
 
     @Override

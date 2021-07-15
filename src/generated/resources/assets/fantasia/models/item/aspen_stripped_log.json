@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "fantasia:block/aspen_stripped_log",
+    "end": "fantasia:block/aspen_stripped_log_top"
+  }
+}

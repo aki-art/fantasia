@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_rh",
+  "textures": {
+    "bottom": "fantasia:block/aspen_door_bottom",
+    "top": "fantasia:block/aspen_door_top"
+  }
+}

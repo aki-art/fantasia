@@ -1,0 +1,7 @@
+{
+  "parent": "fantasia:block/sixway_side",
+  "textures": {
+    "0": "fantasia:block/aspen_stripped_log",
+    "1": "fantasia:block/aspen_stripped_log_top"
+  }
+}

@@ -12,6 +12,7 @@ import io.github.akiart.fantasia.common.block.registrySet.TreeRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.trees.AbstractTreeRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.trees.BasicTreeRegistryObject;
 import io.github.akiart.fantasia.common.block.registrySet.trees.ThinTreeRegistryObject;
+import io.github.akiart.fantasia.common.entity.FEntities;
 import io.github.akiart.fantasia.common.entity.item.FBoatEntity;
 import io.github.akiart.fantasia.common.item.itemGroup.FItemGroup;
 import io.github.akiart.fantasia.common.item.itemType.FBoatItem;
@@ -23,8 +24,10 @@ import io.github.akiart.fantasia.common.item.registrySet.TreeRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.tree.AbstractTreeRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.tree.BasicTreeRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.tree.ThinTreeRegistryItem;
+import io.github.akiart.fantasia.util.Constants;
 import net.minecraft.block.Block;
 import net.minecraft.block.WoodType;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
@@ -39,6 +42,12 @@ public class ItemRegistryUtil {
 
 	public static <T extends Item> RegistryObject<T> register(String name, Supplier<T> item) {
 		RegistryObject<T> reg = FItems.ITEMS.register(name, item);
+		simpleItems.add(reg);
+		return reg;
+	}
+
+	public static RegistryObject<SpawnEggItem> registerEgg(String name, EntityType<?> entity, int shellColor, int patternColor) {
+		RegistryObject<SpawnEggItem> reg = FItems.ITEMS.register(name, () -> new SpawnEggItem(entity, shellColor, patternColor, new Item.Properties().tab(FItemGroup.FANTASIA)));
 		simpleItems.add(reg);
 		return reg;
 	}

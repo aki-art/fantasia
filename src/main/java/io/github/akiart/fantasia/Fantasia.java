@@ -111,8 +111,8 @@ public class Fantasia {
 
     private void setup(final FMLCommonSetupEvent event) {
         DimensionRenderInfo.EFFECTS.put(FANTASIA_EFFECTS, new FantasiaDimensionRenderInfo());
-       // CapabilityManager.INSTANCE.register(ICapability.class, new CapabilityStorage(), CapabilityHandler::new);
-       // MinecraftForge.EVENT_BUS.register(Capabilities.class);
+        // CapabilityManager.INSTANCE.register(ICapability.class, new CapabilityStorage(), CapabilityHandler::new);
+        // MinecraftForge.EVENT_BUS.register(Capabilities.class);
 
         event.enqueueWork(() -> {
             FConfiguredFeatures.registerConfiguredFeatures();
