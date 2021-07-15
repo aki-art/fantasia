@@ -10,6 +10,7 @@ import io.github.akiart.fantasia.common.block.blockType.plants.SnowBerryBushBott
 import io.github.akiart.fantasia.common.block.blockType.plants.SnowBerryBushTopBlock;
 import io.github.akiart.fantasia.common.block.registrySet.*;
 import io.github.akiart.fantasia.common.block.registrySet.trees.BasicTreeRegistryObject;
+import io.github.akiart.fantasia.common.block.registrySet.trees.ThinTreeRegistryObject;
 import io.github.akiart.fantasia.common.block.trees.FTree;
 import io.github.akiart.fantasia.common.util.DirectionRestriction;
 import io.github.akiart.fantasia.common.world.gen.feature.FConfiguredFeatures;
@@ -87,13 +88,8 @@ public class FBlocks {
 //            () -> new FTree(FConfiguredFeatures.FROZEN_SPRUCE), MaterialColor.WOOD, MaterialColor.COLOR_BROWN,
 //            MaterialColor.COLOR_GREEN, FWoodType.ELM);
 
-    public static final BasicTreeRegistryObject FROZEN_ELM = BlockRegistryUtil.createTree(
-            "frozen_elm",
-            () -> new FTree(FConfiguredFeatures.FROZEN_ELM),
-            MaterialColor.COLOR_LIGHT_BLUE,
-            MaterialColor.LAPIS,
-            MaterialColor.ICE,
-            FWoodType.FROZEN_ELM);
+    public static final BasicTreeRegistryObject FROZEN_ELM = BlockRegistryUtil.createTree("frozen_elm",
+            () -> new FTree(FConfiguredFeatures.FROZEN_ELM), MaterialColor.COLOR_LIGHT_BLUE, MaterialColor.LAPIS, MaterialColor.ICE, FWoodType.FROZEN_ELM);
 
     // public static final BasicTreeRegistryObject ELM
     // public static final BasicTreeRegistryObject FROZEN_SPRUCE
@@ -104,7 +100,8 @@ public class FBlocks {
 
     // public static final TallowTreeRegistryObject TALLOW
 
-    // public static final ThinTreeRegistryObject ASPEN
+    public static final ThinTreeRegistryObject ASPEN = BlockRegistryUtil.createThinTree("aspen",
+            () -> new FTree(FConfiguredFeatures.FROZEN_ELM), MaterialColor.SAND, MaterialColor.QUARTZ, MaterialColor.COLOR_YELLOW, FWoodType.ASPEN);
 
     // public static final HugeTreeRegistryObject YGGDRASIL
     // public static final HugeTreeRegistryObject GIANT_SEQOIA

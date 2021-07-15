@@ -92,10 +92,10 @@ public class FBoatEntity extends BoatEntity {
 
     // parallel enum to BoatEntity.Type
     public enum Type {
-        FROZEN_ELM(FBlocks.FROZEN_ELM.getPlanks(),"elm");
+        FROZEN_ELM(FBlocks.FROZEN_ELM.getPlanks(),"elm"),
 //        FROZEN_ELM(FBlocks.FROZEN_ELM.planks,"frozen_elm"),
 //        FROZEN_SPRUCE(FBlocks.FROZEN_SPRUCE.planks,"frozen_spruce"),
-//        ASPEN(FBlocks.FROZEN_SPRUCE.planks,"aspen");
+        ASPEN(FBlocks.ASPEN.getPlanks(),"aspen");
 //        DOGWOOD(FBlocks.FROZEN_ELM.planks, FItems.FROZEN_ELM_BOAT, "dogwood"),
 //        BLACK_ELDER(FBlocks.FROZEN_ELM.planks, FItems.FROZEN_ELM_BOAT,  "black_elder"),
 //        ROWAN(FBlocks.FROZEN_ELM.planks, FItems.FROZEN_ELM_BOAT,  "rowan"),

@@ -3,9 +3,11 @@ package io.github.akiart.fantasia.common.item;
 import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.block.FBlocks;
 import io.github.akiart.fantasia.common.block.FWoodType;
+import io.github.akiart.fantasia.common.entity.item.FBoatEntity;
 import io.github.akiart.fantasia.common.fluid.FFluids;
 import io.github.akiart.fantasia.common.item.foods.Foods;
 import io.github.akiart.fantasia.common.item.itemGroup.FItemGroup;
+import io.github.akiart.fantasia.common.item.itemType.FBoatItem;
 import io.github.akiart.fantasia.common.item.itemType.IcicleItem;
 import io.github.akiart.fantasia.common.item.itemType.JavelinItem;
 import io.github.akiart.fantasia.common.item.itemType.PtarmiganEggItem;
@@ -14,6 +16,7 @@ import io.github.akiart.fantasia.common.item.registrySet.CrystalRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.StoneItemSet;
 import io.github.akiart.fantasia.common.item.registrySet.StoneRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.tree.BasicTreeRegistryItem;
+import io.github.akiart.fantasia.common.item.registrySet.tree.ThinTreeRegistryItem;
 import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -53,13 +56,13 @@ public class FItems {
 	public static final BasicTreeRegistryItem FROZEN_ELM = ItemRegistryUtil.registerTreeItems(FBlocks.FROZEN_ELM, FWoodType.FROZEN_ELM);
 	//public static final BasicTreeRegistryItem FROZEN_SPRUCE = ItemRegistryUtil.registerTreeItems(FBlocks.FROZEN_SPRUCE);
 	//public static final BasicTreeRegistryItem ELM = ItemRegistryUtil.registerTreeItems(FBlocks.ELM);
-	//public static final ThinTreeRegistryItem ASPEN = ItemRegistryUtil.registerTreeItems(FBlocks.ASPEN);
+	public static final ThinTreeRegistryItem ASPEN = ItemRegistryUtil.registerThinTreeItems(FBlocks.ASPEN, FWoodType.ASPEN);
 
 	// Boats
-	//public static final RegistryObject<FBoatItem> FROZEN_ELM_BOAT = ItemRegistryUtil.registerBoat("frozen_elm_boat", FBoatEntity.Type.FROZEN_ELM);
+	public static final RegistryObject<FBoatItem> FROZEN_ELM_BOAT = ItemRegistryUtil.registerBoat("frozen_elm_boat", FBoatEntity.Type.FROZEN_ELM);
 	//public static final RegistryObject<FBoatItem> FROZEN_SPRUCE_BOAT = ItemRegistryUtil.registerBoat("frozen_spruce_boat", FBoatEntity.Type.FROZEN_SPRUCE);
 	//public static final RegistryObject<FBoatItem> ELM_BOAT = ItemRegistryUtil.registerBoat("elm_boat", FBoatEntity.Type.ELM);
-	//public static final RegistryObject<FBoatItem> ASPEN_BOAT = ItemRegistryUtil.registerBoat("aspen_boat", FBoatEntity.Type.AS);
+	public static final RegistryObject<FBoatItem> ASPEN_BOAT = ItemRegistryUtil.registerBoat("aspen_boat", FBoatEntity.Type.ASPEN);
 
 	// Bushes
 	public static final RegistryObject<BlockItem> SNOWBERRY_BUSH = ItemRegistryUtil.registerFromBlock(FBlocks.SNOWBERRY_BUSH_BOTTOM);

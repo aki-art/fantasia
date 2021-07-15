@@ -13,6 +13,7 @@ import net.minecraft.util.Direction;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 
+import java.util.Map;
 import java.util.function.Supplier;
 
 // Holds common block types of sets belonging to trees and tree like things
@@ -109,6 +110,16 @@ public abstract class AbstractTreeRegistryObject {
 
     public RegistryObject<StairsBlock> getStairs() {
         return stairs;
+    }
+
+    public abstract RegistryObject<? extends Block> getLog();
+    public abstract RegistryObject<? extends Block> getStrippedLog();
+    public abstract RegistryObject<? extends Block> getWood();
+    public abstract RegistryObject<? extends Block> getStrippedWood();
+
+    public void setStripMaps(Map<Block, Block> stripMap) {
+        // stripMap.put(getLog().get(), getStrippedLog().get());
+        // stripMap.put(getWood().get(), getStrippedWood().get());
     }
 
     protected RegistryObject<FChestBlock> createChest(String name, WoodType woodType) {

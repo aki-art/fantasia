@@ -16,6 +16,7 @@ public class ThinTreeRegistryObject extends AbstractTreeRegistryObject {
 
     public final RegistryObject<ThinLogBlock> log;
     public final RegistryObject<ThinLogBlock> wood;
+
     public final RegistryObject<ThinLogBlock> strippedLog;
     public final RegistryObject<ThinLogBlock> strippedWood;
 
@@ -57,5 +58,33 @@ public class ThinTreeRegistryObject extends AbstractTreeRegistryObject {
                 () -> new ThinLogBlock(AbstractBlock.Properties.of(Material.WOOD, barkColor)
                         .sound(SoundType.WOOD)
                         .strength(2.0f)));
+    }
+
+    @Override
+    public RegistryObject<ThinLogBlock> getLog() {
+        return log;
+    }
+
+    @Override
+    public RegistryObject<ThinLogBlock> getWood() {
+        return wood;
+    }
+
+    @Override
+    public RegistryObject<ThinLogBlock> getStrippedLog() {
+        return strippedLog;
+    }
+
+    @Override
+    public RegistryObject<ThinLogBlock> getStrippedWood() {
+        return strippedWood;
+    }
+
+    public RegistryObject<LeavesBlock> getLeaves() {
+        return leaves;
+    }
+
+    public RegistryObject<FSaplingBlock> getSapling() {
+        return sapling;
     }
 }

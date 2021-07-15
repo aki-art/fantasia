@@ -42,15 +42,15 @@ public class BlockRegistryUtil {
         return obj;
     }
 
-    public static BasicTreeRegistryObject createTree(String name, Supplier<FTree> tree, MaterialColor plankColor, MaterialColor barkColor,
+    public static BasicTreeRegistryObject  createTree(String name, Supplier<FTree> tree, MaterialColor plankColor, MaterialColor barkColor,
                                                      MaterialColor leavesColor, WoodType woodType) {
         BasicTreeRegistryObject obj = new BasicTreeRegistryObject(name, tree, plankColor, barkColor, woodType);
         trees.add(obj);
         return obj;
     }
 
-    public static ThinTreeRegistryObject createAspenTree(String name, Supplier<FTree> tree, MaterialColor plankColor, MaterialColor barkColor,
-                                                         MaterialColor leavesColor, WoodType woodType) {
+    public static ThinTreeRegistryObject createThinTree(String name, Supplier<FTree> tree, MaterialColor plankColor, MaterialColor barkColor,
+                                                        MaterialColor leavesColor, WoodType woodType) {
         ThinTreeRegistryObject obj = new ThinTreeRegistryObject(name, tree, plankColor, barkColor, woodType);
         trees.add(obj);
         return obj;

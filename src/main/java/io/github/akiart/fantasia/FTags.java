@@ -1,6 +1,7 @@
 package io.github.akiart.fantasia;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.tags.*;
@@ -11,6 +12,11 @@ public class FTags {
     public static final class Fluids {
         public static final ITag.INamedTag<Fluid> ACID = createFluidTag("acid");
     }
+
+    public static final class Items {
+        public static final ITag.INamedTag<Item> ACID_MELTABLE = createItemTag("acid_meltable");
+    }
+
 
     private static ITag.INamedTag<Block> createBlockTag(String name) {
         return BlockTags.bind(new ResourceLocation(Fantasia.ID, name).toString());
