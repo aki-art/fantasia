@@ -87,7 +87,7 @@ public class FItems {
 	public static final RegistryObject<JavelinItem> GHASTLY_JAVELIN = ItemRegistryUtil.registerJavelin("ghastly_javelin", FItemTier.GHASTLY, 3 , -2.4f);
 	public static final RegistryObject<JavelinItem> FROSTWORK_BOLT = ItemRegistryUtil.registerJavelin("frostwork_bolt", FItemTier.WOLFRAMITE, 0 , -2.4f);
 
-	// Spawn Eggs
+	// Spawn Eggs 
 	public static final RegistryObject<SpawnEggItem> PTARMIGAN_SPAWN_EGG = ItemRegistryUtil.registerEgg("ptarmigan_spawn_egg", FEntityTypes.PTARMIGAN, Constants.Colors.CREAM, Constants.Colors.LIGHT_BROWN);
 	public static final RegistryObject<SpawnEggItem> VALRAVN_SPAWN_EGG = ItemRegistryUtil.registerEgg("valravn_spawn_egg", FEntityTypes.VALRAVN2, Constants.Colors.ALMOST_BLACK, Constants.Colors.RED);
 	public static final RegistryObject<SpawnEggItem> SABER_CAT_SPAWN_EGG = ItemRegistryUtil.registerEgg("saber_cat_spawn_egg", FEntityTypes.SABER_CAT, Constants.Colors.GINGER, Constants.Colors.CREAM);
