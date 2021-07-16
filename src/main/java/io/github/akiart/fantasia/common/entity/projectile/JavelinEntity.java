@@ -4,6 +4,7 @@ import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.dispenser.DispenseEntityBehavior;
 import io.github.akiart.fantasia.common.dispenser.DispenseJavelinBehavior;
 import io.github.akiart.fantasia.common.entity.FEntities;
+import io.github.akiart.fantasia.util.FDamageSource;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -125,15 +126,15 @@ public class JavelinEntity extends AbstractArrowEntity {
 
     @Nullable
     protected EntityRayTraceResult findHitEntity(Vector3d v1, Vector3d v2) {
-        return this.dealtDamage ? null : super.findHitEntity(v1, v2);
+        return dealtDamage ? null : super.findHitEntity(v1, v2);
     }
 
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(ID_LOYALTY, (byte) 0);
-        this.entityData.define(ID_FOIL, false);
-        this.entityData.define(ID_TYPE, "wooden_javelin");
+        entityData.define(ID_LOYALTY, (byte) 0);
+        entityData.define(ID_FOIL, false);
+        entityData.define(ID_TYPE, "wooden_javelin");
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -151,9 +152,12 @@ public class JavelinEntity extends AbstractArrowEntity {
             damage += EnchantmentHelper.getDamageBonus(item, livingentity.getMobType());
         }
 
-        Entity owner = this.getOwner();
-        DamageSource damagesource = DamageSource.trident(this, (owner == null ? this : owner));
-        this.dealtDamage = true;
+        Entity owner = getOwner();
+        DamageSource damagesource = FDamageSource.javelin(this, (owner == null ? this : owner));
+
+        if(getPierceLevel() > 0) {
+            dealtDamage = true;
+        }
 
         SoundEvent soundevent = SoundEvents.TRIDENT_HIT;
         if (entity.hurt(damagesource, damage)) {
@@ -168,14 +172,15 @@ public class JavelinEntity extends AbstractArrowEntity {
                     EnchantmentHelper.doPostDamageEffects((LivingEntity) owner, livingentity1);
                 }
 
-                this.doPostHurtEffects(livingentity1);
+                doPostHurtEffects(livingentity1);
             }
         }
 
-        this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01D, -0.1D, -0.01D));
-        float f1 = 1.0F;
+        if(getPierceLevel() <= 0) {
+            setDeltaMovement(getDeltaMovement().multiply(-0.01D, -0.1D, -0.01D));
+        }
 
-        this.playSound(soundevent, f1, 1.0F);
+        playSound(soundevent, 1f, 1f);
     }
 
     protected SoundEvent getDefaultHitGroundSoundEvent() {

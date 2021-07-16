@@ -9,6 +9,7 @@ import io.github.akiart.fantasia.common.entity.FEntities;
 import io.github.akiart.fantasia.common.entity.projectile.JavelinEntity;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -105,6 +106,11 @@ public class JavelinItem extends TieredItem {
 
         if (player.abilities.instabuild) {
             javelinEntity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+        }
+
+        int piercing = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PIERCING, itemStack);
+        if (piercing > 0) {
+            javelinEntity.setPierceLevel((byte)piercing);
         }
 
         world.addFreshEntity(javelinEntity);
