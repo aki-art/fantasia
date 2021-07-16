@@ -74,15 +74,15 @@ public class FItems {
 	public static final RegistryObject<FrostworkPickaxeItem> FROSTWORK_PICKAXE = ItemRegistryUtil.register("frostwork_pickaxe", () -> new FrostworkPickaxeItem(FItemTier.FROSTWORK, 9, 4f, (new Item.Properties().tab(FItemGroup.FANTASIA))));
 
 	// Javelins
-	public static final RegistryObject<JavelinItem> WOODEN_JAVELIN = ItemRegistryUtil.registerJavelin("wooden_javelin", ItemTier.WOOD, 3 , -2.4f);
-	public static final RegistryObject<JavelinItem> STONE_JAVELIN = ItemRegistryUtil.registerJavelin("stone_javelin", ItemTier.STONE, 3 , -2.4f);
-	public static final RegistryObject<JavelinItem> GOLD_JAVELIN = ItemRegistryUtil.registerJavelin("gold_javelin", ItemTier.GOLD, 3 , -2.4f);
-	public static final RegistryObject<JavelinItem> IRON_JAVELIN = ItemRegistryUtil.registerJavelin("iron_javelin", ItemTier.IRON, 3 , -2.4f);
-	public static final RegistryObject<JavelinItem> DIAMOND_JAVELIN = ItemRegistryUtil.registerJavelin("diamond_javelin", ItemTier.DIAMOND, 3 , -2.4f);
-	public static final RegistryObject<JavelinItem> NETHERITE_JAVELIN = ItemRegistryUtil.registerJavelin("netherite_javelin", ItemTier.NETHERITE, 3 , -2.4f);
+	public static final RegistryObject<JavelinItem> WOODEN_JAVELIN = ItemRegistryUtil.registerJavelin("wooden_javelin", ItemTier.WOOD, 0.5f , -2.4f);
+	public static final RegistryObject<JavelinItem> STONE_JAVELIN = ItemRegistryUtil.registerJavelin("stone_javelin", ItemTier.STONE, 0.5f , -2.4f);
+	public static final RegistryObject<JavelinItem> GOLD_JAVELIN = ItemRegistryUtil.registerJavelin("gold_javelin", ItemTier.GOLD, 0.5f , -2.4f);
+	public static final RegistryObject<JavelinItem> IRON_JAVELIN = ItemRegistryUtil.registerJavelin("iron_javelin", ItemTier.IRON, 0.5f , -2.4f);
+	public static final RegistryObject<JavelinItem> DIAMOND_JAVELIN = ItemRegistryUtil.registerJavelin("diamond_javelin", ItemTier.DIAMOND, 0.5f , -2.4f);
+	public static final RegistryObject<JavelinItem> NETHERITE_JAVELIN = ItemRegistryUtil.registerJavelin("netherite_javelin", ItemTier.NETHERITE, 0.5f , -2.4f);
 	public static final RegistryObject<JavelinItem> WOLFRAMITE_JAVELIN = ItemRegistryUtil.registerJavelin("wolframite_javelin", FItemTier.WOLFRAMITE, 3 , -2.4f);
 	public static final RegistryObject<JavelinItem> GHASTLY_JAVELIN = ItemRegistryUtil.registerJavelin("ghastly_javelin", FItemTier.GHASTLY, 3 , -2.4f);
-	public static final RegistryObject<JavelinItem> FROSTWORK_BOLT = ItemRegistryUtil.registerJavelin("frostwork_bolt", FItemTier.WOLFRAMITE, 0 , -2.4f);
+	public static final RegistryObject<JavelinItem> FROSTWORK_BOLT = ItemRegistryUtil.registerJavelin("frostwork_bolt", FItemTier.WOLFRAMITE, 0.5f , -2.4f);
 
 	// Spawn Eggs
 	public static final RegistryObject<FSpawnEggItem> PTARMIGAN_SPAWN_EGG = ItemRegistryUtil.registerEgg("ptarmigan_spawn_egg", FEntityTypes.PTARMIGAN, Constants.Colors.CREAM, Constants.Colors.LIGHT_BROWN);
