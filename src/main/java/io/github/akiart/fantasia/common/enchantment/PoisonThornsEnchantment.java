@@ -29,11 +29,11 @@ public class PoisonThornsEnchantment extends Enchantment {
     }
 
     @Override
-    public void doPostHurt(LivingEntity target, Entity source, int level) {
+    public void doPostHurt(LivingEntity target, Entity source, int amplifier) {
         Random random = target.getRandom();
         Map.Entry<EquipmentSlotType, ItemStack> randomPiece = EnchantmentHelper.getRandomItemWith(FEnchantments.POISON_THORNS.get(), target);
-        if (source instanceof LivingEntity && shouldHit(level, random)) {
-            ((LivingEntity)source).addEffect(new EffectInstance(Effects.POISON, getDamage(level, random), 10 + level * 5));
+        if (source instanceof LivingEntity && shouldHit(amplifier, random)) {
+            ((LivingEntity)source).addEffect(new EffectInstance(Effects.POISON, 10 + amplifier * 5, amplifier));
 
             if (randomPiece != null) {
                 randomPiece.getValue().hurtAndBreak(2, target, (living) -> {

@@ -6,9 +6,8 @@ import net.minecraft.inventory.EquipmentSlotType;
 
 public class PoisonProtectionEnchantment extends Enchantment {
 
+    // takes effect in EntityEvents#onPotionApply
     protected PoisonProtectionEnchantment(Rarity rarity, EquipmentSlotType... slots) {
         super(rarity, EnchantmentType.ARMOR, slots);
     }
-
-    // EntityEvents#onPotionApply
 }

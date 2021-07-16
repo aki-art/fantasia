@@ -25,11 +25,11 @@ public class PoisonTouchEnchantment extends Enchantment {
     }
 
     @Override
-    public void doPostAttack(LivingEntity livingEntity, Entity source, int level) {
+    public void doPostAttack(LivingEntity livingEntity, Entity source, int amplifier) {
         if (source instanceof LivingEntity) {
             LivingEntity target = (LivingEntity) source;
-            int i = 20 + livingEntity.getRandom().nextInt(10 * level);
-            target.addEffect(new EffectInstance(Effects.POISON, i, 10 + level * 5));
+            int duration = 20 + livingEntity.getRandom().nextInt(10 * amplifier);
+            target.addEffect(new EffectInstance(Effects.POISON, duration, amplifier));
         }
     }
 }

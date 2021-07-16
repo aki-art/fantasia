@@ -4,9 +4,13 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.dispenser.DispenseJavelinBehavior;
+import io.github.akiart.fantasia.common.enchantment.FEnchantments;
 import io.github.akiart.fantasia.common.entity.FEntities;
 import io.github.akiart.fantasia.common.entity.projectile.JavelinEntity;
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -37,6 +41,18 @@ public class JavelinItem extends TieredItem {
         this.defaultModifiers = builder.build();
 
         DispenserBlock.registerBehavior(this, new DispenseJavelinBehavior());
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment)
+    {
+        return (stack.getItem() instanceof JavelinItem && isValidEnchantmentType(enchantment)) || enchantment.category.canEnchant(stack.getItem());
+    }
+
+    private boolean isValidEnchantmentType(Enchantment enchantment) {
+        return enchantment == Enchantments.LOYALTY ||
+                enchantment == Enchantments.PIERCING ||
+                enchantment.category == EnchantmentType.WEAPON;
     }
 
     @Override
