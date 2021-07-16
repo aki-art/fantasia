@@ -52,8 +52,14 @@ public class EntityEvents {
     @SubscribeEvent
     public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
         LivingEntity entity = event.getEntityLiving();
+
+        // if this entity is acid immune, then skip checking acid at all
+        if(FTags.EntityTypes.ACID_IMMUNE.contains(entity.getType())) return;
+
+        // update acid fluid collisions
         entity.updateFluidHeightAndDoFluidPushing(FTags.Fluids.ACID, 0.014D);
 
+        // if in acid, get hurt by it
         boolean isInAcid = entity.getFluidHeight(FTags.Fluids.ACID) > 0;
         if(isInAcid && !entity.hasEffect(FEffects.ACID_REPEL.get())) {
             if(entity.hurt(FDamageSource.ACID, 4f)) {

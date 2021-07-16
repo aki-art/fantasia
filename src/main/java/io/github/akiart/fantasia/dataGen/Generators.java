@@ -16,15 +16,22 @@ public class Generators {
 	public static void gatherData(GatherDataEvent event) {
 		DataGenerator dataGen = event.getGenerator();
 		ExistingFileHelper fileHelper = event.getExistingFileHelper();
-		
+
+		// Items & Blocks
 		dataGen.addProvider(new FBlockStateProvider(dataGen, fileHelper));
+		dataGen.addProvider(new FItemModelProvider(dataGen, fileHelper));
+
+		// Tags
 		dataGen.addProvider(new FBlockTagsProvider(dataGen, fileHelper));
 		dataGen.addProvider(new FFluidTagsProvider(dataGen, fileHelper));
-		dataGen.addProvider(new FItemModelProvider(dataGen, fileHelper));
+		dataGen.addProvider(new FEntityTypeTagsProvider(dataGen, fileHelper));
+		// dataGen.addProvider(new ItemTagsProvider(dataGen), blocktags, fileHelper));
+
+		// Recipes
 		dataGen.addProvider(new FRecipeProvider(dataGen));
-//		dataGen.addProvider(new CraftingGenerator(dataGen)));
-//		dataGen.addProvider(new ItemTagGenerator(dataGen), blocktags, fileHelper));
+
+		// Loot tables
 		dataGen.addProvider(new FLootTableProvider(dataGen));
-//		dataGen.addProvider(new StonecuttingGenerator(dataGen)));
+		// dataGen.addProvider(new FFishingLootTableProvider(dataGen));
 	}
 }
