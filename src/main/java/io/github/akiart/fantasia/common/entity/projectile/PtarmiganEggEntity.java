@@ -34,6 +34,10 @@ public class PtarmiganEggEntity extends ProjectileItemEntity {
         super(FEntities.PTARMIGAN_EGG.get(), player, world);
     }
 
+    public PtarmiganEggEntity(World world, double x, double y, double z) {
+        super(FEntities.PTARMIGAN_EGG.get(), x, y, z, world);
+    }
+
     @OnlyIn(Dist.CLIENT)
     public void handleEntityEvent(byte flag) {
         if (flag == 3) {

@@ -3,12 +3,15 @@ package io.github.akiart.fantasia.common.item.itemType;
 import com.google.common.collect.Multimap;
 import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.block.FBlocks;
+import io.github.akiart.fantasia.common.dispenser.DispenseIcicleBehavior;
+import io.github.akiart.fantasia.common.dispenser.DispenseJavelinBehavior;
 import io.github.akiart.fantasia.common.entity.FEntities;
 import io.github.akiart.fantasia.common.entity.projectile.IcicleEntity;
 import io.github.akiart.fantasia.common.entity.projectile.JavelinEntity;
 import io.github.akiart.fantasia.common.item.itemGroup.FItemGroup;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
@@ -29,6 +32,7 @@ public class IcicleItem extends BlockItem {
 
     public IcicleItem(Block block, Item.Properties properties) {
         super(block, properties);
+        DispenserBlock.registerBehavior(this, new DispenseIcicleBehavior());
     }
 
     @Override

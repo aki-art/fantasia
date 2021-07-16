@@ -1,10 +1,11 @@
 package io.github.akiart.fantasia.common.item.itemType;
 
+import io.github.akiart.fantasia.common.dispenser.DispensePtarmiganEggBehavior;
 import io.github.akiart.fantasia.common.entity.projectile.PtarmiganEggEntity;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.IPacket;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -17,6 +18,7 @@ public class PtarmiganEggItem extends Item {
     // Chicken eggs are hardcoded to spawn chickens only, so just making a custom one here
     public PtarmiganEggItem(Item.Properties properties) {
         super(properties);
+        DispenserBlock.registerBehavior(this, new DispensePtarmiganEggBehavior());
     }
 
     @Override

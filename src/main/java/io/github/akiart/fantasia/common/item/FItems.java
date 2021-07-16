@@ -9,10 +9,7 @@ import io.github.akiart.fantasia.common.entity.item.FBoatEntity;
 import io.github.akiart.fantasia.common.fluid.FFluids;
 import io.github.akiart.fantasia.common.item.foods.Foods;
 import io.github.akiart.fantasia.common.item.itemGroup.FItemGroup;
-import io.github.akiart.fantasia.common.item.itemType.FBoatItem;
-import io.github.akiart.fantasia.common.item.itemType.IcicleItem;
-import io.github.akiart.fantasia.common.item.itemType.JavelinItem;
-import io.github.akiart.fantasia.common.item.itemType.PtarmiganEggItem;
+import io.github.akiart.fantasia.common.item.itemType.*;
 import io.github.akiart.fantasia.common.item.itemType.frostWork.FrostworkPickaxeItem;
 import io.github.akiart.fantasia.common.item.registrySet.CrystalRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.StoneItemSet;
@@ -87,10 +84,10 @@ public class FItems {
 	public static final RegistryObject<JavelinItem> GHASTLY_JAVELIN = ItemRegistryUtil.registerJavelin("ghastly_javelin", FItemTier.GHASTLY, 3 , -2.4f);
 	public static final RegistryObject<JavelinItem> FROSTWORK_BOLT = ItemRegistryUtil.registerJavelin("frostwork_bolt", FItemTier.WOLFRAMITE, 0 , -2.4f);
 
-	// Spawn Eggs 
-	public static final RegistryObject<SpawnEggItem> PTARMIGAN_SPAWN_EGG = ItemRegistryUtil.registerEgg("ptarmigan_spawn_egg", FEntityTypes.PTARMIGAN, Constants.Colors.CREAM, Constants.Colors.LIGHT_BROWN);
-	public static final RegistryObject<SpawnEggItem> VALRAVN_SPAWN_EGG = ItemRegistryUtil.registerEgg("valravn_spawn_egg", FEntityTypes.VALRAVN2, Constants.Colors.ALMOST_BLACK, Constants.Colors.RED);
-	public static final RegistryObject<SpawnEggItem> SABER_CAT_SPAWN_EGG = ItemRegistryUtil.registerEgg("saber_cat_spawn_egg", FEntityTypes.SABER_CAT, Constants.Colors.GINGER, Constants.Colors.CREAM);
+	// Spawn Eggs
+	public static final RegistryObject<FSpawnEggItem> PTARMIGAN_SPAWN_EGG = ItemRegistryUtil.registerEgg("ptarmigan_spawn_egg", FEntityTypes.PTARMIGAN, Constants.Colors.CREAM, Constants.Colors.LIGHT_BROWN);
+	public static final RegistryObject<FSpawnEggItem> VALRAVN_SPAWN_EGG = ItemRegistryUtil.registerEgg("valravn_spawn_egg", FEntityTypes.VALRAVN2, Constants.Colors.ALMOST_BLACK, Constants.Colors.RED);
+	public static final RegistryObject<FSpawnEggItem> SABER_CAT_SPAWN_EGG = ItemRegistryUtil.registerEgg("saber_cat_spawn_egg", FEntityTypes.SABER_CAT, Constants.Colors.GINGER, Constants.Colors.CREAM);
 
 	// Misc
 	public static final RegistryObject<BlockItem> FROZEN_DIRT = ItemRegistryUtil.registerFromBlock(FBlocks.FROZEN_DIRT);

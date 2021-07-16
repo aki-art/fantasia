@@ -3,8 +3,10 @@ package io.github.akiart.fantasia.common.item.itemType;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import io.github.akiart.fantasia.Fantasia;
+import io.github.akiart.fantasia.common.dispenser.DispenseJavelinBehavior;
 import io.github.akiart.fantasia.common.entity.FEntities;
 import io.github.akiart.fantasia.common.entity.projectile.JavelinEntity;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -33,6 +35,8 @@ public class JavelinItem extends TieredItem {
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", attackSpeed, AttributeModifier.Operation.ADDITION));
         this.defaultModifiers = builder.build();
+
+        DispenserBlock.registerBehavior(this, new DispenseJavelinBehavior());
     }
 
     @Override

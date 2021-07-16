@@ -5,6 +5,7 @@ import io.github.akiart.fantasia.client.world.FantasiaDimensionRenderInfo;
 import io.github.akiart.fantasia.common.block.FWoodType;
 import io.github.akiart.fantasia.common.block.trees.StripMap;
 import io.github.akiart.fantasia.common.capabilities.Capabilities;
+import io.github.akiart.fantasia.common.enchantment.FEnchantments;
 import io.github.akiart.fantasia.common.entity.FEntities;
 import io.github.akiart.fantasia.common.entity.ai.brain.FMemoryModuleTypes;
 import io.github.akiart.fantasia.common.entity.ai.brain.FActivities;
@@ -95,6 +96,7 @@ public class Fantasia {
         FSounds.SOUNDS.register(bus);
         FEffects.EFFECTS.register(bus);
         FPotions.POTIONS.register(bus);
+        FEnchantments.ENCHANTMENTS.register(bus);
 
         // World gen
         FBiomes.BIOMES.register(bus);

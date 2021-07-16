@@ -1,6 +1,10 @@
 package io.github.akiart.fantasia.common.entity.projectile;
 
 import io.github.akiart.fantasia.Fantasia;
+import io.github.akiart.fantasia.common.dispenser.DispenseEntityBehavior;
+import io.github.akiart.fantasia.common.dispenser.DispenseJavelinBehavior;
+import io.github.akiart.fantasia.common.entity.FEntities;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -8,6 +12,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
@@ -39,6 +44,17 @@ public class JavelinEntity extends AbstractArrowEntity {
 
     public JavelinEntity(EntityType<? extends JavelinEntity> type, World world, LivingEntity entity, ItemStack item) {
         super(type, entity, world);
+        this.item = item.copy();
+        this.entityData.set(ID_LOYALTY, (byte) EnchantmentHelper.getLoyalty(item));
+        this.entityData.set(ID_FOIL, item.hasFoil());
+
+        if (item.getItem().getRegistryName() != null) {
+            setJavelinType(item.getItem().getRegistryName().getPath());
+        }
+    }
+
+    public JavelinEntity(World world, double x, double y, double z, ItemStack item) {
+        super(FEntities.JAVELIN.get(), x, y, z, world);
         this.item = item.copy();
         this.entityData.set(ID_LOYALTY, (byte) EnchantmentHelper.getLoyalty(item));
         this.entityData.set(ID_FOIL, item.hasFoil());
@@ -185,6 +201,7 @@ public class JavelinEntity extends AbstractArrowEntity {
 
         this.dealtDamage = nbt.getBoolean("DealtDamage");
         this.entityData.set(ID_LOYALTY, (byte) EnchantmentHelper.getLoyalty(this.item));
+        this.entityData.set(ID_FOIL, nbt.getBoolean("Foil"));
     }
 
     @Override
@@ -193,6 +210,7 @@ public class JavelinEntity extends AbstractArrowEntity {
         nbt.put("Javelin", this.item.save(new CompoundNBT()));
         nbt.putString("JavelinType", getJavelinType());
         nbt.putBoolean("DealtDamage", this.dealtDamage);
+        nbt.putBoolean("Foil", isFoil());
     }
 
     public void tickDespawn() {
