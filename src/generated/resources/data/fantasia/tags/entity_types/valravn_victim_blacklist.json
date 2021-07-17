@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "iceandfire:dragon",
+      "required": false
+    },
+    "fantasia:valravn2"
+  ]
+}

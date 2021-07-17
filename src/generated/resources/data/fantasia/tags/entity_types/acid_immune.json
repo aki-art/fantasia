@@ -1,12 +1,12 @@
 {
   "replace": false,
   "values": [
+    "#fantasia:frostwork",
     "minecraft:armor_stand",
     "minecraft:iron_golem",
     "minecraft:guardian",
     "minecraft:elder_guardian",
     "minecraft:strider",
-    "#fantasia:frostwork",
     {
       "id": "iceandfire:hydra",
       "required": false

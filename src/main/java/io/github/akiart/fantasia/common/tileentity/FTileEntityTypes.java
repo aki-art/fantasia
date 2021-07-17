@@ -24,6 +24,8 @@ public class FTileEntityTypes {
 			() -> TileEntityType.Builder.of(FSignTileEntity::new,
 					FBlocks.FROZEN_ELM.getSign().get(),
 					FBlocks.FROZEN_ELM.getWallSign().get(),
+					FBlocks.ASPEN.getSign().get(),
+					FBlocks.ASPEN.getWallSign().get(),
 //					FBlocks.FROZEN_SPRUCE.sign.get(),
 //					FBlocks.FROZEN_SPRUCE.wallSign.get(),
 //					FBlocks.ELM.sign.get(),
@@ -35,7 +37,8 @@ public class FTileEntityTypes {
 	public static final RegistryObject<TileEntityType<FChestTileEntity>> CHEST = TILE_ENTITY_TYPES.register("chest",
 			() -> TileEntityType.Builder.of(FChestTileEntity::new,
 					FBlocks.testChest.get(),
-					FBlocks.FROZEN_ELM.getChest().get()
+					FBlocks.FROZEN_ELM.getChest().get(),
+					FBlocks.ASPEN.getChest().get()
 //					FBlocks.FROZEN_SPRUCE.chest.get(),
 //					FBlocks.ELM.chest.get()
 			).build(null));

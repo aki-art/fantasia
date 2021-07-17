@@ -2,6 +2,9 @@ package io.github.akiart.fantasia.dataGen;
 
 import io.github.akiart.fantasia.Fantasia;
 
+import io.github.akiart.fantasia.dataGen.lang.FBlockLanguageProvider;
+import io.github.akiart.fantasia.dataGen.lang.FItemLanguageProvider;
+import io.github.akiart.fantasia.dataGen.lang.FLanguageProvider;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -33,5 +36,8 @@ public class Generators {
 		// Loot tables
 		dataGen.addProvider(new FLootTableProvider(dataGen));
 		// dataGen.addProvider(new FFishingLootTableProvider(dataGen));
+
+		// Lang
+		dataGen.addProvider(new FLanguageProvider(dataGen, Fantasia.ID, "en_us"));
 	}
 }
