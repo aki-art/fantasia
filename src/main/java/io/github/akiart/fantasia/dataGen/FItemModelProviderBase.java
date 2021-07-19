@@ -181,6 +181,10 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
     }
 
     public void javelin(Item item, ResourceLocation particleTex) {
+        javelin(item, particleTex, false);
+    }
+
+    public void javelin(Item item, ResourceLocation particleTex, boolean overlay) {
 
         getBuilder(getName(item) + "_throwing")
                 .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
@@ -191,9 +195,9 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
                 .transform(ModelBuilder.Perspective.THIRDPERSON_LEFT).rotation(0, -90, 180).translation(8, -17, -7).scale(1, 1, 1).end()
                 .transform(ModelBuilder.Perspective.FIRSTPERSON_RIGHT).rotation(0, -90, 25).translation(-3, 17, 1).scale(1, 1, 1).end()
                 .transform(ModelBuilder.Perspective.FIRSTPERSON_LEFT).rotation(0, 90, -25).translation(13, 17, 1).scale(1, 1, 1).end()
-                .transform(ModelBuilder.Perspective.GUI).rotation(15, -25, -5).translation(2, 3, 0).scale(0.65f, 0.65f, 0.65f).end()
-                .transform(ModelBuilder.Perspective.FIXED).rotation(0, 180, 0).translation(-2, 4, -5).scale(0.5f, 0.5f, 0.5f).end()
-                .transform(ModelBuilder.Perspective.GROUND).rotation(0, 0, 0).translation(4, 4, 2).scale(0.25f, 0.25f, 0.25f).end().end();
+                .transform(ModelBuilder.Perspective.GUI).rotation(0, 0, 0).translation(0, 0, 0).scale(1, 1, 1).end()
+                //.transform(ModelBuilder.Perspective.FIXED).rotation(0, 180, 0).translation(-2, 4, -5).scale(0.5f, 0.5f, 0.5f).end()
+                .transform(ModelBuilder.Perspective.GROUND).rotation(0, 0, 0).translation(0, 0, 0).scale(2f, 2f, 2f).end().end();
 
         getBuilder(getName(item))
                 .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
@@ -204,13 +208,17 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
                 .transform(ModelBuilder.Perspective.FIRSTPERSON_RIGHT).rotation(0, -90, 25).translation(-3, 17, 1).scale(1, 1, 1).end()
                 .transform(ModelBuilder.Perspective.THIRDPERSON_LEFT).rotation(0, 60, 0).translation(11, 17, 12).scale(1, 1, 1).end()
                 .transform(ModelBuilder.Perspective.THIRDPERSON_RIGHT).rotation(0, 60, 0).translation(11, 17, -2).scale(1, 1, 1).end()
-                .transform(ModelBuilder.Perspective.GUI).rotation(15, -25, -5).translation(2, 3, 0).scale(0.65f, 0.65f, 0.65f).end()
-                .transform(ModelBuilder.Perspective.FIXED).rotation(0, 180, 0).translation(-2, 4, -5).scale(0.5f, 0.5f, 0.5f).end()
-                .transform(ModelBuilder.Perspective.GROUND).rotation(0, 0, 0).translation(4, 4, 2).scale(0.25f, 0.25f, 0.25f).end().end()
+                .transform(ModelBuilder.Perspective.GUI).rotation(0, 0, 0).translation(0, 0, 0).scale(1, 1, 1).end()
+                //.transform(ModelBuilder.Perspective.FIXED).rotation(0, 180, 0).translation(-2, 4, -5).scale(0.5f, 0.5f, 0.5f).end()
+                .transform(ModelBuilder.Perspective.GROUND).rotation(0, 0, 0).translation(0, 0, 0).scale(1f, 1f, 1f).end().end()
                 .override()
                 .predicate(new ResourceLocation("throwing"), 1f)
                 .model(new ModelFile.UncheckedModelFile(new ResourceLocation(Fantasia.ID, "item/" + getName(item) + "_throwing"))).end();
 
-        generate(getName(item) + "_inventory", getItemTexture(item));
+        if (overlay) {
+            generate(getName(item) + "_inventory", getItemTexture(item), getItemLocation(item.getRegistryName().getPath() + "_overlay"));
+        } else {
+            generate(getName(item) + "_inventory", getItemTexture(item));
+        }
     }
 }

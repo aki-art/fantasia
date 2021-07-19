@@ -1,9 +1,9 @@
 package io.github.akiart.fantasia.common.item;
 
 import io.github.akiart.fantasia.Fantasia;
+import io.github.akiart.fantasia.client.renderer.tileentity.itemStackRenderer.ISTERs;
 import io.github.akiart.fantasia.common.block.FBlocks;
 import io.github.akiart.fantasia.common.block.FWoodType;
-import io.github.akiart.fantasia.common.entity.FEntities;
 import io.github.akiart.fantasia.common.entity.FEntityTypes;
 import io.github.akiart.fantasia.common.entity.item.FBoatEntity;
 import io.github.akiart.fantasia.common.fluid.FFluids;
@@ -17,7 +17,6 @@ import io.github.akiart.fantasia.common.item.registrySet.StoneRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.tree.BasicTreeRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.tree.ThinTreeRegistryItem;
 import io.github.akiart.fantasia.util.Constants;
-import net.minecraft.entity.EntityType;
 import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -83,6 +82,14 @@ public class FItems {
 	public static final RegistryObject<JavelinItem> WOLFRAMITE_JAVELIN = ItemRegistryUtil.registerJavelin("wolframite_javelin", FItemTier.WOLFRAMITE, 3 , -2.4f);
 	public static final RegistryObject<JavelinItem> GHASTLY_JAVELIN = ItemRegistryUtil.registerJavelin("ghastly_javelin", FItemTier.GHASTLY, 3 , -2.4f);
 	public static final RegistryObject<JavelinItem> FROSTWORK_BOLT = ItemRegistryUtil.registerJavelin("frostwork_bolt", FItemTier.WOLFRAMITE, 0.5f , -2.4f);
+	public static final RegistryObject<JavelinItem> SABER_TOOTH_JAVELIN = ItemRegistryUtil.registerJavelin("saber_tooth_javelin", FItemTier.BONE, 0.5f , -2.4f);
+	public static final RegistryObject<TippedSaberToothJavelinItem> TIPPED_SABER_TOOTH_JAVELIN = ItemRegistryUtil.registerJavelin("tipped_saber_tooth_javelin",
+			() -> new TippedSaberToothJavelinItem(0.5f, -2.4f,
+					new Item.Properties()
+							.stacksTo(16)
+							.tab(FItemGroup.FANTASIA)
+							.setISTER(() -> () -> ISTERs.createJavelinISTER("tipped_saber_tooth_javelin"))));
+
 
 	// Spawn Eggs
 	public static final RegistryObject<FSpawnEggItem> PTARMIGAN_SPAWN_EGG = ItemRegistryUtil.registerEgg("ptarmigan_spawn_egg", FEntityTypes.PTARMIGAN, Constants.Colors.CREAM, Constants.Colors.LIGHT_BROWN);

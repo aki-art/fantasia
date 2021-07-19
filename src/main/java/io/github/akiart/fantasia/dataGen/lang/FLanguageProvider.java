@@ -19,6 +19,7 @@ public class FLanguageProvider extends LanguageProvider {
 
         effects();
         biomes();
+        tooltips();
     }
 
     private void effects() {
@@ -36,6 +37,10 @@ public class FLanguageProvider extends LanguageProvider {
         addBiome(FBiomes.ROCKY_MOUNTAINS_EDGE, "Rocky Mountains Edge");
         addBiome(FBiomes.GRIMCAP_GROVE, "Grimcap Grove");
         addBiome(FBiomes.ICY_CAVERN, "Icy Cavern");
+    }
+
+    private void tooltips() {
+        add("tooltip.item.sabertooth_javelin.uses_left", "%s/%s uses left");
     }
 
     private void addBiome(BiomeRegistryObject biome, String name) {

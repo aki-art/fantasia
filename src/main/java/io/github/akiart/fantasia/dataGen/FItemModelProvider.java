@@ -30,6 +30,7 @@ public class FItemModelProvider extends FItemModelProviderBase {
 		javelin(FItems.WOLFRAMITE_JAVELIN.get(), getBlockTexture(Blocks.NETHERITE_BLOCK));
 		javelin(FItems.GHASTLY_JAVELIN.get(), getBlockTexture(Blocks.SLIME_BLOCK));
 		javelin(FItems.FROSTWORK_BOLT.get(), getBlockTexture(Blocks.LAPIS_BLOCK));
+		javelin(FItems.TIPPED_SABER_TOOTH_JAVELIN.get(), getBlockTexture(Blocks.SANDSTONE), true);
 
 		withExistingParent(getName(FItems.EDELSTONE_SPELEOTHEM.get()), getBlockLocation("edelstone_speleothem_tip"));
 		withExistingParent(getName(FItems.ICICLE.get()), getBlockLocation("icicle_tip"));

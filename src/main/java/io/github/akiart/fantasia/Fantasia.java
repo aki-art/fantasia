@@ -12,6 +12,7 @@ import io.github.akiart.fantasia.common.entity.ai.brain.FActivities;
 import io.github.akiart.fantasia.common.entity.ai.brain.FSchedules;
 import io.github.akiart.fantasia.common.fluid.FFluids;
 import io.github.akiart.fantasia.common.item.FItemModelProperties;
+import io.github.akiart.fantasia.common.item.crafting.FRecipeSerializers;
 import io.github.akiart.fantasia.common.potion.FEffects;
 import io.github.akiart.fantasia.common.potion.FPotions;
 import io.github.akiart.fantasia.common.world.FChunkGenerator2;
@@ -23,9 +24,13 @@ import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
 import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -57,16 +62,16 @@ public class Fantasia {
     public static final ResourceLocation FANTASIA_EFFECTS = new ResourceLocation(ID, "fantasia_effects");
 
     public Fantasia() {
-//        {
-//            final Pair<Config.Common, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Config.Common::new);
-//            ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, specPair.getRight());
-//            Config.common = specPair.getLeft();
-//        }
-//        {
-//            final Pair<Config.Client, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Config.Client::new);
-//            ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, specPair.getRight());
-//            Config.client = specPair.getLeft();
-//        }
+        {
+            final Pair<Config.Common, ForgeConfigSpec> common = new ForgeConfigSpec.Builder().configure(Config.Common::new);
+            ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, common.getRight());
+            Config.common = common.getLeft();
+        }
+        {
+            final Pair<Config.Client, ForgeConfigSpec> client = new ForgeConfigSpec.Builder().configure(Config.Client::new);
+            ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, client.getRight());
+            Config.client = client.getLeft();
+        }
 
         GeckoLib.initialize();
 
@@ -78,7 +83,7 @@ public class Fantasia {
         bus.addListener(this::clientSetup);
 
         if(Config.common != null) {
-            //Fantasia.LOGGER.info("config exists, test is {}", Config.common.testSettings.testBoolean.get());
+            Fantasia.LOGGER.info("config exists, test is {}", Config.common.equipment.sabertoothJavelinUses);
         }
 
         MinecraftForge.EVENT_BUS.register(this);
@@ -86,7 +91,7 @@ public class Fantasia {
 
     private void initRegistries(IEventBus bus) {
 
-        // Content
+        // Game Objects
         FBlocks.BLOCKS.register(bus);
         FFluids.FLUIDS.register(bus);
         FItems.ITEMS.register(bus);
@@ -97,6 +102,7 @@ public class Fantasia {
         FEffects.EFFECTS.register(bus);
         FPotions.POTIONS.register(bus);
         FEnchantments.ENCHANTMENTS.register(bus);
+        FRecipeSerializers.RECIPE_SERIALIZERS.register(bus);
 
         // World gen
         FBiomes.BIOMES.register(bus);
@@ -109,6 +115,7 @@ public class Fantasia {
         FMemoryModuleTypes.MEMORY_MODULE_TYPES.register(bus);
         FActivities.ACTIVITIES.register(bus);
         FSchedules.SCHEDULES.register(bus);
+
     }
 
     private void setup(final FMLCommonSetupEvent event) {

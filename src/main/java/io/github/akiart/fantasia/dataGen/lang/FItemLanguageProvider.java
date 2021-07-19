@@ -64,6 +64,7 @@ public class FItemLanguageProvider {
         provider.add(FItems.WOLFRAMITE_JAVELIN.get(), "Wolframite Javelin");
         provider.add(FItems.GHASTLY_JAVELIN.get(), "Ghastly Javelin");
         provider.add(FItems.FROSTWORK_BOLT.get(), "Frostwork Ballista Bolt");
+        provider.add(FItems.TIPPED_SABER_TOOTH_JAVELIN.get(), "Sabertooth Javelin");
     }
 
     private void boats() {

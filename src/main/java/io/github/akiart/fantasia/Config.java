@@ -11,9 +11,9 @@ public class Config {
     public static Client client;
 
     public static class Common {
-        DimensionSettings dimension = new DimensionSettings();
-        PortalSettings portal = new PortalSettings();
-        EquipmentSettings equipment = new EquipmentSettings();
+        public DimensionSettings dimension = new DimensionSettings();
+        public PortalSettings portal = new PortalSettings();
+        public EquipmentSettings equipment = new EquipmentSettings();
 
         public Common(ForgeConfigSpec.Builder builder) {
             builder.push("Dimension Settings");
@@ -49,6 +49,11 @@ public class Config {
                     .comment("If true, Frostwork Pickaxes can destroy blocks.")
                     .define("enableFrostworkPickGriefing", true);
 
+            equipment.sabertoothJavelinUses = builder
+                    .translation(getKey("sabertoothJavelinUses"))
+                    .comment("Set default potion uses when applying a potion to a Sabertooth Javelin.")
+                    .defineInRange("enableFrostworkPickGriefing", 16, 0, 1024);
+
             builder.pop();
         }
 
@@ -64,6 +69,7 @@ public class Config {
 
         public static class EquipmentSettings {
             public ForgeConfigSpec.BooleanValue enableFrostworkPickGriefing;
+            public ForgeConfigSpec.IntValue sabertoothJavelinUses;
         }
     }
 

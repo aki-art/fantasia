@@ -21,11 +21,16 @@ public class FBlockLanguageProvider {
         stones();
         crystals();
         plants();
+        speleothems();
 
         provider.add(FBlocks.FANTASIA_PORTAL_BLOCK.get(), "Fantasia Portal");
         provider.add(FBlocks.ICICLE.get(), "Icicle");
         provider.add(FBlocks.ACID.get(), "Acid");
         provider.add(FBlocks.FROZEN_DIRT.get(), "Frozen Dirt");
+    }
+
+    private void speleothems() {
+        provider.add(FBlocks.EDELSTONE_SPELEOTHEM.get(), "Edelstone Stalactite");
     }
 
     private void trees() {

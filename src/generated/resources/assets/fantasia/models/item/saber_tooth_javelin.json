@@ -52,15 +52,15 @@
     }
   },
   "textures": {
-    "layer0": "fantasia:item/netherite_javelin",
-    "particle": "minecraft:block/netherite_block"
+    "layer0": "fantasia:item/saber_tooth_javelin",
+    "particle": "minecraft:block/sandstone"
   },
   "overrides": [
     {
       "predicate": {
         "minecraft:throwing": 1.0
       },
-      "model": "fantasia:item/netherite_javelin_throwing"
+      "model": "fantasia:item/saber_tooth_javelin_throwing"
     }
   ]
 }

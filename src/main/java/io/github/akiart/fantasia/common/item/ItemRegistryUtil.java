@@ -45,6 +45,7 @@ public class ItemRegistryUtil {
 	public static HashSet<CrystalRegistryItem> crystals = new HashSet<>();
 	public static HashSet<AbstractTreeRegistryItem<?>> trees = new HashSet<>();
 	public static HashSet<RegistryObject<? extends Item>> simpleItems = new HashSet<>();
+	public static HashSet<RegistryObject<? extends JavelinItem>> javelins = new HashSet<>();
 
 	public static <T extends Item> RegistryObject<T> register(String name, Supplier<T> item) {
 		RegistryObject<T> reg = FItems.ITEMS.register(name, item);
@@ -88,13 +89,20 @@ public class ItemRegistryUtil {
 	}
 
 	public static RegistryObject<JavelinItem> registerJavelin(String name, IItemTier tier, float damage, float attackSpeed) {
-		return ItemRegistryUtil.register(name,
+		return registerJavelin(name,
 				() -> new JavelinItem(tier, damage , attackSpeed,
 						new Item.Properties()
 								.stacksTo(16)
 								.tab(FItemGroup.FANTASIA)
 								.setISTER(() -> () -> ISTERs.createJavelinISTER(name))));
 	}
+
+	public static <T extends JavelinItem> RegistryObject<T> registerJavelin(String name, Supplier<T> item) {
+		RegistryObject<T> reg = FItems.ITEMS.register(name, item);
+		javelins.add(reg);
+		return reg;
+	}
+
 
 	public static BasicTreeRegistryItem registerTreeItems(BasicTreeRegistryObject parent, WoodType woodType) {
 		BasicTreeRegistryItem obj = new BasicTreeRegistryItem(parent, woodType);

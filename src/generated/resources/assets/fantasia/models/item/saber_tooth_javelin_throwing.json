@@ -59,6 +59,6 @@
     }
   },
   "textures": {
-    "particle": "minecraft:block/iron_block"
+    "particle": "minecraft:block/sandstone"
   }
 }

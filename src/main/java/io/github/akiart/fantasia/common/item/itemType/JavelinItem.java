@@ -1,12 +1,14 @@
 package io.github.akiart.fantasia.common.item.itemType;
 
 import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.dispenser.DispenseJavelinBehavior;
 import io.github.akiart.fantasia.common.enchantment.FEnchantments;
 import io.github.akiart.fantasia.common.entity.FEntities;
 import io.github.akiart.fantasia.common.entity.projectile.JavelinEntity;
+import io.github.akiart.fantasia.util.Constants;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -23,8 +25,14 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.TieredItem;
 import net.minecraft.item.UseAction;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.potion.Potions;
 import net.minecraft.util.*;
+import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
+
+import java.util.HashMap;
 
 public class JavelinItem extends TieredItem {
 
@@ -101,7 +109,7 @@ public class JavelinItem extends TieredItem {
     }
 
     protected void spawnJavelinEntity(ItemStack itemStack, World world, PlayerEntity player) {
-        JavelinEntity javelinEntity = new JavelinEntity(FEntities.JAVELIN.get(), world, player, itemStack);
+        JavelinEntity javelinEntity = createJavelinEntity(itemStack, world, player);
         javelinEntity.shootFromRotation(player, player.xRot, player.yRot, 0.0F, 2.5F, 1.0F);
 
         if (player.abilities.instabuild) {
@@ -116,6 +124,10 @@ public class JavelinItem extends TieredItem {
         world.addFreshEntity(javelinEntity);
         javelinEntity.setJavelinType(this.getRegistryName().getPath());
         world.playSound(null, javelinEntity, SoundEvents.TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
+    }
+
+    protected JavelinEntity createJavelinEntity(ItemStack itemStack, World world, PlayerEntity player) {
+        return new JavelinEntity(FEntities.JAVELIN.get(), world, player, itemStack);
     }
 
     @Override
