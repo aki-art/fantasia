@@ -1,12 +1,12 @@
 {
   "replace": false,
   "values": [
-    "fantasia:scalestone_pressure_plate",
     "fantasia:mudstone_pressure_plate",
-    "fantasia:pith_pressure_plate",
     "fantasia:edelstone_pressure_plate",
+    "fantasia:sut_pressure_plate",
     "fantasia:marlstone_pressure_plate",
     "fantasia:sanguite_pressure_plate",
-    "fantasia:sut_pressure_plate"
+    "fantasia:pith_pressure_plate",
+    "fantasia:scalestone_pressure_plate"
   ]
 }
