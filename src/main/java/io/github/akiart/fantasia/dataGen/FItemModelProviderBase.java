@@ -129,9 +129,9 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
         fenceInventory(getName(items.fence.get()), plankTex);
         fenceGate(getName(items.fenceGate.get()), plankTex);
 
-        if(tree instanceof BasicTreeRegistryObject) {
-            BasicTreeRegistryObject basicTree = (BasicTreeRegistryObject)tree;
-            BasicTreeRegistryItem basicItem = (BasicTreeRegistryItem)items;
+        if (tree instanceof BasicTreeRegistryObject) {
+            BasicTreeRegistryObject basicTree = (BasicTreeRegistryObject) tree;
+            BasicTreeRegistryItem basicItem = (BasicTreeRegistryItem) items;
 
             ResourceLocation logTex = getBlockTexture(basicTree.log.get());
             ResourceLocation lotTopTex = getBlockLocation(tree.getName() + "_log_top");
@@ -146,10 +146,9 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
             fromBlock(basicTree.wood.get());
             fromBlock(basicTree.strippedWood.get());
             fromBlock(basicTree.leaves.get());
-        }
-        else if(tree instanceof ThinTreeRegistryObject) {
-            ThinTreeRegistryObject basicTree = (ThinTreeRegistryObject)tree;
-            ThinTreeRegistryItem basicItem = (ThinTreeRegistryItem)items;
+        } else if (tree instanceof ThinTreeRegistryObject) {
+            ThinTreeRegistryObject basicTree = (ThinTreeRegistryObject) tree;
+            ThinTreeRegistryItem basicItem = (ThinTreeRegistryItem) items;
 
             ResourceLocation logTex = getBlockTexture(basicTree.log.get());
             ResourceLocation lotTopTex = getBlockLocation(tree.getName() + "_log_top");
@@ -172,20 +171,22 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
     }
 
     public void miscItem(RegistryObject<? extends Item> item) {
-        if(item.get() instanceof SpawnEggItem) {
+        if (item.get() instanceof SpawnEggItem) {
             withExistingParent(getName(item.get()), new ResourceLocation("item/template_spawn_egg"));
-        }
-        else {
+        } else {
             generate(getName(item.get()), getItemTexture(item.get()));
         }
     }
 
     public void javelin(Item item, ResourceLocation particleTex) {
-        javelin(item, particleTex, false);
+        javelin(item, particleTex, 0);
     }
 
-    public void javelin(Item item, ResourceLocation particleTex, boolean overlay) {
+    public void javelin(Item item, ResourceLocation particleTex, int overlay) {
 
+        //.transform(ModelBuilder.Perspective.FIXED).rotation(0, 180, 0).translation(-2, 4, -5).scale(0.5f, 0.5f, 0.5f).end()
+
+        // throwing javelin model
         getBuilder(getName(item) + "_throwing")
                 .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
                 .texture("particle", particleTex)
@@ -197,12 +198,14 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
                 .transform(ModelBuilder.Perspective.FIRSTPERSON_LEFT).rotation(0, 90, -25).translation(13, 17, 1).scale(1, 1, 1).end()
                 .transform(ModelBuilder.Perspective.GUI).rotation(0, 0, 0).translation(0, 0, 0).scale(1, 1, 1).end()
                 //.transform(ModelBuilder.Perspective.FIXED).rotation(0, 180, 0).translation(-2, 4, -5).scale(0.5f, 0.5f, 0.5f).end()
-                .transform(ModelBuilder.Perspective.GROUND).rotation(0, 0, 0).translation(0, 0, 0).scale(2f, 2f, 2f).end().end();
+                .transform(ModelBuilder.Perspective.GROUND).rotation(0, 0, 0).translation(0, 0, 0).scale(2f, 2f, 2f).end();
 
+        // held in hand javelin model
         getBuilder(getName(item))
                 .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
                 .texture("particle", particleTex)
                 .guiLight(BlockModel.GuiLight.FRONT)
+
                 .transforms()
                 .transform(ModelBuilder.Perspective.FIRSTPERSON_LEFT).rotation(0, 90, -25).translation(13, 17, 1).scale(1, 1, 1).end()
                 .transform(ModelBuilder.Perspective.FIRSTPERSON_RIGHT).rotation(0, -90, 25).translation(-3, 17, 1).scale(1, 1, 1).end()
@@ -211,14 +214,30 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
                 .transform(ModelBuilder.Perspective.GUI).rotation(0, 0, 0).translation(0, 0, 0).scale(1, 1, 1).end()
                 //.transform(ModelBuilder.Perspective.FIXED).rotation(0, 180, 0).translation(-2, 4, -5).scale(0.5f, 0.5f, 0.5f).end()
                 .transform(ModelBuilder.Perspective.GROUND).rotation(0, 0, 0).translation(0, 0, 0).scale(1f, 1f, 1f).end().end()
+
                 .override()
-                .predicate(new ResourceLocation("throwing"), 1f)
+                .predicate(new ResourceLocation(Fantasia.ID,"throwing"), 1f)
                 .model(new ModelFile.UncheckedModelFile(new ResourceLocation(Fantasia.ID, "item/" + getName(item) + "_throwing"))).end();
 
-        if (overlay) {
-            generate(getName(item) + "_inventory", getItemTexture(item), getItemLocation(item.getRegistryName().getPath() + "_overlay"));
-        } else {
-            generate(getName(item) + "_inventory", getItemTexture(item));
+        // inventory javelin model
+        ItemModelBuilder builder = generate(getName(item) + "_inventory", getItemTexture(item));
+
+        if (overlay > 0) {
+            builder.override()
+                    .predicate(new ResourceLocation(Fantasia.ID,"potion_level"), 1f)
+                    .model(new ModelFile.UncheckedModelFile(new ResourceLocation(Fantasia.ID, "item/" + getName(item) + "_overlay_0"))).end()
+
+                    .override()
+                    .predicate(new ResourceLocation(Fantasia.ID,"potion_level"), 0.5f)
+                    .model(new ModelFile.UncheckedModelFile(new ResourceLocation(Fantasia.ID, "item/" + getName(item) + "_overlay_1"))).end()
+
+                    .override()
+                    .predicate(new ResourceLocation(Fantasia.ID,"potion_level"), 0f)
+                    .model(new ModelFile.UncheckedModelFile(new ResourceLocation(Fantasia.ID, "item/" + getName(item) + "_overlay_2"))).end();
+
+            for (int i = 0; i < overlay; i++) {
+                generate(getName(item) + "_overlay_" + i, getItemTexture(item), getItemLocation(getName(item) + "_overlay_" + i));
+            }
         }
     }
 }

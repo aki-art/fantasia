@@ -28,9 +28,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.HashMap;
 import java.util.List;
 
-public class TippedSaberToothJavelinItem extends JavelinItem {
+public class SaberToothJavelinItem extends JavelinItem {
 
-    public TippedSaberToothJavelinItem(float damage, float attackSpeed, Properties properties) {
+    public SaberToothJavelinItem(float damage, float attackSpeed, Properties properties) {
         super(FItemTier.BONE, damage, attackSpeed, properties);
     }
 
@@ -43,9 +43,12 @@ public class TippedSaberToothJavelinItem extends JavelinItem {
     // TODO remove when done testing
     @Override
     public ActionResultType useOn(ItemUseContext context) {
-        if(!context.getLevel().isClientSide() && context.getLevel().getBlockState(context.getClickedPos()).is(Blocks.TARGET)) {
+        if (!context.getLevel().isClientSide() && context.getLevel().getBlockState(context.getClickedPos()).is(Blocks.TARGET)) {
             decreasePotionUses(context.getItemInHand());
         }
+
+        // context.getPlayer().sendMessage(new StringTextComponent("POTION: " + String.format("0x%08X", getColor(context.getItemInHand()))), Util.NIL_UUID);
+        context.getPlayer().sendMessage(new StringTextComponent(getPotionUsesLeftForDisplay(context.getItemInHand()) + ""), Util.NIL_UUID);
 
         return super.useOn(context);
     }
@@ -54,31 +57,36 @@ public class TippedSaberToothJavelinItem extends JavelinItem {
         return Config.common.equipment.sabertoothJavelinUses.get();
     }
 
-    public void setPotionUsesLeft(ItemStack stack, int uses) {
-        stack.getOrCreateTag().putInt("F_PotionUses", Math.max(0, uses));
-        if(uses <= 0) {
-            PotionUtils.setPotion(stack, Potions.EMPTY);
-            stack.removeTagKey("F_TipColor");
-        }
-        else {
-            int color = ((getColor(stack) | 0xFF000000) - 0xFF000000) | ((int) (getPotionUsesLeftForDisplay(stack) * 255) << 24);
-            setColor(stack, color);
-        }
-    }
 
     public static int getColor(ItemStack stack) {
         return !stack.hasTag() ? -1 : stack.getTag().getInt("F_TipColor");
     }
 
-    public void decreasePotionUses(ItemStack stack) {
-        setPotionUsesLeft(stack, getPotionUsesLeft(stack) - 1);
+    protected void setColor(ItemStack stack, int color) {
+        stack.getOrCreateTag().putInt("F_TipColor", color | 0xFF000000);
     }
 
     public int getPotionUsesLeft(ItemStack stack) {
         return !stack.hasTag() ? 0 : stack.getTag().getInt("F_PotionUses");
     }
 
-    public void setPotion(ItemStack stack, Potion potion, int uses) {
+    public void decreasePotionUses(ItemStack stack) {
+        setPotionUsesLeft(stack, getPotionUsesLeft(stack) - 1);
+    }
+
+    public void setPotionUsesLeft(ItemStack stack, int uses) {
+        stack.getOrCreateTag().putInt("F_PotionUses", Math.max(0, uses));
+        if (uses <= 0) {
+            PotionUtils.setPotion(stack, Potions.EMPTY);
+            // stack.removeTagKey("F_TipColor");
+        }
+        //else {
+        //  int color = ((getColor(stack) | 0xFF000000) - 0xFF000000) | ((int) (getPotionUsesLeftForDisplay(stack) * 255) << 24);
+        //  setColor(stack, color);
+        //}
+    }
+
+    private void setPotion(ItemStack stack, Potion potion, int uses) {
         PotionUtils.setPotion(stack, potion);
         setPotionUsesLeft(stack, uses);
         setColor(stack, potionColorOverrides.getOrDefault(potion, PotionUtils.getColor(potion)));
@@ -89,12 +97,7 @@ public class TippedSaberToothJavelinItem extends JavelinItem {
         setPotion(stack, potion, uses);
     }
 
-    protected void setColor(ItemStack stack, int color) {
-        stack.getOrCreateTag().putInt("F_TipColor", color);
-    }
-
-    public float getPotionUsesLeftForDisplay(ItemStack stack)
-    {
+    public float getPotionUsesLeftForDisplay(ItemStack stack) {
         return getPotionUsesLeft(stack) / (float) getMaxPotionUses();
     }
 

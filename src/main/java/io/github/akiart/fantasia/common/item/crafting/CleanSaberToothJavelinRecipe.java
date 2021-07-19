@@ -1,6 +1,6 @@
 package io.github.akiart.fantasia.common.item.crafting;
 
-import io.github.akiart.fantasia.common.item.itemType.TippedSaberToothJavelinItem;
+import io.github.akiart.fantasia.common.item.itemType.SaberToothJavelinItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -20,7 +20,7 @@ public class CleanSaberToothJavelinRecipe extends TippedSaberToothJavelinRecipe 
 
     @Override
     protected boolean isDippableJavelin(ItemStack stack) {
-        return stack.getItem() instanceof TippedSaberToothJavelinItem;
+        return stack.getItem() instanceof SaberToothJavelinItem;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package io.github.akiart.fantasia.common.entity.projectile;
 
 import com.google.common.collect.Sets;
-import io.github.akiart.fantasia.common.item.itemType.TippedSaberToothJavelinItem;
+import io.github.akiart.fantasia.common.item.itemType.SaberToothJavelinItem;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -41,7 +41,7 @@ public class SaberToothJavelinEntity extends JavelinEntity {
     @Override
     protected void onHitEntity(EntityRayTraceResult target) {
         super.onHitEntity(target);
-        ((TippedSaberToothJavelinItem)item.getItem()).decreasePotionUses(item);
+        ((SaberToothJavelinItem)item.getItem()).decreasePotionUses(item);
     }
 
     protected void defineSynchedData() {
@@ -50,7 +50,7 @@ public class SaberToothJavelinEntity extends JavelinEntity {
     }
 
     public void setEffectsFromItem(ItemStack stack) {
-        if (stack.getItem() instanceof TippedSaberToothJavelinItem) {
+        if (stack.getItem() instanceof SaberToothJavelinItem) {
             potion = PotionUtils.getPotion(stack);
             Collection<EffectInstance> inEffects = PotionUtils.getCustomEffects(stack);
 

@@ -82,13 +82,12 @@ public class FItems {
 	public static final RegistryObject<JavelinItem> WOLFRAMITE_JAVELIN = ItemRegistryUtil.registerJavelin("wolframite_javelin", FItemTier.WOLFRAMITE, 3 , -2.4f);
 	public static final RegistryObject<JavelinItem> GHASTLY_JAVELIN = ItemRegistryUtil.registerJavelin("ghastly_javelin", FItemTier.GHASTLY, 3 , -2.4f);
 	public static final RegistryObject<JavelinItem> FROSTWORK_BOLT = ItemRegistryUtil.registerJavelin("frostwork_bolt", FItemTier.WOLFRAMITE, 0.5f , -2.4f);
-	public static final RegistryObject<JavelinItem> SABER_TOOTH_JAVELIN = ItemRegistryUtil.registerJavelin("saber_tooth_javelin", FItemTier.BONE, 0.5f , -2.4f);
-	public static final RegistryObject<TippedSaberToothJavelinItem> TIPPED_SABER_TOOTH_JAVELIN = ItemRegistryUtil.registerJavelin("tipped_saber_tooth_javelin",
-			() -> new TippedSaberToothJavelinItem(0.5f, -2.4f,
+	public static final RegistryObject<SaberToothJavelinItem> SABER_TOOTH_JAVELIN = ItemRegistryUtil.registerJavelin("saber_tooth_javelin",
+			() -> new SaberToothJavelinItem(0.5f, -2.4f,
 					new Item.Properties()
 							.stacksTo(16)
 							.tab(FItemGroup.FANTASIA)
-							.setISTER(() -> () -> ISTERs.createJavelinISTER("tipped_saber_tooth_javelin"))));
+							.setISTER(() -> () -> ISTERs.createJavelinISTER("saber_tooth_javelin"))));
 
 
 	// Spawn Eggs
