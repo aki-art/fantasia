@@ -52,13 +52,12 @@
     }
   },
   "textures": {
-    "layer0": "fantasia:item/gold_javelin",
     "particle": "minecraft:block/gold_block"
   },
   "overrides": [
     {
       "predicate": {
-        "minecraft:throwing": 1.0
+        "fantasia:throwing": 1.0
       },
       "model": "fantasia:item/gold_javelin_throwing"
     }

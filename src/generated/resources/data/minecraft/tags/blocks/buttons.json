@@ -1,12 +1,12 @@
 {
   "replace": false,
   "values": [
+    "fantasia:mudstone_button",
+    "fantasia:scalestone_button",
     "fantasia:marlstone_button",
     "fantasia:pith_button",
     "fantasia:sanguite_button",
     "fantasia:sut_button",
-    "fantasia:edelstone_button",
-    "fantasia:mudstone_button",
-    "fantasia:scalestone_button"
+    "fantasia:edelstone_button"
   ]
 }

@@ -52,13 +52,12 @@
     }
   },
   "textures": {
-    "layer0": "fantasia:item/ghastly_javelin",
     "particle": "minecraft:block/slime_block"
   },
   "overrides": [
     {
       "predicate": {
-        "minecraft:throwing": 1.0
+        "fantasia:throwing": 1.0
       },
       "model": "fantasia:item/ghastly_javelin_throwing"
     }

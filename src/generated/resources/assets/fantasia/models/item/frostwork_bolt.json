@@ -52,13 +52,12 @@
     }
   },
   "textures": {
-    "layer0": "fantasia:item/frostwork_bolt",
     "particle": "minecraft:block/lapis_block"
   },
   "overrides": [
     {
       "predicate": {
-        "minecraft:throwing": 1.0
+        "fantasia:throwing": 1.0
       },
       "model": "fantasia:item/frostwork_bolt_throwing"
     }

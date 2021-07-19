@@ -52,13 +52,12 @@
     }
   },
   "textures": {
-    "layer0": "fantasia:item/wooden_javelin",
     "particle": "minecraft:block/oak_planks"
   },
   "overrides": [
     {
       "predicate": {
-        "minecraft:throwing": 1.0
+        "fantasia:throwing": 1.0
       },
       "model": "fantasia:item/wooden_javelin_throwing"
     }

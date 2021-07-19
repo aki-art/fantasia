@@ -1,6 +1,6 @@
 package io.github.akiart.fantasia.common.item.crafting;
 
-import io.github.akiart.fantasia.common.item.itemType.TippedSaberToothJavelinItem;
+import io.github.akiart.fantasia.common.item.itemType.SaberToothJavelinItem;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -62,7 +62,7 @@ public class TippedSaberToothJavelinRecipe extends SpecialRecipe {
         }
 
         if(result != ItemStack.EMPTY && potion != Potions.EMPTY) {
-            ((TippedSaberToothJavelinItem)result.getItem()).setPotion(result, potion);
+            ((SaberToothJavelinItem)result.getItem()).setPotion(result, potion);
             result.setCount(1);
             return result;
         }
@@ -72,7 +72,7 @@ public class TippedSaberToothJavelinRecipe extends SpecialRecipe {
 
     // only allow clean javelins
     protected boolean isDippableJavelin(ItemStack stack) {
-        return stack.getItem() instanceof TippedSaberToothJavelinItem && PotionUtils.getMobEffects(stack).isEmpty();
+        return stack.getItem() instanceof SaberToothJavelinItem && PotionUtils.getMobEffects(stack).isEmpty();
     }
 
     protected boolean isValidPotion(ItemStack stack) {

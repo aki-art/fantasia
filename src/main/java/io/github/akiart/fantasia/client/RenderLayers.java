@@ -11,7 +11,7 @@ import io.github.akiart.fantasia.common.block.registrySet.trees.ThinTreeRegistry
 import io.github.akiart.fantasia.common.entity.FEntities;
 import io.github.akiart.fantasia.common.fluid.FFluids;
 import io.github.akiart.fantasia.common.item.FItems;
-import io.github.akiart.fantasia.common.item.itemType.TippedSaberToothJavelinItem;
+import io.github.akiart.fantasia.common.item.itemType.SaberToothJavelinItem;
 import io.github.akiart.fantasia.common.tileentity.FTileEntityTypes;
 import io.github.akiart.fantasia.lib.GeckoLibExtension.IBasicAnimatable;
 import net.minecraft.block.Block;
@@ -39,7 +39,7 @@ public final class RenderLayers {
 
     @SubscribeEvent
     public static void onItemColorsInit(ColorHandlerEvent.Item item) {
-        item.getItemColors().register((stack, layer) -> layer == 0 ? -1 : TippedSaberToothJavelinItem.getColor(stack), FItems.TIPPED_SABER_TOOTH_JAVELIN.get());
+        item.getItemColors().register((stack, layer) -> layer == 0 ? -1 : SaberToothJavelinItem.getColor(stack), FItems.SABER_TOOTH_JAVELIN.get());
     }
 
     // Because different models are rendered in hand and in inventory for these items, one of them must be loaded manually.
@@ -55,8 +55,7 @@ public final class RenderLayers {
                 "wolframite_javelin",
                 "ghastly_javelin",
                 "frostwork_bolt",
-                "saber_tooth_javelin",
-                "tipped_saber_tooth_javelin");
+                "saber_tooth_javelin");
     }
 
     private static void addJavelinModels(String... names) {

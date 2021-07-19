@@ -52,13 +52,12 @@
     }
   },
   "textures": {
-    "layer0": "fantasia:item/stone_javelin",
     "particle": "minecraft:block/stone"
   },
   "overrides": [
     {
       "predicate": {
-        "minecraft:throwing": 1.0
+        "fantasia:throwing": 1.0
       },
       "model": "fantasia:item/stone_javelin_throwing"
     }

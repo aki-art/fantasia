@@ -1,0 +1,7 @@
+{
+  "parent": "fantasia:item/saber_tooth_javelin_inventory",
+  "textures": {
+    "layer0": "fantasia:item/saber_tooth_javelin",
+    "layer1": "fantasia:item/saber_tooth_javelin_overlay_2"
+  }
+}
