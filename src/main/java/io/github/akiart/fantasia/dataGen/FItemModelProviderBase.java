@@ -217,7 +217,6 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
 
                 .override()
                 .predicate(new ResourceLocation(Fantasia.ID,"throwing"), 1f)
-
                 .model(new ModelFile.UncheckedModelFile(new ResourceLocation(Fantasia.ID, "item/" + getName(item) + "_throwing"))).end();
 
         // inventory javelin model
@@ -236,13 +235,8 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
                     .predicate(new ResourceLocation(Fantasia.ID,"potion_level"), 0f)
                     .model(new ModelFile.UncheckedModelFile(new ResourceLocation(Fantasia.ID, "item/" + getName(item) + "_overlay_2"))).end();
 
-            ResourceLocation parent = new ResourceLocation(Fantasia.ID, getName(item) + "_inventory");
-
             for (int i = 0; i < overlay; i++) {
-                String name = getName(item) + "_overlay_" + i;
-                withExistingParent(name, parent)
-                        .texture("layer0", getItemTexture(item))
-                        .texture("layer1", getItemLocation(getName(item) + "_overlay_" + i));
+                generate(getName(item) + "_overlay_" + i, getItemTexture(item), getItemLocation(getName(item) + "_overlay_" + i));
             }
         }
     }
