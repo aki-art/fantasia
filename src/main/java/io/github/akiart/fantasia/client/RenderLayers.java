@@ -16,6 +16,7 @@ import io.github.akiart.fantasia.common.tileentity.FTileEntityTypes;
 import io.github.akiart.fantasia.lib.GeckoLibExtension.IBasicAnimatable;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.entity.SpriteRenderer;
@@ -45,6 +46,9 @@ public final class RenderLayers {
     // Because different models are rendered in hand and in inventory for these items, one of them must be loaded manually.
     @SubscribeEvent
     public static void onModelLoadingStart(ModelRegistryEvent event) {
+
+        ModelLoader.addSpecialModel(new ModelResourceLocation("fantasia:caving_rope_anchor_inventory#inventory"));
+
         addJavelinModels(
                 "wooden_javelin",
                 "stone_javelin",
@@ -113,10 +117,14 @@ public final class RenderLayers {
         registerSimpleGLAnim(FEntities.VALRAVN.get(), 0.8f);
         registerSimpleGLAnim(FEntities.VALRAVN2.get(), 0.8f);
 
-        RenderingRegistry.registerEntityRenderingHandler(FEntities.PTARMIGAN_EGG.get(), renderer -> new SpriteRenderer<>(renderer, Minecraft.getInstance().getItemRenderer()));
+        ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+        RenderingRegistry.registerEntityRenderingHandler(FEntities.PTARMIGAN_EGG.get(), renderer -> new SpriteRenderer<>(renderer, itemRenderer));
         RenderingRegistry.registerEntityRenderingHandler(FEntities.JAVELIN.get(), JavelinEntityRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(FEntities.SABERTOOTH_JAVELIN.get(), JavelinEntityRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(FEntities.ICICLE.get(), IcicleEntityRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(FEntities.BOAT.get(), FBoatRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(FEntities.CAVING_ANCHOR_PROJECTILE.get(), renderer -> new SpriteRenderer<>(renderer, itemRenderer));
+        RenderingRegistry.registerEntityRenderingHandler(FEntities.CAVING_ROPE_ANCHOR.get(), CavingRopeAnchorEntityRenderer::new);
     }
 
     private static <T extends LivingEntity & IBasicAnimatable> void registerSimpleGLAnim(EntityType<T> entityClass, float shadowSize) {

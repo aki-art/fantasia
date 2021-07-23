@@ -17,7 +17,9 @@ import io.github.akiart.fantasia.common.potion.FEffects;
 import io.github.akiart.fantasia.common.potion.FPotions;
 import io.github.akiart.fantasia.common.world.FChunkGenerator2;
 import io.github.akiart.fantasia.common.world.gen.blockplacer.FBlockPlacerTypes;
+import io.github.akiart.fantasia.common.world.gen.carver.FWorldCarvers;
 import io.github.akiart.fantasia.common.world.gen.feature.FFeatures;
+import io.github.akiart.fantasia.common.world.gen.feature.placement.FDecorators;
 import net.minecraft.block.WoodType;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
@@ -107,6 +109,8 @@ public class Fantasia {
         // World gen
         FBiomes.BIOMES.register(bus);
         FSurfaceBuilders.SURFACE_BUILDERS.register(bus);
+        FWorldCarvers.WORLD_CARVERS.register(bus);
+        FDecorators.DECORATORS.register(bus);
         FFeatures.FEATURES.register(bus);
         FBlockPlacerTypes.BLOCK_PLACER_TYPES.register(bus);
         FTreeDecorators.TREE_DECORATOR_TYPES.register(bus);

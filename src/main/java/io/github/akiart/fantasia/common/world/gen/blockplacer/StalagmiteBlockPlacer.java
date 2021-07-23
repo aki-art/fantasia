@@ -13,16 +13,17 @@ import java.util.Random;
 
 public class StalagmiteBlockPlacer extends BlockPlacer {
 
-    private final int minSize;
-    private final int extraSize;
+    protected final int minSize;
+    protected final int extraSize;
 
-    public static final Codec<StalagmiteBlockPlacer> CODEC = RecordCodecBuilder.create((builder) -> {
-        return builder.group(Codec.INT.fieldOf("min_size").forGetter((placer) -> {
-            return placer.minSize;
-        }), Codec.INT.fieldOf("extra_size").forGetter((placer) -> {
-            return placer.extraSize;
-        })).apply(builder, StalagmiteBlockPlacer::new);
-    });
+    public static final Codec<StalagmiteBlockPlacer> CODEC = RecordCodecBuilder.create((builder) -> builder
+            .group(
+                    Codec.INT.fieldOf("min_size")
+                            .forGetter(placer -> placer.minSize),
+                    Codec.INT.fieldOf("extra_size")
+                            .forGetter(placer -> placer.extraSize)
+            )
+            .apply(builder, StalagmiteBlockPlacer::new));
 
     public StalagmiteBlockPlacer(int minSize, int extraSize) {
         this.minSize = minSize;
@@ -32,9 +33,9 @@ public class StalagmiteBlockPlacer extends BlockPlacer {
     @Override
     public void place(IWorld world, BlockPos pos, BlockState state, Random random) {
         BlockPos.Mutable blockpos$mutable = pos.mutable();
-        int i = this.minSize + random.nextInt(random.nextInt(this.extraSize + 1) + 1);
+        int height = minSize + random.nextInt(random.nextInt(extraSize + 1) + 1);
 
-        for (int j = 0; j < i; ++j) {
+        for (int i = 0; i < height; ++i) {
             world.setBlock(blockpos$mutable, state, 2);
             blockpos$mutable.move(Direction.UP);
         }

@@ -1,30 +1,23 @@
 package io.github.akiart.fantasia.common.entity.projectile;
 
-import com.google.common.collect.Sets;
+import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.item.itemType.SaberToothJavelinItem;
+import io.github.akiart.fantasia.util.Constants;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtils;
-import net.minecraft.potion.Potions;
-import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
-
-import java.util.Collection;
-import java.util.Set;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class SaberToothJavelinEntity extends JavelinEntity {
     private static final DataParameter<Integer> ID_EFFECT_COLOR = EntityDataManager.defineId(SaberToothJavelinEntity.class, DataSerializers.INT);
-    private Potion potion = Potions.EMPTY;
-    private final Set<EffectInstance> effects = Sets.newHashSet();
-    private boolean fixedColor;
-    private static int EMPTY_COLOR = -1;
 
     public SaberToothJavelinEntity(EntityType<? extends JavelinEntity> type, World world, LivingEntity entity, ItemStack item) {
         super(type, world, entity, item);
@@ -39,9 +32,19 @@ public class SaberToothJavelinEntity extends JavelinEntity {
     }
 
     @Override
-    protected void onHitEntity(EntityRayTraceResult target) {
-        super.onHitEntity(target);
-        ((SaberToothJavelinItem)item.getItem()).decreasePotionUses(item);
+    protected void doPostHurtEffects(LivingEntity entity) {
+        super.doPostHurtEffects(entity);
+
+        boolean success = false;
+
+        for(EffectInstance effectinstance : PotionUtils.getMobEffects(item)) {
+            success = entity.addEffect(new EffectInstance(effectinstance.getEffect(), Math.max(effectinstance.getDuration() / 8, 1), effectinstance.getAmplifier(), effectinstance.isAmbient(), effectinstance.isVisible()));
+        }
+
+        if (success) {
+            SaberToothJavelinItem javelin = (SaberToothJavelinItem) item.getItem();
+            javelin.decreasePotionUses(item);
+        }
     }
 
     protected void defineSynchedData() {
@@ -50,41 +53,57 @@ public class SaberToothJavelinEntity extends JavelinEntity {
     }
 
     public void setEffectsFromItem(ItemStack stack) {
-        if (stack.getItem() instanceof SaberToothJavelinItem) {
-            potion = PotionUtils.getPotion(stack);
-            Collection<EffectInstance> inEffects = PotionUtils.getCustomEffects(stack);
+        setColor(SaberToothJavelinItem.getColor(stack));
+    }
 
-            if (!inEffects.isEmpty()) {
-                for(EffectInstance effect : inEffects) {
-                    this.effects.add(new EffectInstance(effect));
-                }
-            }
+    private void setColor(int color) {
+        entityData.set(ID_EFFECT_COLOR, color);
+        //Fantasia.LOGGER.info("SET COLOR:" + String.format("0x%08X", color));
+    }
 
-            int color = getCustomColor(stack);
-            if (color == EMPTY_COLOR) {
-                updateColor();
-            } else {
-                setFixedColor(color);
+    public int getColor() {
+        return entityData.get(ID_EFFECT_COLOR);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (level.isClientSide) {
+            makeParticle(inGround && inGroundTime % 5 == 0 ? 1 : 2);
+        }
+    }
+
+    private void makeParticle(int count) {
+        Fantasia.LOGGER.info("PARTICLE" + count);
+        int color = getColor();
+        if (color != Constants.Colors.UNSET && count > 0) {
+            double r = (double)(color >> 16 & 255) / 255.0D;
+            double g = (double)(color >> 8 & 255) / 255.0D;
+            double b = (double)(color & 255) / 255.0D;
+
+            for(int j = 0; j < count; ++j) {
+                level.addParticle(ParticleTypes.ENTITY_EFFECT, getRandomX(0.5D), getRandomY(), getRandomZ(0.5D), r, g, b);
             }
         }
     }
 
-    public static int getCustomColor(ItemStack stack) {
-        CompoundNBT compoundnbt = stack.getTag();
-        return compoundnbt != null && compoundnbt.contains("CustomPotionColor", 99) ? compoundnbt.getInt("CustomPotionColor") : EMPTY_COLOR;
-    }
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void handleEntityEvent(byte flag) {
+        if (flag == 0) {
+            int color = getColor();
+            if (color != -1) {
+                double r = (double)(color >> 16 & 255) / 255.0D;
+                double g = (double)(color >> 8 & 255) / 255.0D;
+                double b = (double)(color >> 0 & 255) / 255.0D;
 
-    private void setFixedColor(int color) {
-        fixedColor = true;
-        entityData.set(ID_EFFECT_COLOR, color);
-    }
-
-    private void updateColor() {
-        fixedColor = false;
-        if (potion == Potions.EMPTY && effects.isEmpty()) {
-            entityData.set(ID_EFFECT_COLOR, EMPTY_COLOR);
+                for(int i = 0; i < 20; ++i) {
+                    level.addParticle(ParticleTypes.ENTITY_EFFECT, getRandomX(0.5D), getRandomY(), getRandomZ(0.5D), r, g, b);
+                }
+            }
         } else {
-            entityData.set(ID_EFFECT_COLOR, PotionUtils.getColor(PotionUtils.getAllEffects(potion, effects)));
+            super.handleEntityEvent(flag);
         }
     }
 }
+

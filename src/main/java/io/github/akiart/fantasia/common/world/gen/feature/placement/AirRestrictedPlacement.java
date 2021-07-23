@@ -19,16 +19,8 @@ public class AirRestrictedPlacement<T extends AirRestrictedPlacementConfig> exte
     }
 
     public Stream<BlockPos> getPositions(WorldDecoratingHelper decoratingHelper, Random random, T config, BlockPos blockPos) {
-
-        BlockPos.Mutable pos = blockPos.mutable();
-        Set<BlockPos> positions = new HashSet<>();
-        pos.setY(0);
-        while(pos.getY() < 255)
-            pos.above();
-
-        if(decoratingHelper.getBlockState(pos).is(config.getBlock().getBlock())) {
-            positions.add(pos);
-        }
-        return positions.stream();
+        //if(decoratingHelper.getBlockState(blockPos) == config.getBlock())
+            return Stream.of(blockPos);
+        //else return Stream.empty();
     }
 }

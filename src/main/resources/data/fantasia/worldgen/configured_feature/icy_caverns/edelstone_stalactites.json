@@ -1,0 +1,72 @@
+{
+  "config": {
+    "feature": {
+      "config": {
+        "feature": {
+          "config": {
+            "feature": {
+              "config": {
+                "feature": {
+                  "config": {
+                    "feature": "fantasia:speleothems/edelstone_stalactite",
+                    "place_on": [
+                      {
+                        "Name": "fantasia:icy_cavern_air"
+                      }
+                    ],
+                    "place_in": [
+                      {
+                        "Name": "fantasia:icy_cavern_air"
+                      }
+                    ],
+                    "place_under": [
+                      {
+                        "Name": "fantasia:edelstone"
+                      },
+                      {
+                        "Name": "minecraft:snow_block"
+                      }
+                    ]
+                  },
+                  "type": "fantasia:context_aware"
+                },
+                "decorator": {
+                  "config": {
+                    "bottom_offset": 0,
+                    "top_offset": 0,
+                    "maximum": 128
+                  },
+                  "type": "minecraft:range"
+                }
+              },
+              "type": "minecraft:decorated"
+            },
+            "decorator": {
+              "config": {
+                "bottom_offset": 0,
+                "top_offset": 0,
+                "maximum": 128
+              },
+              "type": "minecraft:range"
+            }
+          },
+          "type": "minecraft:decorated"
+        },
+        "decorator": {
+          "config": {},
+          "type": "minecraft:square"
+        }
+      },
+      "type": "minecraft:decorated"
+    },
+    "decorator": {
+      "config": {
+        "noise_to_count_ratio": 160,
+        "noise_factor": 80.0,
+        "noise_offset": 0.3
+      },
+      "type": "minecraft:count_noise_biased"
+    }
+  },
+  "type": "minecraft:decorated"
+}

@@ -15,42 +15,28 @@ public class FSurfaceBuilderConfig implements ISurfaceBuilderConfig {
     private final int borderThickness;
 
     public static final Codec<FSurfaceBuilderConfig> CODEC = RecordCodecBuilder
-            .create((surfBuilderConfig) -> {
-                return surfBuilderConfig
-                        .group(
-                                BlockState.CODEC
-                                        .fieldOf("top_material")
-                                        .forGetter((config) -> {
-                                            return config.topMaterial;
-                                        }),
-                                BlockState.CODEC
-                                        .fieldOf("cave_wall_material")
-                                        .forGetter((config) -> {
-                                            return config.caveWallMaterial;
-                                        }),
-                                BlockState.CODEC
-                                        .fieldOf("air_material")
-                                        .forGetter((config) -> {
-                                            return config.airMaterial;
-                                        }),
-                                BlockState.CODEC
-                                        .fieldOf("under_material")
-                                        .forGetter((config) -> {
-                                            return config.underMaterial;
-                                        }),
-                                BlockState.CODEC
-                                        .fieldOf("border_material")
-                                        .forGetter((config) -> {
-                                            return config.borderMaterial;
-                                        }),
-                                Codec.INT
-                                        .fieldOf("border_thickness")
-                                        .forGetter((config) -> {
-                                            return config.borderThickness;
-                                        }))
-                        // RegistryLookupCodec.getLookUpCodec(Registry.BIOME_KEY).forGetter((source) -> source.biomeRegistry)
-                        .apply(surfBuilderConfig, FSurfaceBuilderConfig::new);
-            });
+            .create((surfBuilderConfig) -> surfBuilderConfig
+                    .group(
+                            BlockState.CODEC
+                                    .fieldOf("top_material")
+                                    .forGetter(config -> config.topMaterial),
+                            BlockState.CODEC
+                                    .fieldOf("cave_wall_material")
+                                    .forGetter(config -> config.caveWallMaterial),
+                            BlockState.CODEC
+                                    .fieldOf("air_material")
+                                    .forGetter(config -> config.airMaterial),
+                            BlockState.CODEC
+                                    .fieldOf("under_material")
+                                    .forGetter(config -> config.underMaterial),
+                            BlockState.CODEC
+                                    .fieldOf("border_material")
+                                    .forGetter(config -> config.borderMaterial),
+                            Codec.INT
+                                    .fieldOf("border_thickness")
+                                    .forGetter(config -> config.borderThickness))
+                    // RegistryLookupCodec.getLookUpCodec(Registry.BIOME_KEY).forGetter((source) -> source.biomeRegistry)
+                    .apply(surfBuilderConfig, FSurfaceBuilderConfig::new));
 
 
     public FSurfaceBuilderConfig(BlockState topMaterial, BlockState caveWallMaterial, BlockState airMaterial, BlockState underMaterial, BlockState borderMaterial, int borderThickness) {

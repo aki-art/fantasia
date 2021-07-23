@@ -5,6 +5,7 @@ public class Constants {
 
     // ARGB format
     public static class Colors {
+        public static final int UNSET = -1;
         public static final int LIGHT_BROWN = 0xFF968860;
         public static final int CREAM = 0xFFe3decf;
         public static final int ALMOST_BLACK = 0xFF333132;

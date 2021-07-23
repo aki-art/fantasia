@@ -3,6 +3,7 @@ package io.github.akiart.fantasia.common.fluid;
 import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.block.FBlocks;
 import io.github.akiart.fantasia.common.item.FItems;
+import io.github.akiart.fantasia.common.particles.FParticleTypes;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
@@ -56,9 +57,9 @@ public class AcidFluid extends ForgeFlowingFluid {
     public static ForgeFlowingFluid.Properties getProperties() {
         return new ForgeFlowingFluid.Properties(FFluids.ACID_SOURCE, FFluids.ACID_FLOWING,
                 FluidAttributes
-                        .builder(new ResourceLocation("minecraft:block/water_still"), new ResourceLocation( "minecraft:block/water_flow"))
-                        .overlay(new ResourceLocation("minecraft:block/water_overlay"))
-                        .color(LIME_GREEN)
+                        .builder(new ResourceLocation(Fantasia.ID, "block/acid_still"), new ResourceLocation( "minecraft:block/water_flow"))
+                        //.overlay(new ResourceLocation("minecraft:block/water_overlay"))
+                        //.color(LIME_GREEN)
                         .luminosity(4))
                 .bucket(FItems.ACID_BUCKET)
                 .tickRate(5)
@@ -107,7 +108,7 @@ public class AcidFluid extends ForgeFlowingFluid {
     @OnlyIn(Dist.CLIENT)
     @Override
     public IParticleData getDripParticle() {
-        return ParticleTypes.DRIPPING_WATER; // FParticleTypes.DRIPPING_ACID
+        return FParticleTypes.DRIPPING_ACID.get();
     }
 
     @OnlyIn(Dist.CLIENT)

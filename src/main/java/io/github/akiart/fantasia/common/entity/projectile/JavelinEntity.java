@@ -1,20 +1,20 @@
 package io.github.akiart.fantasia.common.entity.projectile;
 
 import io.github.akiart.fantasia.Fantasia;
-import io.github.akiart.fantasia.common.dispenser.DispenseEntityBehavior;
-import io.github.akiart.fantasia.common.dispenser.DispenseJavelinBehavior;
 import io.github.akiart.fantasia.common.entity.FEntities;
 import io.github.akiart.fantasia.util.FDamageSource;
-import net.minecraft.block.DispenserBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.Item;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.TieredItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
@@ -33,32 +33,27 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
-public class JavelinEntity extends AbstractArrowEntity {
-    public static final DataParameter<Byte> ID_LOYALTY = EntityDataManager.defineId(JavelinEntity.class, DataSerializers.BYTE);
-    public static final DataParameter<Boolean> ID_FOIL = EntityDataManager.defineId(JavelinEntity.class, DataSerializers.BOOLEAN);
+public class JavelinEntity extends AbstractYeetableEntity {
+
     public static final DataParameter<String> ID_TYPE = EntityDataManager.defineId(JavelinEntity.class, DataSerializers.STRING);
 
-    protected ItemStack item;
-    protected boolean dealtDamage;
-    protected int clientSideReturnTimer;
+    protected int damageLeft;
     protected ResourceLocation texture = new ResourceLocation(Fantasia.ID, "textures/entity/javelin/wooden_javelin.png");
 
+    // Used by living entities
     public JavelinEntity(EntityType<? extends JavelinEntity> type, World world, LivingEntity entity, ItemStack item) {
-        super(type, entity, world);
-        this.item = item.copy();
-        this.entityData.set(ID_LOYALTY, (byte) EnchantmentHelper.getLoyalty(item));
-        this.entityData.set(ID_FOIL, item.hasFoil());
+        super(type, world, entity, item);
+        damageLeft = getPierceLevel() + 1;
 
         if (item.getItem().getRegistryName() != null) {
             setJavelinType(item.getItem().getRegistryName().getPath());
         }
     }
 
+    // Used by dispensers
     public JavelinEntity(World world, double x, double y, double z, ItemStack item) {
         super(FEntities.JAVELIN.get(), x, y, z, world);
-        this.item = item.copy();
-        this.entityData.set(ID_LOYALTY, (byte) EnchantmentHelper.getLoyalty(item));
-        this.entityData.set(ID_FOIL, item.hasFoil());
+        damageLeft = getPierceLevel() + 1;
 
         if (item.getItem().getRegistryName() != null) {
             setJavelinType(item.getItem().getRegistryName().getPath());
@@ -71,181 +66,58 @@ public class JavelinEntity extends AbstractArrowEntity {
 
     public void setJavelinType(String type) {
         entityData.set(ID_TYPE, type);
-        this.texture = new ResourceLocation(Fantasia.ID, "textures/entity/javelin/" + type + ".png");
+        texture = new ResourceLocation(Fantasia.ID, "textures/entity/javelin/" + type + ".png");
     }
 
     public JavelinEntity(EntityType<? extends JavelinEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    @Override
-    public void tick() {
-        if (inGroundTime > 4) {
-            dealtDamage = true;
-        }
-
-        Entity entity = getOwner();
-        if ((this.dealtDamage || isNoPhysics()) && entity != null) {
-            double loyalty = entityData.get(ID_LOYALTY);
-
-            if (loyalty > 0 && !this.isAcceptibleReturnOwner()) {
-                if (!level.isClientSide && pickup == AbstractArrowEntity.PickupStatus.ALLOWED) {
-                    spawnAtLocation(getPickupItem(), 0.1F);
-                }
-                remove();
-            } else if (loyalty > 0) {
-                setNoPhysics(true);
-
-                Vector3d vector3d = new Vector3d(entity.getX() - getX(), entity.getEyeY() - getY(), entity.getZ() - getZ());
-                setPosRaw(this.getX(), getY() + vector3d.y * 0.015D * (double) loyalty, getZ());
-                if (level.isClientSide) {
-                    yOld = this.getY();
-                }
-
-                double speed = 0.05D * loyalty;
-                setDeltaMovement(getDeltaMovement().scale(0.95D).add(vector3d.normalize().scale(speed)));
-                if (clientSideReturnTimer == 0) {
-                    playSound(SoundEvents.TRIDENT_RETURN, 10.0F, 1.0F);
-                }
-
-                ++clientSideReturnTimer;
-            }
-        }
-
-        super.tick();
-    }
-
-    private boolean isAcceptibleReturnOwner() {
-        Entity entity = this.getOwner();
-        if (entity != null && entity.isAlive()) {
-            return !(entity instanceof ServerPlayerEntity) || !entity.isSpectator();
-        } else {
-            return false;
-        }
-    }
-
-    @Nullable
-    protected EntityRayTraceResult findHitEntity(Vector3d v1, Vector3d v2) {
-        return dealtDamage ? null : super.findHitEntity(v1, v2);
-    }
 
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        entityData.define(ID_LOYALTY, (byte) 0);
-        entityData.define(ID_FOIL, false);
         entityData.define(ID_TYPE, "wooden_javelin");
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public boolean isFoil() {
-        return entityData.get(ID_FOIL);
     }
 
     @Override
     protected void onHitEntity(EntityRayTraceResult target) {
-        Entity entity = target.getEntity();
-        float damage = 8.0F;
+        --damageLeft;
+        super.onHitEntity(target);
+    }
 
-        if (entity instanceof LivingEntity && item != null) {
-            LivingEntity livingentity = (LivingEntity) entity;
-            damage += EnchantmentHelper.getDamageBonus(item, livingentity.getMobType());
-        }
+    @Override
+    protected SoundEvent getHitEntitySoundEvent() {
+        return SoundEvents.TRIDENT_HIT;
+    }
 
-        Entity owner = getOwner();
-        DamageSource damagesource = FDamageSource.javelin(this, (owner == null ? this : owner));
-
-        if(getPierceLevel() > 0) {
-            dealtDamage = true;
-        }
-
-        SoundEvent soundevent = SoundEvents.TRIDENT_HIT;
-        if (entity.hurt(damagesource, damage)) {
-            if (entity.getType() == EntityType.ENDERMAN) {
-                return;
-            }
-
-            if (entity instanceof LivingEntity) {
-                LivingEntity livingentity1 = (LivingEntity) entity;
-                if (owner instanceof LivingEntity) {
-                    EnchantmentHelper.doPostHurtEffects(livingentity1, owner);
-                    EnchantmentHelper.doPostDamageEffects((LivingEntity) owner, livingentity1);
-                }
-
-                doPostHurtEffects(livingentity1);
-            }
-        }
-
-        if(getPierceLevel() <= 0) {
+    @Override
+    protected void onHitEntityPost() {
+        if (damageLeft <= 0) {
+            doneDealingDamage = true;
             setDeltaMovement(getDeltaMovement().multiply(-0.01D, -0.1D, -0.01D));
         }
-
-        playSound(soundevent, 1f, 1f);
     }
 
+    @Override
     protected SoundEvent getDefaultHitGroundSoundEvent() {
         return SoundEvents.TRIDENT_HIT_GROUND;
-    }
-
-    public void playerTouch(PlayerEntity player) {
-        Entity entity = this.getOwner();
-        if (entity == null || entity.getUUID() == player.getUUID()) {
-            super.playerTouch(player);
-        }
     }
 
     @Override
     public void readAdditionalSaveData(CompoundNBT nbt) {
         super.readAdditionalSaveData(nbt);
-
-        if (nbt.contains("Javelin", 10)) {
-            this.item = ItemStack.of(nbt.getCompound("Javelin"));
-        }
-
         setJavelinType(nbt.getString("JavelinType"));
-
-        this.dealtDamage = nbt.getBoolean("DealtDamage");
-        this.entityData.set(ID_LOYALTY, (byte) EnchantmentHelper.getLoyalty(this.item));
-        this.entityData.set(ID_FOIL, nbt.getBoolean("Foil"));
     }
 
     @Override
     public void addAdditionalSaveData(CompoundNBT nbt) {
         super.addAdditionalSaveData(nbt);
-        nbt.put("Javelin", this.item.save(new CompoundNBT()));
         nbt.putString("JavelinType", getJavelinType());
-        nbt.putBoolean("DealtDamage", this.dealtDamage);
-        nbt.putBoolean("Foil", isFoil());
-    }
-
-    public void tickDespawn() {
-        int loyalty = this.entityData.get(ID_LOYALTY);
-        if (this.pickup != AbstractArrowEntity.PickupStatus.ALLOWED || loyalty <= 0) {
-            super.tickDespawn();
-        }
     }
 
     @Override
-    protected float getWaterInertia() {
-        return 0.99F;
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public boolean shouldRender(double x, double y, double z) {
-        return true;
-    }
-
-    @Override
-    public ItemStack getPickupItem() {
-        return item;
-    }
-
     public ResourceLocation getResourceLocation() {
         return new ResourceLocation(Fantasia.ID, "textures/entity/javelin/" + getJavelinType() + ".png");
-    }
-
-    @Override
-    public IPacket<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

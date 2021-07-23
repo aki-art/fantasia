@@ -46,14 +46,10 @@ public class FBoatEntity extends BoatEntity {
     @Override
     public Item getDropItem() {
         switch (getFBoatType()) {
-//            case ELM:
-//                return FItems.ELM_BOAT.get();
-//            case FROZEN_ELM:
-//                return FItems.FROZEN_ELM_BOAT.get();
-//            case FROZEN_SPRUCE:
-//                return FItems.FROZEN_SPRUCE_BOAT.get();
-//            case ASPEN:
-//                return FItems.ASPEN_BOAT.get();
+            case FROZEN_ELM:
+                return FItems.FROZEN_ELM_BOAT.get();
+            case ASPEN:
+                return FItems.ASPEN_BOAT.get();
             default:
                 return Items.OAK_BOAT;
         }
@@ -119,6 +115,7 @@ public class FBoatEntity extends BoatEntity {
             this.planks = block;
             this.texture = new ResourceLocation(Fantasia.ID, "textures/entity/boat/" + name + ".png");
         }
+
         /* Matching BoatEntity.Type methods START
          * do not rename these */
 

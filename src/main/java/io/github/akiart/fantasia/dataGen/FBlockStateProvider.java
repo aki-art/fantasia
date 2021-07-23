@@ -3,8 +3,10 @@ package io.github.akiart.fantasia.dataGen;
 import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.block.BlockRegistryUtil;
 import io.github.akiart.fantasia.common.block.FBlocks;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class FBlockStateProvider extends FBlockStateProviderBase {
@@ -26,7 +28,15 @@ public class FBlockStateProvider extends FBlockStateProviderBase {
 		
 		speleothemBlock(FBlocks.ICICLE);
 		simpleBlock(FBlocks.FANTASIA_PORTAL_BLOCK.get());
-		
+
+		cavingRopeAnchor(FBlocks.CAVING_ROPE_ANCHOR.get());
+		//ModelFile tripWireHookModel = models().withExistingParent(getName(FBlocks.CAVING_ROPE_ANCHOR.get()), Blocks.TRIPWIRE_HOOK.getRegistryName());
+		//simpleBlock(FBlocks.CAVING_ROPE_ANCHOR.get(), tripWireHookModel);
+
+		air(FBlocks.ICY_CAVERN_AIR.get());
+		air(FBlocks.GRIMCAP_GROVE_AIR.get());
+		air(FBlocks.GLOOMFUNGAL_GROTTO_AIR.get());
+
 		registerDebugStuff();
 	}
 

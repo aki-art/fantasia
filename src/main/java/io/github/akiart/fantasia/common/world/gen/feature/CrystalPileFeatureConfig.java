@@ -31,35 +31,17 @@ public class CrystalPileFeatureConfig implements IFeatureConfig {
 
     }
 
-    public static final Codec<CrystalPileFeatureConfig> CODEC = RecordCodecBuilder.create((builder) -> {
-        return builder
-                .group(
-                        BlockState.CODEC.fieldOf("block").forGetter((config) -> {
-                            return config.crystalBlock;
-                        }),
-                        BlockState.CODEC.fieldOf("crystal").forGetter((config) -> {
-                            return config.crystal;
-                        }),
-                        FeatureSpread.CODEC.fieldOf("radius").forGetter((config) -> {
-                            return config.radius;
-                        }),
-                        FeatureSpread.CODEC.fieldOf("pillar_max_height").forGetter((config) -> {
-                            return config.radius;
-                        }),
-                        FeatureSpread.CODEC.fieldOf("small_crystal_length").forGetter((config) -> {
-                            return config.smallCrystalMaxLength;
-                        }),
-                        FeatureSpread.CODEC.fieldOf("extra_ground_crystals_area").forGetter((config) -> {
-                            return config.extraSmallCrystals;
-                        }),
-                        Codec.floatRange(0.0F, 1.0F).fieldOf("small_crystal_probability").forGetter((config) -> {
-                            return config.smallCrystalChance;
-                        }),
-                        Codec.floatRange(0.0F, 1.0F).fieldOf("extra_small_crystal_probability").forGetter((config) -> {
-                            return config.extraSmallCrystalChance;
-                        }))
-                .apply(builder, CrystalPileFeatureConfig::new);
-    });
+    public static final Codec<CrystalPileFeatureConfig> CODEC = RecordCodecBuilder.create((builder) -> builder
+            .group(
+                    BlockState.CODEC.fieldOf("block").forGetter((config) -> config.crystalBlock),
+                    BlockState.CODEC.fieldOf("crystal").forGetter((config) -> config.crystal),
+                    FeatureSpread.CODEC.fieldOf("radius").forGetter((config) -> config.radius),
+                    FeatureSpread.CODEC.fieldOf("pillar_max_height").forGetter((config) -> config.radius),
+                    FeatureSpread.CODEC.fieldOf("small_crystal_length").forGetter((config) -> config.smallCrystalMaxLength),
+                    FeatureSpread.CODEC.fieldOf("extra_ground_crystals_area").forGetter((config) -> config.extraSmallCrystals),
+                    Codec.floatRange(0.0F, 1.0F).fieldOf("small_crystal_probability").forGetter((config) -> config.smallCrystalChance),
+                    Codec.floatRange(0.0F, 1.0F).fieldOf("extra_small_crystal_probability").forGetter((config) -> config.extraSmallCrystalChance))
+            .apply(builder, CrystalPileFeatureConfig::new));
 
     public FeatureSpread getSmallCrystalMaxLength() {
         return smallCrystalMaxLength;

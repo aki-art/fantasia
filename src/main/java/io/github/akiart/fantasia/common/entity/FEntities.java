@@ -6,10 +6,7 @@ import io.github.akiart.fantasia.common.entity.item.FBoatEntity;
 import io.github.akiart.fantasia.common.entity.neutral.valravn.deletelater.ValravnEntity;
 import io.github.akiart.fantasia.common.entity.neutral.valravn.ValravnEntity2;
 import io.github.akiart.fantasia.common.entity.passive.PtarmiganEntity;
-import io.github.akiart.fantasia.common.entity.projectile.FrostworkPickaxeProjectileEntity;
-import io.github.akiart.fantasia.common.entity.projectile.IcicleEntity;
-import io.github.akiart.fantasia.common.entity.projectile.JavelinEntity;
-import io.github.akiart.fantasia.common.entity.projectile.PtarmiganEggEntity;
+import io.github.akiart.fantasia.common.entity.projectile.*;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
@@ -41,6 +38,14 @@ public class FEntities {
                     .updateInterval(20)
                     .build(new ResourceLocation(Fantasia.ID, "javelin").toString()));
 
+    public static final RegistryObject<EntityType<SaberToothJavelinEntity>> SABERTOOTH_JAVELIN = ENTITIES.register("sabertooth_javelin", () ->
+            EntityType.Builder
+                    .<SaberToothJavelinEntity>of(SaberToothJavelinEntity::new, EntityClassification.MISC)
+                    .sized(0.5f, 0.5f)
+                    .clientTrackingRange(4)
+                    .updateInterval(20)
+                    .build(new ResourceLocation(Fantasia.ID, "sabertooth_javelin").toString()));
+
     public static final RegistryObject<EntityType<FrostworkPickaxeProjectileEntity>> FROSTWORK_PICKAXE_PROJECTILE = ENTITIES.register(FrostworkPickaxeProjectileEntity.ID, () ->
             EntityType.Builder
                     .<FrostworkPickaxeProjectileEntity>of(FrostworkPickaxeProjectileEntity::new, EntityClassification.MISC)
@@ -56,6 +61,22 @@ public class FEntities {
                     .clientTrackingRange(4)
                     .updateInterval(20)
                     .build(new ResourceLocation(Fantasia.ID, "icicle").toString()));
+
+    public static final RegistryObject<EntityType<CavingRopeAnchorThrownEntity>> CAVING_ANCHOR_PROJECTILE = ENTITIES.register(CavingRopeAnchorThrownEntity.ID, () ->
+            EntityType.Builder
+                    .<CavingRopeAnchorThrownEntity>of(CavingRopeAnchorThrownEntity::new, EntityClassification.MISC)
+                    .sized(0.5f, 0.5f)
+                    .clientTrackingRange(4)
+                    .updateInterval(20)
+                    .build(new ResourceLocation(Fantasia.ID, CavingRopeAnchorThrownEntity.ID).toString()));
+
+    public static final RegistryObject<EntityType<CavingRopeAnchorEntity>> CAVING_ROPE_ANCHOR = ENTITIES.register(CavingRopeAnchorEntity.ID, () ->
+            EntityType.Builder
+                    .<CavingRopeAnchorEntity>of(CavingRopeAnchorEntity::new, EntityClassification.MISC)
+                    .sized(0.5f, 0.5f)
+                    .clientTrackingRange(4)
+                    .updateInterval(20)
+                    .build(new ResourceLocation(Fantasia.ID, CavingRopeAnchorEntity.ID).toString()));
 
     public static final RegistryObject<EntityType<FBoatEntity>> BOAT = ENTITIES.register("boat", () ->
             EntityType.Builder

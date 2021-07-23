@@ -6,6 +6,7 @@ import io.github.akiart.fantasia.common.item.FItems;
 import io.github.akiart.fantasia.common.item.ItemRegistryUtil;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
+import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class FItemModelProvider extends FItemModelProviderBase {
@@ -36,7 +37,12 @@ public class FItemModelProvider extends FItemModelProviderBase {
 		withExistingParent(getName(FItems.ICICLE.get()), getBlockLocation("icicle_tip"));
 		// withExistingParent(getName(FItems.SNOWBERRY_BUSH.get()), getBlockLocation("snowberry_bush_top"));
 		fromBlock(FBlocks.FANTASIA_PORTAL_BLOCK.get());
+		//fromBlock(FBlocks.CAVING_ROPE_ANCHOR.get());
+		//ItemModelBuilder builder = generate(getName(FItems.CAVING_ROPE_ANCHOR.get()) + "_inventory", getItemTexture(FItems.CAVING_ROPE_ANCHOR.get()));
+		//javelin(FItems.CAVING_ROPE_ANCHOR.get(), getBlockTexture(Blocks.OAK_PLANKS));
 		miscItem(FItems.ACID_BUCKET);
+		miscItem(FItems.CAVING_ROPE_ANCHOR);
+		miscItem(FItems.ROPE);
 		registerDebugStuff();
 	}
 	

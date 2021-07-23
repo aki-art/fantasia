@@ -6,6 +6,7 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.ResourceLocation;
 
 public class FItemModelProperties {
@@ -14,18 +15,28 @@ public class FItemModelProperties {
         ResourceLocation thrown = new ResourceLocation(Fantasia.ID, "thrown");
         ResourceLocation charging = new ResourceLocation(Fantasia.ID, "charging");
         ResourceLocation potionLevel = new ResourceLocation(Fantasia.ID, "potion_level");
+        ResourceLocation tipped = new ResourceLocation(Fantasia.ID, "tipped");
 
         ItemModelsProperties.register(FItems.WOODEN_JAVELIN.get(), thrown, FItemModelProperties::isBeingUsed);
         ItemModelsProperties.register(FItems.FROSTWORK_PICKAXE.get(), charging, FItemModelProperties::isBeingUsed);
         ItemModelsProperties.register(FItems.SABER_TOOTH_JAVELIN.get(), potionLevel, FItemModelProperties::getPotionLevel);
+        ItemModelsProperties.register(FItems.SABER_TOOTH_JAVELIN.get(), tipped, FItemModelProperties::isTipped);
+    }
+
+    private static float isTipped(ItemStack itemStack, ClientWorld world, LivingEntity entity) {
+        if(itemStack.getItem() instanceof SaberToothJavelinItem) {
+            return ((SaberToothJavelinItem)itemStack.getItem()).getPotionUsesLeft(itemStack) > 0 ? 1 : 0;
+        }
+
+        return 0;
     }
 
     private static float getPotionLevel(ItemStack itemStack, ClientWorld world, LivingEntity entity) {
-//        if(itemStack.getItem() instanceof SaberToothJavelinItem) {
-//            return ((SaberToothJavelinItem)itemStack.getItem()).getPotionUsesLeftForDisplay(itemStack);
-//        }
+        if(itemStack.getItem() instanceof SaberToothJavelinItem) {
+            return ((SaberToothJavelinItem)itemStack.getItem()).getPotionUsesLeftForDisplay(itemStack);
+        }
 
-        return 0.5f;
+        return 0;
     }
 
     private static float isBeingUsed(ItemStack itemStack, ClientWorld world, LivingEntity entity) {

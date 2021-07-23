@@ -1,0 +1,32 @@
+{
+  "config": {
+    "can_replace": false,
+    "project": true,
+    "need_water": false,
+    "xspread": 8,
+    "yspread": 3,
+    "zspread": 8,
+    "whitelist": [
+    ],
+    "blacklist": [
+    ],
+    "tries": 8,
+    "state_provider": {
+      "state": {
+        "Properties": {
+          "stage": "tiny",
+          "facing" : "north",
+          "face" : "floor"
+        },
+        "Name": "fantasia:edelstone_speleothem"
+      },
+      "type": "minecraft:simple_state_provider"
+    },
+    "block_placer": {
+      "type": "fantasia:stalactite_block_placer",
+      "min_size": 1,
+      "extra_size" : 3
+    }
+  },
+  "type": "minecraft:random_patch"
+}

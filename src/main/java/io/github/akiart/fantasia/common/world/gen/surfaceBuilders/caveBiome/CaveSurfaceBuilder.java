@@ -16,14 +16,22 @@ public class CaveSurfaceBuilder extends FSurfaceBuilder<FSurfaceBuilderConfig> {
         super(codec);
     }
 
+    protected BlockState getTop(BlockState configTop, double noise) {
+        return configTop;
+    }
+
+    protected BlockState getBase(BlockState configTop, double noise) {
+        return configTop;
+    }
+
     @Override
     public void apply(Random random, IChunk chunkIn, Biome biomeIn, int worldX, int worldZ, int startHeight, double noise,
                       BlockState defaultBlock, BlockState defaultFluid, int sealevel, long seed, FSurfaceBuilderConfig config) {
 
-        BlockState top = config.getTopMaterial();
+        BlockState top = getTop(config.getTopMaterial(), noise);
         BlockState cover = config.getUnderMaterial();
         BlockState base = config.getCaveWallMaterial();
-        BlockState border = config.getBorderMaterial();
+        BlockState border = getBase(config.getBorderMaterial(), noise);
         BlockState air = config.getAirMaterial();
 
         BlockPos.Mutable blockPos = new BlockPos.Mutable();

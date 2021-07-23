@@ -23,7 +23,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.util.List;
 
-public class JavelinISTER<T extends JavelinEntity> extends ItemStackTileEntityRenderer {
+public class JavelinISTER extends ItemStackTileEntityRenderer {
 
     JavelinModel model = new JavelinModel();
     ModelResourceLocation itemModelLocation;
@@ -55,6 +55,7 @@ public class JavelinISTER<T extends JavelinEntity> extends ItemStackTileEntityRe
 
         ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
         IBakedModel itemModel = renderer.getItemModelShaper().getModelManager().getModel(itemModelLocation);
+        itemModel = itemModel.getOverrides().resolve(itemModel, itemStackIn, null, null);
 
         matrixStackIn.translate(-0.5D, -0.5D, -0.5D);
         itemModel.handlePerspective(transformType, matrixStackIn);

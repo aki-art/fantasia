@@ -96,12 +96,16 @@ public class FItems {
 	public static final RegistryObject<FSpawnEggItem> SABER_CAT_SPAWN_EGG = ItemRegistryUtil.registerEgg("saber_cat_spawn_egg", FEntityTypes.SABER_CAT, Constants.Colors.GINGER, Constants.Colors.CREAM);
 
 	// Misc
+	public static final RegistryObject<Item> ROPE = ItemRegistryUtil.register("rope", () -> new Item(new Item.Properties().stacksTo(64).tab(FItemGroup.FANTASIA)));
 	public static final RegistryObject<BlockItem> FROZEN_DIRT = ItemRegistryUtil.registerFromBlock(FBlocks.FROZEN_DIRT);
 	public static final RegistryObject<BlockItem> ICICLE = ItemRegistryUtil.register("icicle", () -> new IcicleItem(FBlocks.ICICLE.get(), new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
 	public static final RegistryObject<BlockItem> FANTASIA_PORTAL_BLOCK = ItemRegistryUtil.registerFromBlock(FBlocks.FANTASIA_PORTAL_BLOCK);
 	public static final RegistryObject<PtarmiganEggItem> PTARMIGAN_EGG = ItemRegistryUtil.register("ptarmigan_egg", () -> new PtarmiganEggItem(new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
 	public static RegistryObject<Item> ACID_BUCKET = ITEMS.register("acid_bucket", () -> new BucketItem(FFluids.ACID_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(FItemGroup.FANTASIA)));
 
+	public static final RegistryObject<CavingAnchorLauncherItem> CAVING_ROPE_ANCHOR = FItems.ITEMS.register("caving_rope_anchor",
+			() -> new CavingAnchorLauncherItem(new Item.Properties()
+					.tab(FItemGroup.FANTASIA)));
 	// Test & Debug
 	//public static final RegistryObject<BlockItem> ASPEN_LOG = ItemRegistryUtil.registerFromBlock(FBlocks.ASPEN_LOG);
 

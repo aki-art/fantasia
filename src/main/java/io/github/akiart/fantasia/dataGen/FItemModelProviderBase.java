@@ -224,17 +224,24 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
         ItemModelBuilder builder = generate(getName(item) + "_inventory", getItemTexture(item));
 
         if (overlay > 0) {
-            builder.override()
-                    .predicate(new ResourceLocation(Fantasia.ID,"potion_level"), 1f)
-                    .model(new ModelFile.UncheckedModelFile(new ResourceLocation(Fantasia.ID, "item/" + getName(item) + "_overlay_0"))).end()
+            ResourceLocation potionLevel = new ResourceLocation(Fantasia.ID, "potion_level");
+            ResourceLocation tipped = new ResourceLocation(Fantasia.ID, "tipped");
+
+            builder
+                    .override()
+                    .predicate(tipped, 1f)
+                    .predicate(potionLevel, 0f)
+                    .model(new ModelFile.UncheckedModelFile(new ResourceLocation(Fantasia.ID, "item/" + getName(item) + "_overlay_2"))).end()
 
                     .override()
-                    .predicate(new ResourceLocation(Fantasia.ID,"potion_level"), 0.5f)
+                    .predicate(tipped, 1f)
+                    .predicate(potionLevel, 0.2f)
                     .model(new ModelFile.UncheckedModelFile(new ResourceLocation(Fantasia.ID, "item/" + getName(item) + "_overlay_1"))).end()
 
                     .override()
-                    .predicate(new ResourceLocation(Fantasia.ID,"potion_level"), 0f)
-                    .model(new ModelFile.UncheckedModelFile(new ResourceLocation(Fantasia.ID, "item/" + getName(item) + "_overlay_2"))).end();
+                    .predicate(tipped, 1f)
+                    .predicate(potionLevel, 0.4f)
+                    .model(new ModelFile.UncheckedModelFile(new ResourceLocation(Fantasia.ID, "item/" + getName(item) + "_overlay_0"))).end();
 
             ResourceLocation parent = new ResourceLocation(Fantasia.ID, getName(item) + "_inventory");
 

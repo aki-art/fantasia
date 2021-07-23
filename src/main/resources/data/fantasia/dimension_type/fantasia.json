@@ -6,7 +6,7 @@
   "shrunk": false,
   "has_skylight": true,
   "has_ceiling": false,
-  "ambient_light": 0.05,
+  "ambient_light": 0.01,
   "piglin_safe": false,
   "bed_works": true,
   "respawn_anchor_works": true,

@@ -4,10 +4,13 @@ import com.google.common.collect.ImmutableList;
 import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.fluid.FFluids;
 import io.github.akiart.fantasia.common.item.FItems;
+import io.github.akiart.fantasia.common.item.crafting.FRecipeSerializers;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.VanillaRecipeCategoryUid;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.registration.ISubtypeRegistration;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -23,7 +26,18 @@ public class JEI implements IModPlugin {
     }
 
     @Override
+    public void registerItemSubtypes(ISubtypeRegistration registration) {
+        registration.registerSubtypeInterpreter(FItems.SABER_TOOTH_JAVELIN.get(), FPotionSubtypeInterpreter.INSTANCE);
+    }
+
+
+    @Override
     public void registerRecipes(IRecipeRegistration registration) {
+
+        registration.addRecipes(ImmutableList.of(
+                FRecipeSerializers.TIPPED_SABER_TOOTH_JAVELIN.get(),
+                FRecipeSerializers.CLEAN_SABER_TOOTH_JAVELIN.get()
+        ), VanillaRecipeCategoryUid.CRAFTING);
 
         registration.addIngredientInfo(new FluidStack(FFluids.ACID_SOURCE.get(), 8), VanillaTypes.FLUID,
                 "Singing acid flooding the caves of Fantasia.",

@@ -87,17 +87,18 @@ public class FBiomeProvider extends BiomeProvider {
 		//Biome surface = quickTestBiomeSelector.GetNoise(x, z) > 0 ? getBiome(FBiomes.FROZEN_FOREST) : getBiome(FBiomes.BLUE);
 		//Biome surface = getBiome(FBiomes.FROZEN_FOREST);
 
-		return getBiome(FBiomes.ASPEN_FOREST);
 
-		//if(y < 118 >> 2) {
-		//	return caveBiomes.getNoiseBiome(surface, x, y, z);
-		//}
+		if(y < 118 >> 2) {
+			return getBiome(FBiomes.ICY_CAVERN); //caveBiomes.getNoiseBiome(surface, x, y, z);
+		}
+
+		return getBiome(FBiomes.FROZEN_FOREST);
 
 		//return genBiomes.getBiome(biomeRegistry, x, z, biomeIDMap);
 	}
 
 	public HashSet<Biome> getAllVerticalBiomes(int x, int z) {
-		HashSet<Biome> results = new HashSet<Biome>();
+		HashSet<Biome> results = new HashSet<>();
 		for (int y = 0; y <= 256; y = y + 4) {
 			results.add(getNoiseBiome(x >> 2, y >> 2, z >> 2));
 		}

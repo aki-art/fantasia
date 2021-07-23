@@ -1,15 +1,22 @@
 package io.github.akiart.fantasia.common.item.crafting;
 
 import io.github.akiart.fantasia.common.item.itemType.SaberToothJavelinItem;
+import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.LingeringPotionItem;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.SpecialRecipe;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
+import net.minecraft.tileentity.BannerTileEntity;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
 public class TippedSaberToothJavelinRecipe extends SpecialRecipe {
@@ -46,7 +53,6 @@ public class TippedSaberToothJavelinRecipe extends SpecialRecipe {
     public ItemStack assemble(CraftingInventory inventory) {
         ItemStack result = ItemStack.EMPTY;
         Potion potion = Potions.EMPTY;
-        int potionIdx = -1;
 
         for(int i = 0; i < inventory.getContainerSize(); ++i) {
             ItemStack stack = inventory.getItem(i);
@@ -56,7 +62,6 @@ public class TippedSaberToothJavelinRecipe extends SpecialRecipe {
                 }
                 else if(isValidPotion(stack)) {
                    potion = PotionUtils.getPotion(stack);
-                    potionIdx = i;
                 }
             }
         }
@@ -70,13 +75,38 @@ public class TippedSaberToothJavelinRecipe extends SpecialRecipe {
         return ItemStack.EMPTY;
     }
 
+    @Override
+    public NonNullList<ItemStack> getRemainingItems(CraftingInventory inventory) {
+        NonNullList<ItemStack> result = NonNullList.withSize(inventory.getContainerSize(), ItemStack.EMPTY);
+
+        for(int i = 0; i < result.size(); ++i) {
+            ItemStack itemstack = inventory.getItem(i);
+            if (!itemstack.isEmpty()) {
+
+                // default behavior in case a modded potion has something else set
+                if (itemstack.hasContainerItem()) {
+                    result.set(i, itemstack.getContainerItem());
+                }
+                // leave a glass bottle behind
+                else if (isValidPotion(itemstack)) {
+                    ItemStack glassBottle = new ItemStack(Items.GLASS_BOTTLE);
+                    glassBottle.setCount(1);
+                    result.set(i, glassBottle);
+                }
+            }
+        }
+
+        return result;
+    }
+
     // only allow clean javelins
     protected boolean isDippableJavelin(ItemStack stack) {
         return stack.getItem() instanceof SaberToothJavelinItem && PotionUtils.getMobEffects(stack).isEmpty();
     }
 
+    // instanceof instead of direct item check makes modded potions extending lingering pots also work
     protected boolean isValidPotion(ItemStack stack) {
-        return stack.getItem() == Items.LINGERING_POTION && !PotionUtils.getPotion(stack).getEffects().isEmpty();
+        return stack.getItem() instanceof LingeringPotionItem && !PotionUtils.getMobEffects(stack).isEmpty();
     }
 
     @Override

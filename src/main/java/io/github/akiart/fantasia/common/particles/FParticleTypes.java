@@ -11,4 +11,6 @@ public class FParticleTypes {
 	public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, Fantasia.ID);
 	
 	public static final RegistryObject<BasicParticleType> SNOW = PARTICLES.register("snow_particle", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> DRIPPING_ACID = PARTICLES.register("dripping_acid", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> FALLING_ACID = PARTICLES.register("falling_acid", () -> new BasicParticleType(true));
 }

@@ -1,21 +1,21 @@
 {
   "config": {
     "top_material": {
-      "Name": "minecraft:marlstone"
+      "Name": "fantasia:edelstone"
     },
     "cave_wall_material": {
-      "Name": "fantasia:marlstone"
+      "Name": "fantasia:edelstone"
     },
     "air_material": {
-      "Name": "fantasia:icy_caverns_air"
+      "Name": "fantasia:icy_cavern_air"
     },
     "border_material": {
-      "Name": "minecraft:green_wool"
+      "Name": "fantasia:edelstone"
     },
     "under_material": {
-      "Name": "fantasia:marlstone"
+      "Name": "fantasia:edelstone"
     },
-    "border_thickness" : 4
+    "border_thickness" : 0
   },
-  "type": "fantasia:grimcap_grove"
+  "type": "fantasia:icy_cavern"
 }

@@ -6,21 +6,24 @@
   "overrides": [
     {
       "predicate": {
-        "fantasia:potion_level": 1.0
+        "fantasia:tipped": 1.0,
+        "fantasia:potion_level": 0.0
       },
-      "model": "fantasia:item/saber_tooth_javelin_overlay_0"
+      "model": "fantasia:item/saber_tooth_javelin_overlay_2"
     },
     {
       "predicate": {
-        "fantasia:potion_level": 0.5
+        "fantasia:tipped": 1.0,
+        "fantasia:potion_level": 0.2
       },
       "model": "fantasia:item/saber_tooth_javelin_overlay_1"
     },
     {
       "predicate": {
-        "fantasia:potion_level": 0.0
+        "fantasia:tipped": 1.0,
+        "fantasia:potion_level": 0.4
       },
-      "model": "fantasia:item/saber_tooth_javelin_overlay_2"
+      "model": "fantasia:item/saber_tooth_javelin_overlay_0"
     }
   ]
 }

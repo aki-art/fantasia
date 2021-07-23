@@ -21,7 +21,8 @@ public class CavityGenerator {
     // Makes caves larger towards lower Y levels and almost disappear by the surface.
     protected double getYOffset(float y) {
         // Got this from https://mycurvefit.com/
-        return (-1.110223f * Math.exp(-16) + 0.005636364f * y + 0.00007272727f * y * y) - 0.9f;
+        //return 0.004f * y - 0.6f;
+        return y * 0.015f;
     }
 
     protected float getCavityNoise(int x, int y, int z) {

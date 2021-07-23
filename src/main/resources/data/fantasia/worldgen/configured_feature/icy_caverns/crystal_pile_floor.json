@@ -1,0 +1,58 @@
+{
+  "config": {
+    "feature": {
+      "config": {
+        "feature": {
+          "config": {
+            "feature" : {
+              "config" : {
+                "feature": "fantasia:crystal_piles/hiemsite_medium",
+                "place_on": [
+                  {
+                    "Name": "fantasia:edelstone"
+                  },
+                  {
+                    "Name": "minecraft:snow_block"
+                  }
+                ],
+                "place_in": [
+                  {
+                    "Name": "fantasia:icy_cavern_air"
+                  }
+                ],
+                "place_under": [
+                  {
+                    "Name": "fantasia:icy_cavern_air"
+                  }
+                ]
+              },
+
+              "type": "fantasia:context_aware"
+            },
+            "decorator": {
+              "config": {
+                "bottom_offset": 0,
+                "top_offset": 0,
+                "maximum": 128
+              },
+              "type": "minecraft:range"
+            }
+          },
+          "type": "minecraft:decorated"
+        },
+        "decorator": {
+          "config": {},
+          "type": "minecraft:square"
+        }
+      },
+      "type": "minecraft:decorated"
+    },
+    "decorator": {
+      "config": {
+        "count": 10
+      },
+      "type": "minecraft:count"
+    }
+  },
+  "type": "minecraft:decorated"
+}

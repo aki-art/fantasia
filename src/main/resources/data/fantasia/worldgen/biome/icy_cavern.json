@@ -7,12 +7,12 @@
       "block_search_extent": 8,
       "offset": 2.0
     },
-    "sky_color": 12306914,
-    "fog_color": 15068150,
-    "water_color": 11326203,
-    "water_fog_color": 3095919,
-    "grass_color": 12638463,
-    "foliage_color": 12638463
+    "sky_color": 4810396,
+    "fog_color": 3685017,
+    "water_color": 4351662,
+    "water_fog_color": 329011,
+    "grass_color": 7177890,
+    "foliage_color": 6125193
   },
   "surface_builder": "fantasia:icy_cavern",
   "carvers": {
@@ -32,6 +32,10 @@
     [
       //"fantasia:tundra_tiny_boulder",
       //"fantasia:tundra_boulder"			// "fantasia:tundra_large_boulder"
+      "fantasia:icy_caverns/crystal_pile_floor",
+      "fantasia:icy_caverns/crystal_pile_ceiling",
+      "fantasia:icy_caverns/edelstone_stalactites"
+      //"fantasia:icy_caverns/test"
     ],
     // UNDERGROUND_STRUCTURES
     [

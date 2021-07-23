@@ -47,6 +47,7 @@ public class FogRenderer {
         if(isInAcid(event.getInfo())) {
             event.setDensity(0.25f);
         }
+        else event.setDensity(1f); // test
     }
 
     private static boolean isInAcid(ActiveRenderInfo info) {

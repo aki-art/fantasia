@@ -22,6 +22,12 @@ public class ISTERs {
     public static ItemStackTileEntityRenderer createJavelinISTER(String name) {
         ResourceLocation texture = new ResourceLocation(Fantasia.ID, "textures/entity/javelin/" + name + ".png");
         ModelResourceLocation itemModelLocation = new ModelResourceLocation("fantasia:" + name + "_inventory#inventory");
-        return new JavelinISTER<>(texture, itemModelLocation);
+        return new JavelinISTER(texture, itemModelLocation);
+    }
+
+    public static ItemStackTileEntityRenderer createCavingRopeAnchorISTER() {
+        ResourceLocation texture = new ResourceLocation(Fantasia.ID, "textures/entity/caving_rope_anchor.png");
+        ModelResourceLocation itemModelLocation = new ModelResourceLocation("fantasia:caving_rope_anchor_inventory#inventory");
+        return new JavelinISTER(texture, itemModelLocation);
     }
 }

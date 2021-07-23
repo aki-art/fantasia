@@ -6,6 +6,7 @@ import io.github.akiart.fantasia.common.block.FBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.material.Material;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
@@ -220,7 +221,7 @@ public class CrystalPileFeature extends Feature<CrystalPileFeatureConfig> {
         Block block = world.getBlockState(pos).getBlock();
         return (Tags.Blocks.DIRT.contains(block) ||
                 Tags.Blocks.STONE.contains(block) ||
-                block.is(FBlocks.ICICLE.get())) && // Hiemsite piles in Frozen forests need this
-                !block.is(Blocks.BEDROCK);
+                block.defaultBlockState().getMaterial() == Material.STONE ||
+                block.is(FBlocks.ICICLE.get()));
     }
 }

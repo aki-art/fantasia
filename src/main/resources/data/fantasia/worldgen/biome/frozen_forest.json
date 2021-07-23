@@ -19,7 +19,7 @@
 			 //"fantasia:chasm"
 			//"minecraft:cave",
 			//"minecraft:canyon"
-			//"fantasia:fantasia_cave"
+			"fantasia:fantasia_cave"
 		]
 	},
 	"features": [

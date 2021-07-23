@@ -3,6 +3,8 @@ package io.github.akiart.fantasia.dataGen;
 import java.util.function.Supplier;
 
 import io.github.akiart.fantasia.Fantasia;
+import io.github.akiart.fantasia.common.block.FBlocks;
+import io.github.akiart.fantasia.common.block.blockType.CavingRopeAnchorBlock;
 import io.github.akiart.fantasia.common.block.blockType.ThinLogBlock;
 import io.github.akiart.fantasia.common.block.blockType.biomeDecoration.cave.SpeleothemBlock;
 import io.github.akiart.fantasia.common.block.blockType.biomeDecoration.cave.SpeleothemStage;
@@ -19,15 +21,12 @@ import net.minecraft.block.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Direction.Axis;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -47,6 +46,10 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
 
 	protected ResourceLocation getLocation(String name) {
 		return new ResourceLocation(Fantasia.ID, "block/" + name);
+	}
+
+	protected void air(Block block) {
+		simpleBlock(block, models().getExistingFile(getVanillaLocation("air")));
 	}
 
 	protected void snowyBlock(SnowyDirtBlock block) {
@@ -264,6 +267,23 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
 			ModelFile model = models().withExistingParent(getName(block), getLocation("crystal_lens"))
 				.texture("texture", getLocation(getName(block)))
 				.texture("edge", getLocation(getName(block) + "_edge"));
+
+			return ConfiguredModel.builder().modelFile(model).rotationX(rx).rotationY(ry).build();
+		});
+	}
+
+	protected void cavingRopeAnchor(CavingRopeAnchorBlock block) {
+		getVariantBuilder(block).forAllStates(state -> {
+
+			AttachFace face = state.getValue(HorizontalFaceBlock.FACE);
+			Direction facing = state.getValue(HorizontalFaceBlock.FACING);
+			boolean onWall = face == AttachFace.WALL;
+			boolean onCeiling = face == AttachFace.CEILING;
+
+			int rx = onCeiling ? 180 : onWall ? 90 : 0;
+			int ry = onCeiling ? (int) facing.toYRot() : (int) facing.getOpposite().toYRot();
+
+			ModelFile model = models().withExistingParent(getName(FBlocks.CAVING_ROPE_ANCHOR.get()), Blocks.TRIPWIRE_HOOK.getRegistryName());
 
 			return ConfiguredModel.builder().modelFile(model).rotationX(rx).rotationY(ry).build();
 		});

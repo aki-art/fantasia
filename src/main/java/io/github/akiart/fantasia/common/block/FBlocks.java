@@ -13,7 +13,6 @@ import io.github.akiart.fantasia.common.block.registrySet.trees.BasicTreeRegistr
 import io.github.akiart.fantasia.common.block.registrySet.trees.ThinTreeRegistryObject;
 import io.github.akiart.fantasia.common.block.trees.FTree;
 import io.github.akiart.fantasia.common.util.DirectionRestriction;
-import io.github.akiart.fantasia.common.util.RotatableBoxVoxelShape;
 import io.github.akiart.fantasia.common.world.gen.feature.FConfiguredFeatures;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -140,6 +139,10 @@ public class FBlocks {
 
     public static final RegistryObject<FantasiaPortalBlock> FANTASIA_PORTAL_BLOCK = BlockRegistryUtil.register("fantasia_portal_block",
             () -> new FantasiaPortalBlock(AbstractBlock.Properties.copy(Blocks.GLASS)
+                    .noCollission()));
+
+    public static final RegistryObject<CavingRopeAnchorBlock> CAVING_ROPE_ANCHOR = BlockRegistryUtil.register("caving_rope_anchor",
+            () -> new CavingRopeAnchorBlock(AbstractBlock.Properties.copy(Blocks.TRIPWIRE_HOOK)
                     .noCollission()));
 
 
