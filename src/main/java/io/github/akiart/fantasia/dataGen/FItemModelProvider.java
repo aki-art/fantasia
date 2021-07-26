@@ -43,6 +43,7 @@ public class FItemModelProvider extends FItemModelProviderBase {
 		miscItem(FItems.ACID_BUCKET);
 		miscItem(FItems.CAVING_ROPE_ANCHOR);
 		miscItem(FItems.ROPE);
+		miscItem(FItems.FROSTWORK_AXE);
 		registerDebugStuff();
 	}
 	

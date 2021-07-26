@@ -93,11 +93,11 @@ public final class RenderLayers {
         });
 
         cutouts.add(FBlocks.FROZEN_ELM.sapling.get());
-
         cutouts.add(FBlocks.SNOWBERRY_BUSH_BOTTOM.get());
         cutouts.add(FBlocks.SNOWBERRY_BUSH_TOP.get());
 
         translucents.add(FBlocks.TEST_CRYSTAL_LENS.get());
+        translucents.add(FBlocks.ACID_ICE.get());
 
         for (Block block : cutouts)
             RenderTypeLookup.setRenderLayer(block, RenderType.cutout());

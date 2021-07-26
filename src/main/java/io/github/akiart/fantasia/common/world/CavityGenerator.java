@@ -3,7 +3,7 @@ package io.github.akiart.fantasia.common.world;
 import io.github.akiart.fantasia.lib.FastNoiseLite;
 import net.minecraft.util.math.MathHelper;
 
-// Responsible for generating the huge underground cave rooms. The connecting thin caves are not included in this.
+// Responsible for generating the huge underground cave rooms. The connecting thin caves are a separate carver.
 public class CavityGenerator {
     FastNoiseLite cavityNoise;
     private int caveWorldFloor = 8; // What Y level where solid floor starts.
@@ -15,18 +15,17 @@ public class CavityGenerator {
         cavityNoise.SetFrequency(0.010f);
         cavityNoise.SetFractalType(FastNoiseLite.FractalType.Ridged);
         cavityNoise.SetFractalGain(-0.38f);
-        cavityNoise.SetFractalOctaves(4);
+        cavityNoise.SetFractalOctaves(3);
     }
 
     // Makes caves larger towards lower Y levels and almost disappear by the surface.
     protected double getYOffset(float y) {
-        // Got this from https://mycurvefit.com/
-        //return 0.004f * y - 0.6f;
-        return y * 0.015f;
+        return (0.00005f * y * y) - 0.4f;
     }
 
     protected float getCavityNoise(int x, int y, int z) {
-        float val = cavityNoise.GetNoise(x, y * 1.66f, z);
+        float scale = 1f;
+        float val = cavityNoise.GetNoise(x / scale, (y * 1.66f) / scale, z / scale);
         val *= 1.34f;
         return val;
     }
@@ -41,7 +40,7 @@ public class CavityGenerator {
             }
 
             value += getYOffset(y);
-            column[yChunk] = Math.min(value, column[yChunk]);
+            column[yChunk] = value; //Math.min(value, column[yChunk]);
         }
     }
 }

@@ -31,11 +31,6 @@ public class Config {
                     .comment("If true, players can activate Portals.\nAdd or remove possible destination dimensions via datapacks.")
                     .define("enablePortals", true);
 
-            portal.useFancyPortals = builder
-                    .translation(getKey("useFancyPortals"))
-                    .comment("If true, postals will have special effects.")
-                    .define("useFancyPortals", true);
-
             portal.areDialBlocksCraftable = builder
                     .translation(getKey("areDialBlocksCraftable"))
                     .comment("If true, players can craft the Carved Obsidian dial blocks.")
@@ -52,7 +47,22 @@ public class Config {
             equipment.sabertoothJavelinUses = builder
                     .translation(getKey("sabertoothJavelinUses"))
                     .comment("Set default potion uses when applying a potion to a Sabertooth Javelin.")
-                    .defineInRange("enableFrostworkPickGriefing", 16, 0, 1024);
+                    .defineInRange("sabertoothJavelinUses", 16, 0, 1024);
+
+//            equipment.saberToothInventoryVariants = builder
+//                    .translation(getKey("saberToothInventoryVariants"))
+//                    .comment("If true, all potion variants with their recipes will appear in creative inventory (and also JEI).")
+//                    .define("saberToothInventoryVariants", true);
+
+            equipment.frostworkAxeMaxBlocks = builder
+                    .translation(getKey("frostworkAxeMaxBlocks"))
+                    .comment("How many blocks can a Frostwork Axe break at once. Very large numbers may cause some lag. \n(No, you cannot cut down an entire Yggdrasil with this.)")
+                    .defineInRange("frostworkAxeMaxBlocks", 64, 0, 1024);
+
+            equipment.frostworkAxeSameOnly = builder
+                    .translation(getKey("frostworkAxeSameOnly"))
+                    .comment("If true, Frostwork Axes will only cut the exact same type of connected blocks down.")
+                    .define("frostworkAxeSameOnly", false);
 
             builder.pop();
         }
@@ -63,13 +73,15 @@ public class Config {
 
         public static class PortalSettings {
             public ForgeConfigSpec.BooleanValue enablePortals;
-            public ForgeConfigSpec.BooleanValue useFancyPortals;
             public ForgeConfigSpec.BooleanValue areDialBlocksCraftable;
         }
 
         public static class EquipmentSettings {
             public ForgeConfigSpec.BooleanValue enableFrostworkPickGriefing;
             public ForgeConfigSpec.IntValue sabertoothJavelinUses;
+            //public ForgeConfigSpec.BooleanValue saberToothInventoryVariants; client stuff
+            public ForgeConfigSpec.IntValue frostworkAxeMaxBlocks;
+            public ForgeConfigSpec.BooleanValue frostworkAxeSameOnly;
         }
     }
 
@@ -81,16 +93,22 @@ public class Config {
 
             builder.push("Rendering Settings");
 
-            renderSettings.useShaderAmbient = builder
-                    .translation(getKey("useShaderAmbient"))
-                    .comment("If true, shaders will be used to tint lighting inside Fantasia for better atmosphere. (Disabled with Optifine)")
-                    .define("useShaderAmbient", true);
+            renderSettings.useFancyPortals = builder
+                    .translation(getKey("useFancyPortals"))
+                    .comment("If true, portals will have special effects.")
+                    .define("useFancyPortals", true);
+
+//            renderSettings.useShaderAmbient = builder
+//                    .translation(getKey("useShaderAmbient"))
+//                    .comment("If true, shaders will be used to tint lighting inside Fantasia for better atmosphere. (Disabled with Optifine)")
+//                    .define("useShaderAmbient", true);
 
             builder.pop();
         }
 
         public static class RenderSettings {
             public ForgeConfigSpec.BooleanValue useShaderAmbient;
+            public ForgeConfigSpec.BooleanValue useFancyPortals;
         }
     }
 

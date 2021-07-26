@@ -15,8 +15,8 @@ public class FantasiaDimensionRenderInfo extends DimensionRenderInfo {
 
     @Override
     public Vector3d getBrightnessDependentFogColor(Vector3d vec, float val) {
-        //return vec.multiply((val * 0.94F + 0.06F), val * 0.94F + 0.06F, val * 0.91F + 0.09F);
-        return vec.multiply(val, val, val);
+        val = Math.max(0.4f, val);
+        return vec.multiply((val * 0.94F + 0.06F), val * 0.94F + 0.06F, val * 0.91F + 0.09F);
     }
 
     @Override

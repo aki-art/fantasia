@@ -13,6 +13,11 @@ public class FTags {
         public static final ITag.INamedTag<Fluid> ACID = createFluidTag("acid");
     }
 
+    public static final class Blocks {
+        // used to tell if a certain air type belongs to a cave of this dimension, used for fog rendering.
+        public static final ITag.INamedTag<Block> CAVE_AIR = createBlockTag("fantasia_cave_air");
+    }
+
     public static final class Items {
         public static final ITag.INamedTag<Item> ACID_MELTABLE = createItemTag("acid_meltable");
     }

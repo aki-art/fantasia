@@ -155,7 +155,8 @@ public class SurfaceGenerator {
 
         float depthOffset = top + top * depth / 2f; // * (1f / 4f);
         for (int y = minY; y < maxY; ++y) {
-            column[y] = getSurfaceValue(x, (float)(y * 4) - depthOffset, z, scale * 2f, 0);
+            //column[y] = getSurfaceValue(x, (float)(y * 4) - depthOffset, z, scale * 2f, 0);
+            column[y] = 1f;
         }
     }
 }

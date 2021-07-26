@@ -1,0 +1,24 @@
+{
+  "config": {
+    "state": {
+      "Properties": {
+        "stage": "tiny",
+        "facing" : "north",
+        "face" : "ceiling"
+      },
+      "Name": "fantasia:edelstone_speleothem"
+    },
+    "length": {
+      "base": 1,
+      "spread": 6
+    },
+    "spread": {
+      "base": 2,
+      "spread": 2
+    },
+    "restriction" : "ceiling_only",
+    "attempts" : 64,
+    "drip_counterpart" : true
+  },
+  "type": "fantasia:speleothem_cluster"
+}

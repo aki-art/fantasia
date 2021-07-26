@@ -117,17 +117,17 @@ public class FChunkGenerator2 extends ChunkGenerator {
                 int x = chunkX + xOffset;
                 int z = chunkZ + zOffset;
 
-                float[] testColumn = new float[chunkCountY + 1];
-                surface.fillNoiseColumn(testColumn, x, z);
-                underWorld.fillNoiseColumn(testColumn, x, z, surface.getMinY() + 8, chunkHeight);
+                float[] noiseColumn = new float[chunkCountY + 1];
+                surface.fillNoiseColumn(noiseColumn, x, z);
+                underWorld.fillNoiseColumn(noiseColumn, x, z, surface.getMinY() + 32, chunkHeight);
 
                 BlockPos.Mutable pos = new BlockPos.Mutable(xOffset, 0, zOffset);
 
-                double value = testColumn[chunkCountY];
+                double value = noiseColumn[chunkCountY];
 
                 for (int y = surface.getMaxY(); y > 0; y--) {
 
-                    double nextValue = testColumn[y + 1];
+                    double nextValue = noiseColumn[y + 1];
 
                     for (int ys = 0; ys < chunkHeight; ++ys) {
                         pos.setY(y * chunkHeight + ys);

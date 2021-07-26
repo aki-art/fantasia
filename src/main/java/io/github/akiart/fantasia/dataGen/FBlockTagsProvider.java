@@ -39,6 +39,13 @@ public class FBlockTagsProvider extends BlockTagsProvider {
 		tag(BASE_STONE_FANTASIA).add(FBlocks.EDELSTONE.raw.block.get(), FBlocks.SANGUITE.raw.block.get(),
 			FBlocks.MARLSTONE.raw.block.get());
 
+		tag(FTags.Blocks.CAVE_AIR).add(
+				FBlocks.ICY_CAVERN_AIR.get(),
+				FBlocks.GLOOMFUNGAL_GROTTO_AIR.get(),
+				FBlocks.GRIMCAP_GROVE_AIR.get(),
+				FBlocks.HIVE_AIR.get()
+		);
+
 		tag(Tags.Blocks.DIRT).add(FBlocks.FROZEN_DIRT.get());
 	}
 

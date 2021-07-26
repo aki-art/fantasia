@@ -1,5 +1,6 @@
 package io.github.akiart.fantasia.common.world.gen.feature.placement;
 
+import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.BlockState;
@@ -17,13 +18,13 @@ public class ContextAwareFeatureConfig implements IFeatureConfig {
                             .fieldOf("feature")
                             .forGetter(config -> config.feature),
                     BlockState.CODEC.listOf()
-                            .optionalFieldOf("place_on", null)
+                            .fieldOf("place_on")
                             .forGetter(config -> config.placeOn),
                     BlockState.CODEC.listOf()
-                            .optionalFieldOf("place_in", null)
+                            .fieldOf("place_in")
                             .forGetter(config -> config.placeIn),
                     BlockState.CODEC.listOf()
-                            .optionalFieldOf("place_under", null)
+                            .fieldOf("place_under")
                             .forGetter(config -> config.placeUnder))
                     .apply(builder, ContextAwareFeatureConfig::new));
 

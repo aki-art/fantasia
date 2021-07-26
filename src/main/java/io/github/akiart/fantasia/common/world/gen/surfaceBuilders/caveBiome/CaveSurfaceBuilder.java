@@ -2,11 +2,13 @@ package io.github.akiart.fantasia.common.world.gen.surfaceBuilders.caveBiome;
 
 import com.mojang.serialization.Codec;
 import io.github.akiart.fantasia.Fantasia;
+import io.github.akiart.fantasia.common.block.FBlocks;
+import io.github.akiart.fantasia.util.Constants;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
-import net.minecraftforge.common.util.Constants;
 
 import java.util.Random;
 
@@ -49,8 +51,9 @@ public class CaveSurfaceBuilder extends FSurfaceBuilder<FSurfaceBuilderConfig> {
         for (int y = topY; y >= lowY; --y) {
             blockPos.set(x, y, z);
 
-            if (isAir(worldX, y, worldZ)) {
-                chunkIn.setBlockState(blockPos, air, false);
+            if (chunkIn.getBlockState(blockPos).getMaterial() == Material.AIR) {
+                BlockState acid = biomeIn.getTemperature(blockPos) < 0f ? Constants.BlockStates.ACID_ICE : Constants.BlockStates.ACID;
+                chunkIn.setBlockState(blockPos, y > 12 ? air : acid, false);
                 i = -1;
             } else {
                 if(i++ == -1) {

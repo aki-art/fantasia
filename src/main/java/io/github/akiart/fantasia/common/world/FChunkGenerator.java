@@ -18,6 +18,7 @@ import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.vector.Vector3i;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
@@ -85,6 +86,7 @@ public class FChunkGenerator extends NoiseChunkGenerator {
 //			}
 //		}
 	}
+
 
 		// build surface to all biomes, not just the one sampled at world height like vanilla does
 	public void buildSurfaceAndBedrock(WorldGenRegion region, IChunk chunk) {

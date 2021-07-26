@@ -50,6 +50,6 @@ public enum DirectionRestriction implements IStringSerializable {
 	}
 
 	public Direction getRandomDirection(Random random) {
-		return allowed.get(random.nextInt(allowed.size()));
+		return allowed.get(random.nextInt(allowed.size())).getOpposite();
 	}
 }

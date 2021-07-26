@@ -10,6 +10,7 @@ import io.github.akiart.fantasia.common.fluid.FFluids;
 import io.github.akiart.fantasia.common.item.foods.Foods;
 import io.github.akiart.fantasia.common.item.itemGroup.FItemGroup;
 import io.github.akiart.fantasia.common.item.itemType.*;
+import io.github.akiart.fantasia.common.item.itemType.frostWork.FrostworkAxeItem;
 import io.github.akiart.fantasia.common.item.itemType.frostWork.FrostworkPickaxeItem;
 import io.github.akiart.fantasia.common.item.registrySet.CrystalRegistryItem;
 import io.github.akiart.fantasia.common.item.registrySet.StoneItemSet;
@@ -71,6 +72,7 @@ public class FItems {
 
 	// Frostwork
 	public static final RegistryObject<FrostworkPickaxeItem> FROSTWORK_PICKAXE = ItemRegistryUtil.register("frostwork_pickaxe", () -> new FrostworkPickaxeItem(FItemTier.FROSTWORK, 9, 4f, (new Item.Properties().tab(FItemGroup.FANTASIA))));
+	public static final RegistryObject<FrostworkAxeItem> FROSTWORK_AXE = ItemRegistryUtil.register("frostwork_axe", () -> new FrostworkAxeItem(FItemTier.FROSTWORK, 9, 4f, (new Item.Properties().tab(FItemGroup.FANTASIA))));
 
 	// Javelins
 	public static final RegistryObject<JavelinItem> WOODEN_JAVELIN = ItemRegistryUtil.registerJavelin("wooden_javelin", ItemTier.WOOD, 0.5f , -2.4f);
@@ -97,6 +99,7 @@ public class FItems {
 
 	// Misc
 	public static final RegistryObject<Item> ROPE = ItemRegistryUtil.register("rope", () -> new Item(new Item.Properties().stacksTo(64).tab(FItemGroup.FANTASIA)));
+	public static final RegistryObject<BlockItem> ACID_ICE =  ItemRegistryUtil.registerFromBlock(FBlocks.ACID_ICE);
 	public static final RegistryObject<BlockItem> FROZEN_DIRT = ItemRegistryUtil.registerFromBlock(FBlocks.FROZEN_DIRT);
 	public static final RegistryObject<BlockItem> ICICLE = ItemRegistryUtil.register("icicle", () -> new IcicleItem(FBlocks.ICICLE.get(), new Item.Properties().stacksTo(16).tab(FItemGroup.FANTASIA)));
 	public static final RegistryObject<BlockItem> FANTASIA_PORTAL_BLOCK = ItemRegistryUtil.registerFromBlock(FBlocks.FANTASIA_PORTAL_BLOCK);

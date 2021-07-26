@@ -92,7 +92,7 @@ public class FBiomeProvider extends BiomeProvider {
 			return getBiome(FBiomes.ICY_CAVERN); //caveBiomes.getNoiseBiome(surface, x, y, z);
 		}
 
-		return getBiome(FBiomes.FROZEN_FOREST);
+		return getBiome(FBiomes.YELLOW);
 
 		//return genBiomes.getBiome(biomeRegistry, x, z, biomeIDMap);
 	}

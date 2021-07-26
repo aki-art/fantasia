@@ -27,7 +27,10 @@ public class FBiomes {
 	public static BiomeRegistryObject ICY_CAVERN = create("icy_cavern");
 
 	// Debug Biomes
-	public static final BiomeRegistryObject BLUE = create("blue");
+	public static final BiomeRegistryObject BLUE = create("debug_blue");
+	public static final BiomeRegistryObject GREEN = create("debug_green");
+	public static final BiomeRegistryObject YELLOW = create("debug_yellow");
+	public static final BiomeRegistryObject RED = create("debug_red");
 
 	private static BiomeRegistryObject create(String name) {
 		return BiomeRegistryObject.create(name, biomeList);

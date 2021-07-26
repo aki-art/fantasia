@@ -1,21 +1,30 @@
 package io.github.akiart.fantasia.common.world.gen.feature.placement;
 
 import com.mojang.serialization.Codec;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraftforge.common.util.Constants;
 
 import java.util.Random;
 
-public class ContextAwareFeature extends Feature<ContextAwareFeatureConfig> {
-    public ContextAwareFeature(Codec<ContextAwareFeatureConfig> codec) {
+public class ProjectDownToContextFeature extends Feature<ContextAwareFeatureConfig> {
+
+    public ProjectDownToContextFeature(Codec<ContextAwareFeatureConfig> codec) {
         super(codec);
     }
-
     public boolean place(ISeedReader reader, ChunkGenerator chunkGenerator, Random random, BlockPos pos, ContextAwareFeatureConfig config) {
-        if (isValidPlacement(reader, pos, config)) {
-            return config.feature.get().place(reader, chunkGenerator, random, pos);
+        BlockPos.Mutable checkPos = pos.mutable();
+        for(int y = pos.getY(); y >= 0; y--) {
+            checkPos.setY(y);
+            boolean valid = isValidPlacement(reader, checkPos, config);
+            if(valid) {
+               // reader.setBlock(checkPos, Blocks.LANTERN.defaultBlockState(), Constants.BlockFlags.DEFAULT);
+                return config.feature.get().place(reader, chunkGenerator, random, checkPos);
+            }
+
         }
 
         return false;

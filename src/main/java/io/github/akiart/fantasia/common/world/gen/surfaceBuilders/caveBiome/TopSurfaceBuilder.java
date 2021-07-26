@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import io.github.akiart.fantasia.Fantasia;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.biome.Biome;
@@ -43,9 +44,7 @@ public class TopSurfaceBuilder extends FSurfaceBuilder<FSurfaceBuilderConfig> {
             blockPos.set(x, y, z);
             // BlockState state = chunkIn.getBlockState(blockPos);
 
-            if (chunkIn.getBlockState(blockPos).isAir()) {
-                i = -1;
-            } else if (isAir(worldX, y, worldZ)) {
+            if (chunkIn.getBlockState(blockPos).getMaterial() == Material.AIR) {
                 i = -1;
                 chunkIn.setBlockState(blockPos, air, false);
             } else {

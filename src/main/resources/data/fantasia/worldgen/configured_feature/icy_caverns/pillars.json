@@ -1,0 +1,65 @@
+{
+  "config": {
+    "feature": {
+      "config": {
+        "feature": {
+          "config": {
+            "feature": {
+              "config": {
+                "feature": {
+                  "config": {
+                    "state" : {
+                      "Name" : "fantasia:edelstone"
+                    },
+                    "width" : {
+                      "base": 2,
+                      "spread": 4
+                    }
+                  },
+                  "type": "fantasia:pillar"
+                },
+                "place_on": [
+                  {
+                    "Name": "fantasia:icy_cavern_air"
+                  }
+                ],
+                "place_in": [
+                  {
+                    "Name": "fantasia:icy_cavern_air"
+                  }
+                ],
+                "place_under": [
+                  {
+                    "Name": "fantasia:edelstone"
+                  }
+                ]
+              },
+              "type": "fantasia:project_to_context"
+            },
+            "decorator": {
+              "config": {
+                "bottom_offset": 0,
+                "top_offset": 0,
+                "maximum": 128
+              },
+              "type": "minecraft:range"
+            }
+          },
+          "type": "minecraft:decorated"
+        },
+        "decorator": {
+          "config": {},
+          "type": "minecraft:square"
+        }
+      },
+      "type": "minecraft:decorated"
+    },
+    "decorator": {
+      "config": {
+        "count": 3
+      },
+      "type": "minecraft:count"
+    }
+  },
+  "type": "minecraft:decorated"
+}

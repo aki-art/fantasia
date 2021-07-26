@@ -26,27 +26,6 @@ public abstract class FSurfaceBuilder<T extends FSurfaceBuilderConfig> extends S
         noise.SetFractalOctaves(4);
     }
 
-    // this is by random guessing
-    protected float getCaveNoise(int x, int y, int z) {
-        y *= 1.66f;
-        float val = noise.GetNoise(x, y, z);
-        val *= -1.34f;
-        return val;
-    }
-
-    protected double getYOffset(double y) {
-        // Got this from https://mycurvefit.com/,  its meant to make the caves bigger and bigger towards the bottom , and close up the top layer, this actually works
-        return (-1.110223f * Math.exp(-16) + 0.005636364f * y + 0.00007272727f * y * y) - 0.9f;
-       }
-
-    protected boolean isAir(int x, int y, int z) {
-        float h = getCaveNoise(x, y, z);
-        if (y <= CAVE_WORLD_FLOOR) { // trying to thicken it up near the bottom so there is a smooth flooring
-            h -= 16f * Math.exp(-0.4f * (y - 2f));
-        }
-        return h > getYOffset(y);
-    }
-
     protected boolean isMatchingBuilder(IChunk chunkIn, int x, int y, int z, Biome biomeIn, BlockPos.Mutable blockpos$mutable) {
         ConfiguredSurfaceBuilder<?> thisBuilder = biomeIn.getGenerationSettings().getSurfaceBuilder().get();
         ConfiguredSurfaceBuilder<?> thatBuilder = chunkIn.getBiomes().getNoiseBiome(x >> 2, y >> 2, z >> 2).getGenerationSettings().getSurfaceBuilder().get();

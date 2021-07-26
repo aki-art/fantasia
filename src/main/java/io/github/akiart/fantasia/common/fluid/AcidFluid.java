@@ -4,6 +4,7 @@ import io.github.akiart.fantasia.Fantasia;
 import io.github.akiart.fantasia.common.block.FBlocks;
 import io.github.akiart.fantasia.common.item.FItems;
 import io.github.akiart.fantasia.common.particles.FParticleTypes;
+import io.github.akiart.fantasia.util.Constants;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
@@ -20,7 +21,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.fml.RegistryObject;
@@ -30,10 +30,9 @@ import java.util.Random;
 
 public class AcidFluid extends ForgeFlowingFluid {
 
-    private static final int LIME_GREEN = 0xFFCBFF5C;
-    private static final double R =  (double)(LIME_GREEN >> 16 & 255) / 255.0D;
-    private static final double G =  (double)(LIME_GREEN >> 8 & 255) / 255.0D;
-    private static final double B =  (double)(LIME_GREEN & 255) / 255.0D;
+    private static final double R =  (double)(Constants.Colors.ACID_GREEN >> 16 & 255) / 255.0D;
+    private static final double G =  (double)(Constants.Colors.ACID_GREEN >> 8 & 255) / 255.0D;
+    private static final double B =  (double)(Constants.Colors.ACID_GREEN & 255) / 255.0D;
 
     protected AcidFluid(Properties properties) {
         super(properties);
@@ -51,7 +50,7 @@ public class AcidFluid extends ForgeFlowingFluid {
 
     @Override
     public Vector3d getFlow(IBlockReader reader, BlockPos pos, FluidState state) {
-        return Vector3d.ZERO; // water handles this
+        return Vector3d.ZERO; // water handles this for now
     }
 
     public static ForgeFlowingFluid.Properties getProperties() {
