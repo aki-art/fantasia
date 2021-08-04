@@ -1,7 +1,0 @@
-{
-  "parent": "fantasia:block/sixway_side",
-  "textures": {
-    "bark": "minecraft:block/birch_log",
-    "top": "fantasia:block/aspen_planks"
-  }
-}

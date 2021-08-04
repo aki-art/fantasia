@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "fantasia:block/edelstone",
-    "bottom": "fantasia:block/edelstone",
-    "top": "fantasia:block/edelstone"
-  }
-}

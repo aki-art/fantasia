@@ -1,7 +1,0 @@
-{
-  "parent": "fantasia:block/crystal_lens",
-  "textures": {
-    "texture": "fantasia:block/hiemsite_lens",
-    "edge": "fantasia:block/hiemsite_lens_edge"
-  }
-}

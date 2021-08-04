@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "fantasia:block/polished_pith",
-    "bottom": "fantasia:block/polished_pith",
-    "top": "fantasia:block/polished_pith"
-  }
-}

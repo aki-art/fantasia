@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "fantasia:block/sanguite_bricks",
-    "bottom": "fantasia:block/sanguite_bricks",
-    "top": "fantasia:block/sanguite_bricks"
-  }
-}

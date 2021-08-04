@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "fantasia:block/polished_sanguite",
-    "bottom": "fantasia:block/polished_sanguite",
-    "top": "fantasia:block/polished_sanguite"
-  }
-}

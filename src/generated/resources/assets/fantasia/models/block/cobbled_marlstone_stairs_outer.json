@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "fantasia:block/cobbled_marlstone",
-    "bottom": "fantasia:block/cobbled_marlstone",
-    "top": "fantasia:block/cobbled_marlstone"
-  }
-}

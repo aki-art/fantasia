@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "io.github.akiart.fantasia.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "fantasia.refmap.json",
+  "mixins": [
+    "ExampleMixin",
+    "WorldSeedMixin"
+  ],
+  "minVersion": "0.8"
+}
