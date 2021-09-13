@@ -14,10 +14,12 @@ import java.util.Optional;
 
 @Mixin(DimensionGeneratorSettings.class)
 public class WorldSeedMixin {
-    // Stored the world seed for later use in world generation
+    // Stores the world seed for later use in world generation
     // https://github.com/TelepathicGrunt/WorldBlender/blob/af8ad56ee290baf53e8c0352fad3cc21c2c8647d/src/main/java/com/telepathicgrunt/worldblender/mixin/dimensions/DimensionGeneratorSettingsMixin.java
-    @Inject(method = "<init>(JZZLnet/minecraft/util/registry/SimpleRegistry;Ljava/util/Optional;)V",
-            at = @At(value = "RETURN"))
+    @Inject(
+            at = @At("RETURN"),
+            method = "<init>(JZZLnet/minecraft/util/registry/SimpleRegistry;Ljava/util/Optional;)V"
+    )
     private void giveUsRandomSeeds2(long seed, boolean generateFeatures, boolean bonusChest, SimpleRegistry<Dimension> registry, Optional<String> s, CallbackInfo callbackInfo) {
         LogManager.getLogger().info("mixin works, {}", seed);
     }

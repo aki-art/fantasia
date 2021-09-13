@@ -4,7 +4,12 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "fantasia.refmap.json",
   "mixins": [
+    "EntityMixin",
     "ExampleMixin",
+    "ItemEntityMixin",
+    "LivingEntityMixin",
+    "SwimGoalMixin",
+    "SwimNodeProcessorMixin",
     "WorldSeedMixin"
   ],
   "minVersion": "0.8"

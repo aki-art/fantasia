@@ -9,7 +9,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 // TODO: remove later
 @Mixin(MainMenuScreen.class)
 public class ExampleMixin {
-    @Inject(at = @At("HEAD"), method = "init()V")
+    @Inject(
+            at = @At("HEAD"),
+            method = "init()V"
+    )
     private void init(CallbackInfo info) {
         System.out.println("This line is printed by an example mod mixin!");
     }

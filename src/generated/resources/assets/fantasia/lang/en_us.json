@@ -1,0 +1,8 @@
+{
+  "fantasia.death.attack.acid_0": "%1$s tripped.",
+  "fantasia.death.attack.acid_0.player": "%1$s fell into acid while avoiding %2$s.",
+  "fantasia.death.attack.acid_1": "%1$s has melted in acid.",
+  "fantasia.death.attack.acid_1.player": "%1$s has melted in acid while while fighting %2$s.",
+  "fantasia.death.attack.acid_2": "%1$s mistook acid for water.",
+  "fantasia.death.attack.acid_2.player": "%1$s wanted a break from a fight with %2$s and took a bath in acid."
+}

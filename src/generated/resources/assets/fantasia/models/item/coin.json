@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "fantasia:item/coin"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "fantasia:count": 0.33
+      },
+      "model": "fantasia:item/coin_1"
+    },
+    {
+      "predicate": {
+        "fantasia:count": 0.66
+      },
+      "model": "fantasia:item/coin_2"
+    },
+    {
+      "predicate": {
+        "fantasia:count": 1.0
+      },
+      "model": "fantasia:item/coin_3"
+    }
+  ]
+}
